@@ -31,8 +31,10 @@ console.log()
  * Unshift => shifts arr to the right, adding a new first element  
 */
 const nums = [10, 123, 38, 4, 96, 21]
+
 nums.shift()
 console.log(nums)
+
 nums.unshift(420)
 console.log(nums)
 

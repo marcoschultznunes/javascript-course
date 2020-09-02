@@ -1,13 +1,14 @@
-//With this we can attribute a function to a let or const
+//With this, we can attribute a function to a LET or CONST
 const f1 = function (a, b){
     console.log(a + b)
 }
 
-function f2(a, b){ //This = var f2() = ...
+//With this, the function will be declared as a VAR
+function f2(a, b){ 
     console.log(a + b)
 }
 
-//Therefore it is a VAR and hoisting occurs and it is in the global scope and it can be redeclared
+//Therefore hoisting occurs, it is in the global scope and it can be redeclared
 function f2(){
     console.log('Hey')
 }

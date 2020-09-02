@@ -4,12 +4,14 @@ let frase = 'Eu sou lindo!'
 
 console.log(frase.length) //length => counts all chars and spaces
 console.log(('zé').length) //JS does not have a problem with utf-8 like PHP
+
 console.log('')
 
 //substring => gets a specific portion of the string
 
 console.log(frase.substring(3,6)) //sou
 console.log(frase.substring(3)) //omitting the ending param will make it be the last character
+
 console.log('')
 
 /* https://stackoverflow.com/questions/2243824/what-is-the-difference-between-string-slice-and-string-substring */

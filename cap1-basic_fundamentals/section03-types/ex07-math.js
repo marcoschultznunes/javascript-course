@@ -9,4 +9,3 @@ console.log('')
 
 console.log(typeof(Math))
 console.log(typeof(Number))
-console.log('')

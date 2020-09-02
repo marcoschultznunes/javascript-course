@@ -11,7 +11,7 @@
  */
 
 console.log(typeof(1))
-console.log(typeof('a'))
 console.log(typeof(false))
+console.log(typeof('a'))
 console.log(typeof(null)) // typeof null = object bug
 console.log(typeof(undefined_variable))

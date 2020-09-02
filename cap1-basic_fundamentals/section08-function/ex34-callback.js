@@ -1,6 +1,6 @@
 /**
  *  Callback =>
- *      Passing a function and the function triggers when an event happens 
+ *      Passing a function which is called when an event happens 
  *      
  *      example 1: Function inside a looping function, like foreach.
  *          in this example, you are declaring a function to call after each iteration of
@@ -26,7 +26,8 @@ scores.forEach(printScore)
 
 /**
  * 
- *  Example 2: Ajax, which sends a request to a server and when the server responds, 
+ *  Example 2: Ajax, which sends a request to a server and, 
+ *      when the server responds, 
  *      a callback function is triggered 
  *  
 */
