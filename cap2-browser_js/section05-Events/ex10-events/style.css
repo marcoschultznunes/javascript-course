@@ -1,0 +1,30 @@
+* {
+    margin: 0px;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 100vh;
+}
+
+div{
+    width: 200px;
+    height: 60px;
+    font-size: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: black solid 4px;
+}
+.hover-div{
+    background-color: darkblue;
+}
+.click-div{
+    background-color: darkred;
+}
+.click-div:hover{
+    cursor: pointer;
+}
