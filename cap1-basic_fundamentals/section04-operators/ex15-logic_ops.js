@@ -18,4 +18,4 @@ console.log((Boolean)(!programei)) //false
 
 console.log('')
 
-// not, or, and, xor => diferença
+// not, or, and

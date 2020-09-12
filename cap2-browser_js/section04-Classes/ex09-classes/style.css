@@ -1,0 +1,23 @@
+* {
+    margin: 0px;
+}
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 100vh;
+}
+
+.standard-div{
+    padding: 10px;
+    font-size: 28px;
+    background-color: palevioletred;
+    border: solid 4px black;
+}
+
+.decorated{
+    text-decoration: underline;
+    border: aqua 4px solid;
+    background-image: linear-gradient(to right, palevioletred, #550055, palevioletred);
+}
