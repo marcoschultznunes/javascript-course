@@ -1,0 +1,13 @@
+{
+    "zoo": {
+        "city" : "Sapucaia",
+        "animals" : [
+            "Monkey",
+            "Spider",
+            "Python",
+            "Elephant",
+            "Bunny",
+            "Alligator" 
+        ]
+    }
+}
