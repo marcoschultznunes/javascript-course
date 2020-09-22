@@ -1,0 +1,25 @@
+This course is Eduonix's Create a Microservice Based Application course from youtube
+
+https://www.youtube.com/playlist?list=PLDmvslp_VR0xZGhJHMjy5dozCDJYZK6W-
+
+
+Microsservices: Services are independent and deeply separated. Each has its own database.
+But not necessarily different clusters. The databases could be in a single large 
+cluster or multiple tiny ones.
+
+https://www.infoq.com/articles/kubernetes-multicluster-comms/
+
+
+The project will have 3 independent services:
+    - Book Service
+    - Orders Service
+    - Customer Service
+
+Orders service will link Book and Customer service by sending requests to theirs
+
+Application technology stack:
+    - NodeJS => Enviroment
+    - ExpressJS => Framework
+    - Mongoose => MongoDB ORM
+    - MongoDB => Databases
+    - Mongo Atlas => Database Hosting Service (mLab replacement)

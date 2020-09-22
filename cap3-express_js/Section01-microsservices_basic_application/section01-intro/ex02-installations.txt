@@ -1,0 +1,17 @@
+Install on each of the 3 services independently:
+    npm install --save express
+    npm install --save body-parser
+    npm install --save mongoose
+
+mLab:
+    Cloud platform to host MongoDB databases
+
+mLab does not exist anymore. It has migrated to Mongo Atlas.
+
+You can signup with mLab which will redirect to Mongo Atlas.
+
+You can create a cluster, then a user, then a database and then more users through Mongo Atlas
+
+https://www.cmswire.com/information-management/microservices-architecture-one-big-cluster-or-lots-of-little-ones/
+
+I will use just a single cluster with the 3 databases.
