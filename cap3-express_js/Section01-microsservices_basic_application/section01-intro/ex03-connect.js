@@ -11,10 +11,15 @@ const secrets = require('./secrets')
 // DO NOT COMMIT THE PASSWORD TO GITHUB
 const connectionKey = "mongodb+srv://marcola:" + secrets.pw + "@cluster0.p4xhv.mongodb.net/" + secrets.db + "?retryWrites=true&w=majority"
 
-mongoose.connect(connectionKey, { useNewUrlParser: true, useUnifiedTopology: true }, () => {
+mongoose.connect(connectionKey, { 
+    useNewUrlParser: true, 
+    useUnifiedTopology: true, 
+    useFindAndModify: false
+}, () => {
     console.log('Connected to the Books database.')
 })
-// { useNewUrlParser: true, useUnifiedTopology: true } => Options to avoid deprecation
+// { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false} => Options 
+//     to avoid deprecation
 // The third param defines a callback to report a success message
 
 app.get('/', (req, res) => {

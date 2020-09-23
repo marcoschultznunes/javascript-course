@@ -19,7 +19,11 @@ const secrets = require('./secrets')
 // DO NOT COMMIT THE PASSWORD TO GITHUB
 const connectionKey = "mongodb+srv://marcola:" + secrets.pw + "@cluster0.p4xhv.mongodb.net/" + secrets.db + "?retryWrites=true&w=majority"
 
-mongoose.connect(connectionKey, { useNewUrlParser: true, useUnifiedTopology: true }, () => {
+mongoose.connect(connectionKey, { 
+    useNewUrlParser: true, 
+    useUnifiedTopology: true, 
+    useFindAndModify: false
+}, () => {
     console.log('Connected to the Books database.')
 })
 
@@ -27,6 +31,37 @@ mongoose.connect(connectionKey, { useNewUrlParser: true, useUnifiedTopology: tru
 
 app.get('/', (req, res) => {
     res.send('Welcome to the books service')
+})
+
+app.get('/books', (req, res) => {
+    BookModel.find().then((results) => {
+        res.json(results)
+    }).catch(error => {
+        if(error){
+            res.status(400).send({
+                message: error.message
+            })
+        }
+    })
+})
+
+app.get('/books/:id', (req, res) => {
+    const id = req.params.id
+
+    BookModel.findById(id).then(book => {
+        if(book){
+            res.json(book)
+        } else{
+            res.sendStatus(404)
+        }
+    }).catch((error) => {
+        if(error){ 
+            res.status(400).send({
+                message: error.message
+            })
+        }
+    })
+
 })
 
 app.post('/books', (req, res) => {
@@ -50,6 +85,37 @@ app.post('/books', (req, res) => {
             })
         }
     })
+})
+
+app.delete('/books/:id', (req, res) => {
+    const id = req.params.id
+
+    BookModel.findByIdAndDelete(id).then((book) => {
+        if(book){
+            res.sendStatus(200)
+        } else{
+            res.sendStatus(404)
+        }
+    })
+})
+
+app.patch('/books/:id', (req, res) => {
+    const id = req.params.id
+
+    BookModel.findOneAndUpdate({_id: id}, req.body).then(success => {
+        if(success){
+            res.sendStatus(200)
+        } else{
+            res.sendStatus(404)
+        }
+    }).catch((error) => {
+        if(error){ 
+            res.status(400).send({
+                message: error.message
+            })
+        }
+    })
+
 })
 
 app.listen(8083, () => {
