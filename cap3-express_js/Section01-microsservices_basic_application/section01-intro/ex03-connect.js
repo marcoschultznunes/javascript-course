@@ -9,15 +9,13 @@ const secrets = require('./secrets')
 // Get the connect by clicking on connect on atlas and copying the key.
 // The password and the db name must be replaced
 // DO NOT COMMIT THE PASSWORD TO GITHUB
-mongoose.connect(
-    "mongodb+srv://marcola:" + secrets.pw + 
-    "@cluster0.p4xhv.mongodb.net/" + secrets.db + 
-    "?retryWrites=true&w=majority",
-{ useNewUrlParser: true, useUnifiedTopology: true }, // Pass these options to avoid deprecation
-() => { // Callback message on success
+const connectionKey = "mongodb+srv://marcola:" + secrets.pw + "@cluster0.p4xhv.mongodb.net/" + secrets.db + "?retryWrites=true&w=majority"
+
+mongoose.connect(connectionKey, { useNewUrlParser: true, useUnifiedTopology: true }, () => {
     console.log('Connected to the Books database.')
 })
-
+// { useNewUrlParser: true, useUnifiedTopology: true } => Options to avoid deprecation
+// The third param defines a callback to report a success message
 
 app.get('/', (req, res) => {
     res.send('Welcome to the books service')
