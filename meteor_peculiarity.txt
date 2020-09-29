@@ -1,0 +1,5 @@
+Meteor.js is a full-stack (client-server) JavaScript framework designed exclusively for SPAs.
+
+SPA => Single Page Application
+
+https://forums.meteor.com/t/meteor-is-great-why-is-not-more-popular/36580

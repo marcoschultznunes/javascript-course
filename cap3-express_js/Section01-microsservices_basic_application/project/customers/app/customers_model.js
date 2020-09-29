@@ -14,7 +14,3 @@ mongoose.model('customers', {
         required: true
     }
 }, 'customers')
-
-// Requiring the model
-require('./customers_model')
-const CustomersModel = mongoose.model('customers')
