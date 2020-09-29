@@ -30,7 +30,7 @@ mongoose.connect(connectionKey, {
 /* The API */
 
 app.get('/', (req, res) => {
-    res.send('Welcome to the books service')
+    res.send('Welcome to the books service!')
 })
 
 app.get('/books', (req, res) => {

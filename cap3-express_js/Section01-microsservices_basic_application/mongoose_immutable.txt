@@ -1,0 +1,16 @@
+You can use Mongoose Immutable.
+It's a small package you can install with the command below, 
+it allows you to use the "immutable" property.
+
+npm install mongoose-immutable --save
+
+then to use it:
+
+var userSchema = new mongoose.Schema({
+    username: {
+        type: String,
+        required: true,
+        immutable: true
+    }
+});
+userSchema.plugin(immutablePlugin);

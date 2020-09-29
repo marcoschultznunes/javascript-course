@@ -45,7 +45,9 @@ app.get('/customers/:id', (req, res) => {
             res.sendStatus(404)
         }
     }).catch(error => {
-        res.status(400).send({message: error.message})
+        if(error){
+            res.status(400).send({message: error.message})
+        }
     })
 })
 
@@ -78,7 +80,9 @@ app.patch('/customers/:id', (req, res) => {
             res.sendStatus(404)
         }
     }).catch(error => {
-        res.status(400).send({message: error.message})
+        if(error){
+            res.status(400).send({message: error.message})
+        }
     })
 })
 
@@ -93,10 +97,12 @@ app.delete('/customers/:id', (req, res) => {
             res.sendStatus(404)
         }
     }).catch(error => {
-        res.status(400).send({message: error.message})
+        if(error){
+            res.status(400).send({message: error.message})
+        }
     })
 })
 
-app.listen(8083, () => {
-    console.log('Listening on the port 8083')
+app.listen(8084, () => {
+    console.log('Listening on the port 8084')
 })

@@ -2,6 +2,25 @@ Install on each of the 3 services independently:
     npm install --save express
     npm install --save body-parser
     npm install --save mongoose
+    npm install --save nodemon
+
+In the Orders service, we'll also use axios:
+    npm install --save axios
+
+
+Running with nodemon:
+
+* npm init -y => create package.json
+
+On the package.json file:
+
+* script start: "nodemon"
+* main: "app/api.js"
+
+On the terminal:
+
+npm start => run nodemon on the "main" folder.
+
 
 mLab:
     Cloud platform to host MongoDB databases

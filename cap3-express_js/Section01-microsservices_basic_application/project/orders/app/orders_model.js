@@ -19,7 +19,3 @@ mongoose.model('orders', {
     }    
     
 }, 'orders')
-
-// Requiring the model
-require('./orders_model')
-const OrdersModel = mongoose.model('orders')
