@@ -1,0 +1,9 @@
+1: npm init -y => to create the package.json
+2: npm install --save express => install express
+3: npm install --save nodemon => install nodemon
+4: setup a script for nodemon on the package.json:
+    "scripts": {
+        "start": "nodemon"
+    }
+
+    to run the server just enter npm start on the terminal
