@@ -1,0 +1,7 @@
+https://airbrake.io/blog/http-errors/304-not-modified
+
+A 304 Not Modified message is an HTTP response status code indicating that the requested 
+resource has not been modified since the previous transmission, 
+so there is no need to retransmit the requested resource to the client. 
+In effect, a 304 Not Modified response code acts as an implicit redirection to a 
+cached version of the requested resource.

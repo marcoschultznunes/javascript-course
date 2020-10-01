@@ -1,11 +1,16 @@
+//https://www.npmjs.com/package/cors
+
+/*
+    app.js:
+*/
 const express = require('express')
 const app = express()
-const morgan  = require('morgan')
-const cors = require('cors')
+const morgan  = require('morgan') // We've added morgan now
+const cors = require('cors') // CORS NPM library to handle cors
 
-app.use(morgan('dev'))
+app.use(morgan('dev')) // Configuring morgan
 
-app.use(cors())
+app.use(cors()) // Makes all CORS allowed by default
 
 const productRoutes = require('./model/products/routes')
 
