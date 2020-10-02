@@ -10,3 +10,4 @@
 
 5: npm install --save morgan => morgan logs all received requests
 6: npm install --save cors => cors handles cors across all browsers
+7: npm install --save mongoose => install mongoose
