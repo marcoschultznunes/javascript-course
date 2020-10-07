@@ -14,6 +14,7 @@ router.get('/', (req, res, next) => {
             numOfProducts: products.length,
             products: products.map(product => {
                 return {
+                    _id: product._id,
                     name: product.name,
                     brand: product.brand,
                     price: product.price,
