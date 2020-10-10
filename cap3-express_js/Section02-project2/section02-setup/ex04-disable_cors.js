@@ -9,8 +9,12 @@ const morgan  = require('morgan') // We've added morgan now
 const cors = require('cors') // CORS NPM library to handle cors
 
 app.use(morgan('dev')) // Configuring morgan
-
 app.use(cors()) // Makes all CORS allowed by default
+
+app.use(function(req, res, next) { // Adding content security policy, to block XSS
+    res.setHeader("Content-Security-Policy", "script-src 'self' https://apis.google.com");
+    return next();
+});
 
 const productRoutes = require('./model/products/routes')
 
