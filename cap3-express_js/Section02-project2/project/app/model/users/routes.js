@@ -7,6 +7,7 @@ const UsersModel = mongoose.model('users')
 
 const bcrypt = require('bcrypt')
 const emailValidator = require('email-validator')
+const jwt = require('jsonwebtoken')
 
 router.get('/', (req, res, next) => {
     res.send('Welcome to the Users service!')
@@ -59,6 +60,37 @@ router.post('/', (req, res, next) => {
                 }
             })
         }
+    })
+})
+
+router.post('/login', (req, res, next) => {
+    UsersModel.findOne({email: req.body.email}).then(user => {
+        if(user.length < 1){
+            res.status(401).send({error: {message: 'Authentication failed'}})
+        } else{
+            bcrypt.compare(req.body.password, user.password, (error, success) => {
+                if(error){
+                    return res.status(401).send({error: {message: 'Authentication failed'}})
+                }
+                if(success){
+                    const token = jwt.sign({
+                        email: user.email,
+                        _id: user._id
+                    }, 'tawLsn3E4mboqp#fb9J',
+                    {
+                        expiresIn: '1h'
+                    })
+                    return res.status(200).send({
+                        message: 'Successful authentication',
+                        token: token
+                    })
+                }
+
+                return res.status(401).send({error: {message: 'Authentication failed'}})
+            })
+        }
+    }).catch(error => {
+        res.status(401).send({error: {message: 'Authentication failed'}})
     })
 })
 
