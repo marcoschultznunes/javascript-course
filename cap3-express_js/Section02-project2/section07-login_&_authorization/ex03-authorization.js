@@ -15,7 +15,7 @@ module.exports = (req, res, next) => {
         const token = req.headers.authorization.replace('Bearer ', '') 
             .replace('bearer ', '')
             .replace(' ', '')
-        // jwt.verify(token, secret, options)
+        // jwt.verify(token, secret, options) => same secret i signed with
         const verified = jwt.verify(token, 'tawLsn3E4mboqp#fb9J', null) 
         next() // This command will allow the route to proceed as normal
     } catch(error){
