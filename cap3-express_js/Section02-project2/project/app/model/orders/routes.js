@@ -7,7 +7,9 @@ require('../products/model')
 const OrderModel = mongoose.model('orders')
 const ProductModel = mongoose.model('products')
 
-router.get('/', (req, res, next) => {
+const authorization = require('../../middleware/authorization')
+
+router.get('/', authorization, (req, res, next) => {
     OrderModel.find()
     .select('-__v')
     .then(orders => {
@@ -31,7 +33,7 @@ router.get('/', (req, res, next) => {
         res.status(400).send({error: {message: error.message}})
     })
 })
-router.get('/:id', (req, res, next) => {
+router.get('/:id', authorization, (req, res, next) => {
     const id = req.params.id
 
     OrderModel.findById({_id: id})
@@ -72,7 +74,7 @@ router.get('/:id', (req, res, next) => {
     })
 })
 
-router.post('/', (req, res, next) => {
+router.post('/', authorization, (req, res, next) => {
     ProductModel.findById(req.body.product).then(product => {
         if(product){
             const orderObject = {
@@ -102,7 +104,7 @@ router.post('/', (req, res, next) => {
         res.status(400).send({error: {message: error.message}})
     })
 }) 
-router.patch('/:id', (req, res, next) => {
+router.patch('/:id', authorization, (req, res, next) => {
     const id = req.params.id
 
     ProductModel.findById(req.body.product).then(product => {
@@ -134,7 +136,7 @@ router.patch('/:id', (req, res, next) => {
         res.status(400).send({error: {message: error.message}})
     })
 })
-router.delete('/:id', (req, res, next) => {
+router.delete('/:id', authorization, (req, res, next) => {
     const id = req.params.id
 
     OrderModel.findByIdAndDelete({_id: id}).then(order => {

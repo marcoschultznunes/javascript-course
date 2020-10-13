@@ -5,6 +5,8 @@ const mongoose = require('mongoose')
 require('./model')
 const ProductModel = mongoose.model('products')
 
+const authorization = require('../../middleware/authorization')
+
 router.get('/', (req, res, next) => {
     ProductModel.find()
     .select('-__v') // Excludes the internal field __v from the response
@@ -45,7 +47,7 @@ router.get('/:id', (req, res, next) => {
         res.status(400).send({error: {message: error.message}})
     })
 })
-router.post('/', (req, res, next) => {
+router.post('/', authorization, (req, res, next) => {
     const productObject = {
         name: req.body.name,
         brand: req.body.brand,
@@ -68,7 +70,7 @@ router.post('/', (req, res, next) => {
         res.status(400).send({error: {message: error.message}})
     })
 })
-router.patch('/:id', (req, res, next) => {
+router.patch('/:id', authorization, (req, res, next) => {
     const id = req.params.id
     
     ProductModel.findOneAndUpdate({_id: id}, req.body).then(product => {
@@ -81,7 +83,7 @@ router.patch('/:id', (req, res, next) => {
         res.status(400).send({error: {message: error.message}})
     })
 })
-router.delete('/:id', (req, res, next) => {
+router.delete('/:id', authorization, (req, res, next) => {
     const id = req.params.id
 
     ProductModel.findOneAndDelete({_id: id}).then(product => {
