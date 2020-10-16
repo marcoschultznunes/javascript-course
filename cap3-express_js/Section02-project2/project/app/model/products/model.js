@@ -12,5 +12,9 @@ mongoose.model('products', {
     price:{
         type: Number,
         required: true
+    },
+    productImage:{
+        type: String,
+        required: false
     }
 }, 'products')

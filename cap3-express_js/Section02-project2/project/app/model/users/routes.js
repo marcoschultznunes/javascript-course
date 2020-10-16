@@ -164,7 +164,11 @@ router.get('/activate/:id/:token', (req, res, next) => {
         const expiration = new Date(user.verification_expiration)
 
         if(expiration.getTime() < now.getTime()){
-            return res.status(401).send({error: {message: 'Verification expired'}})
+            user.deleteOne().catch(error => {
+                return res.status(500).send('Verification failed')
+            })
+
+            return res.status(401).send({error: {message: 'Verification expired. Try signing up again.'}})
         }
 
         if(!user.verified){

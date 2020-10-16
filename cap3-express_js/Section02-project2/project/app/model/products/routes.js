@@ -5,6 +5,36 @@ const mongoose = require('mongoose')
 require('./model')
 const ProductModel = mongoose.model('products')
 
+const multer = require('multer')
+
+// Configuring the storage
+const storage = multer.diskStorage({
+    // Functions that multer execute when a new file is received
+    destination: (req, file, callback) => {
+        callback(null, './uploads/') // p1 => error (null because this is success) p2 => folder
+    },
+    filename: (req, file, callback) => {
+        callback(null, Date.now() + file.originalname) // p2 => file name
+    }
+})
+
+const imageFilter = (req, file, callback) => {
+    if(file.mimetype === 'image/jpeg' || file.mimetype === 'image/png'){
+        callback(null, true)
+    }
+    else{
+        callback(new Error('File type not allowed. Only .jpeg and .png are allowed.'), false)
+    }
+}
+
+const upload = multer({
+    storage: storage,
+    limits: {
+        fileSize: 1024 * 1024 * 10 // 10 MegaBytes limit
+    },
+    fileFilter: imageFilter
+})
+
 const authorization = require('../../middleware/authorization')
 
 router.get('/', (req, res, next) => {
@@ -19,6 +49,7 @@ router.get('/', (req, res, next) => {
                     name: product.name,
                     brand: product.brand,
                     price: product.price,
+                    productImage: product.productImage,
                     request:{
                         method: 'GET',
                         url: 'http://localhost:8083/products/' + product._id
@@ -47,11 +78,14 @@ router.get('/:id', (req, res, next) => {
         res.status(400).send({error: {message: error.message}})
     })
 })
-router.post('/', authorization, (req, res, next) => {
+router.post('/', authorization, upload.single('productImage'), (req, res, next) => {
     const productObject = {
         name: req.body.name,
         brand: req.body.brand,
-        price: req.body.price
+        price: req.body.price,
+
+        // This req.file exists now, thanks to multer
+        productImage: req.file.path
     }
 
     const product = new ProductModel(productObject)
