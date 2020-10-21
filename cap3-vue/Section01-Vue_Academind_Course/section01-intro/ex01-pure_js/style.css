@@ -1,0 +1,63 @@
+* {
+    box-sizing: border-box;
+}
+
+.flex-center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body{
+    margin: 0px;
+    padding: 20px 40px;
+    flex-direction: column;
+    background-color: #222222;
+    color: #eeeeee;
+    width: 100%;
+}
+
+.goal-controller{
+    border: 1px solid #dddddd;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 2px 3px 0px 0px rgba(0, 0, 0, 0.25);
+    width: fit-content;
+}
+.goal-controller-header{
+    margin-top: 0px;
+    text-shadow: #888888 0 0 5px;
+}
+.goal-controller>input{
+    width: 40vw;
+    color: #222222;
+    height: 32px;
+    padding: 4px;
+    font-size: 16px;
+}
+.goal-controller>button{
+    background-color: #22aa22;
+    border: 2px solid #222222;
+    border-radius: 2px;
+    color: #eeeeee;
+    padding: 6px;
+    font-size: 16px;
+    font-weight: bold;
+}
+input:focus{
+    box-shadow: 0 0 8px rgba(0, 255, 0, 0.75);
+    border: none;
+    outline: none;
+}
+button:hover{
+    cursor: pointer;
+}
+button:focus{
+    outline: none;
+}
+button:active{
+    color: #ffffff;
+    border-color: #22aa22;
+    box-shadow: 0 0 8px rgba(0, 255, 0, 0.75);
+    outline: none;
+}
