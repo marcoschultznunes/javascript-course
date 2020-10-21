@@ -1,0 +1,17 @@
+.card-group{
+   margin: 10px; 
+}
+.card-group-header{
+    background-color: #111111;
+    color: #eeeeee;
+    display: flex;
+    justify-content: center;
+    font-size: 1.3rem;
+}
+.card-group-body{
+    background-color: #444444;
+    padding: 5px;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}

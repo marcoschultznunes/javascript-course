@@ -1,0 +1,6 @@
+/*
+    The props Object is immutable.
+    Trying to change its attributes and values will cause an error.
+
+    We must assign them to other variables if we want to modify something.
+*/
