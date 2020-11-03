@@ -1,0 +1,4 @@
+npx create-react-project project
+
+On the project folder, start the app with the command:
+    npm start

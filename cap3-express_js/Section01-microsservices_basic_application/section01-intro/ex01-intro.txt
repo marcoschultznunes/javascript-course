@@ -18,7 +18,7 @@ The project will have 3 independent services:
 Orders service will link Book and Customer service by sending requests to theirs
 
 Application technology stack:
-    - NodeJS => Enviroment
+    - NodeJS => Environment
     - ExpressJS => Framework
     - Mongoose => MongoDB ORM
     - MongoDB => Databases

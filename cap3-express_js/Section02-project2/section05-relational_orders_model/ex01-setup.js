@@ -24,7 +24,7 @@ const router = express.Router()
 
 const mongoose = require('mongoose')
 require('./model')
-const OrderModel = mongoose.model('products')
+const OrderModel = mongoose.model('orders')
 
 module.exports = router
 

@@ -35,13 +35,13 @@ const ProductModel = mongoose.model('products')
 
 // The post
 router.post('/', (req, res, next) => {
-    ProductModel.findById(req.body.productId).then(product => { // Check product's existance
+    ProductModel.findById(req.body.product).then(product => { // Check product's existance
         if(product){
             const orderObject = {
                 product: req.body.product,
                 quantity: req.body.quantity
             } 
-        
+         
             const order = new OrderModel(orderObject)
         
             order.save().then((order) => {

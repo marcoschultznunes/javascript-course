@@ -1,7 +1,7 @@
 // Get one
 
 /*
-    I made it get the order and the product, then genera
+    I made it get the order and the product, then generate the product URL
 */
 router.get('/:id', (req, res, next) => {
     const id = req.params.id

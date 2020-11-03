@@ -1,0 +1,3 @@
+    After a bad lesson about passing props to child components, in which the instructor ignored the 
+fact that it also passes the children to the children, which generates an infinite loop, i've 
+decided to abort this course and stop doing Cod3r's courses.

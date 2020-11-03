@@ -18,7 +18,7 @@ ReactDOM.render(
         <Where />
         <Dont />
         <SizedText h="5" text="Ma Boi"/>
-        
+
         <CardGroup title="Shop">
             <Card title="Products" color="#111155">
                 <ul>
