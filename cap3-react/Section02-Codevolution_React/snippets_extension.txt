@@ -1,0 +1,5 @@
+I am using Simple React Snippets, by Burke Holland
+
+ccc => creates Class Component
+imr => import React from 'react'
+imrc => import React, {Component} from 'react'
