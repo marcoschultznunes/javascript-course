@@ -1,12 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+
+import Hello from './components/Hello'
+import { Angel, Shadow, Victim } from './components/Verses';
+
+import Where from './components/Where'
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Hello />
+    <Angel />
+    <Shadow />
+    <Victim />
+    <Where />
   </React.StrictMode>,
   document.getElementById('root')
 );

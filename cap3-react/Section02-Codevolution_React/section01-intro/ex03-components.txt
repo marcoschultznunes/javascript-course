@@ -1,7 +1,6 @@
-Stateless function components:
+Function components:
     Functions that accept properties (props) as parameters and return JSX (HTML in JS).
     They should be built using arrow functions.
-
-Stateful class components:
+Class components:
     Classes from the ES6 which extend the Component class from the React library. Must contain a 
     render() function
