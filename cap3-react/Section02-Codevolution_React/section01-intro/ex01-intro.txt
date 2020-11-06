@@ -5,8 +5,8 @@ It will also follow this 2020 learning path from the same channel, as its main f
     https://www.youtube.com/watch?v=Q9Qx2Xef0do
 
 
-    React is a Javascript library that has the purpose of building user interfaces. Aspects such as 
-routing and HTTP requests are handled by other libraries from the React ecossystem that we use in 
-conjunction with it. This is why React is not a framework.
+    React is a Javascript library that has the purpose of building user interfaces. Aspects 
+such as routing and HTTP requests are handled by other libraries from the React ecossystem 
+that we use in conjunction with it. This is why React is not a framework.
 
     React is component-based

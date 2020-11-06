@@ -15,6 +15,11 @@ import Click from './components/section03/Click'
 import Counter from './components/section03/Counter'
 import NumberPanel from './components/section03/NumberPanel';
 import ObiWan from './components/section03/ObiWan';
+import { TrueFalseIf, TrueFalseLogic, TrueFalseTernary, TrueFalseVariable } from './components/section04/TrueFalse';
+import LanguagesRank from './components/section04/LanguagesRank';
+import { Frameworks } from './components/section04/Frameworks';
+import ModuleCss from './components/section04/ModuleCss';
+import UserForm from './components/UserForm';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -42,6 +47,22 @@ ReactDOM.render(
     <br />
 
     <ObiWan />
+    <br />
+
+    <TrueFalseIf />
+    <TrueFalseVariable />
+    <TrueFalseTernary />
+    <TrueFalseLogic />
+
+    <LanguagesRank />
+    <br />
+    <Frameworks />
+
+    <ModuleCss />
+    <hr />
+    <br />
+
+    <UserForm />
   </React.StrictMode>,
   document.getElementById('root')
 );

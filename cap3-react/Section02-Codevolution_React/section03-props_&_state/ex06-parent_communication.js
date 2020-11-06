@@ -1,6 +1,6 @@
 /*
     We can make a Child component trigger a function on the parent and modify it by passing
-    that function as a parameter to the child component
+    that function as a prop to the child component
 */
 
 /* The NumberPanel.jsx component */

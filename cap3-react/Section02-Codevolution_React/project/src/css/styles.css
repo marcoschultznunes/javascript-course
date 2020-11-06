@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 .gray-button{
     background-color: darkslategray;
 }
@@ -6,4 +10,20 @@
 }
 .blue-button{
     background-color: darkblue;
+}
+
+.green-text{
+    color: rgb(30, 255, 0);
+}
+.red-text{
+    color: #fa1010;
+}
+
+.form{
+    margin-left: 20px;
+}
+.form>input{
+    font-size: 16px;
+    margin-bottom: 5px;
+    padding: 2px 4px;
 }
