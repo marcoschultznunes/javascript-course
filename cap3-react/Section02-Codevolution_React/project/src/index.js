@@ -20,6 +20,7 @@ import LanguagesRank from './components/section04/LanguagesRank';
 import { Frameworks } from './components/section04/Frameworks';
 import ModuleCss from './components/section04/ModuleCss';
 import UserForm from './components/UserForm';
+import MountingGrandpa from './components/section05/MountingGrandpa';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -63,6 +64,8 @@ ReactDOM.render(
     <br />
 
     <UserForm />
+
+    <MountingGrandpa />
   </React.StrictMode>,
   document.getElementById('root')
 );
