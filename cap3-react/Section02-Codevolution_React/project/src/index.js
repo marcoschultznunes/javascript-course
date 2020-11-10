@@ -21,6 +21,8 @@ import { Frameworks } from './components/section04/Frameworks';
 import ModuleCss from './components/section04/ModuleCss';
 import UserForm from './components/UserForm';
 import MountingGrandpa from './components/section05/MountingGrandpa';
+import Pure from './components/section06/Pure';
+import ParentComponent from './components/section06/ParentComponent';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -66,6 +68,11 @@ ReactDOM.render(
     <UserForm />
 
     <MountingGrandpa />
+    <br />
+    
+    <Pure />
+
+    <ParentComponent />
   </React.StrictMode>,
   document.getElementById('root')
 );
