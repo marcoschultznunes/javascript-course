@@ -23,6 +23,8 @@ import UserForm from './components/UserForm';
 import MountingGrandpa from './components/section05/MountingGrandpa';
 import Pure from './components/section06/Pure';
 import ParentComponent from './components/section06/ParentComponent';
+import SimpleRef from './components/section07/SimpleRef';
+import ListParent from './components/section07/ListParent';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -73,6 +75,10 @@ ReactDOM.render(
     <Pure />
 
     <ParentComponent />
+
+    <SimpleRef />
+
+    <ListParent />
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -1,0 +1,7 @@
+NodeJS => A javascript runtime that allows javascript to be run outside the browser.
+NodeJS uses the V8 engine developed by google and also used on google chrome.
+The V8 engine compiles the javascript code to machine code.
+Adds features such as access to file system, and other features restricted in browser JS.
+
+* In nodeJS we create the server itself. For instance, in PHP we don't create the server, 
+we use Apache or Nginx.
