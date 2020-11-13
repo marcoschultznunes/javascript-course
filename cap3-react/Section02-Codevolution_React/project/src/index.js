@@ -25,6 +25,7 @@ import Pure from './components/section06/Pure';
 import ParentComponent from './components/section06/ParentComponent';
 import SimpleRef from './components/section07/SimpleRef';
 import ListParent from './components/section07/ListParent';
+import PortalComponent from './components/section08/PortalComponent';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -79,6 +80,9 @@ ReactDOM.render(
     <SimpleRef />
 
     <ListParent />
+    <br />
+
+    <PortalComponent />
   </React.StrictMode>,
   document.getElementById('root')
 );
