@@ -28,6 +28,8 @@ import ListParent from './components/section07/ListParent';
 import PortalComponent from './components/section08/PortalComponent';
 import ErrorBoundary from './components/section09/ErrorBoundary';
 import Hero from './components/section09/Hero';
+import ClickComponent from './components/section10/ClickComponent';
+import HoverComponent from './components/section10/HoverComponent';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -97,6 +99,9 @@ ReactDOM.render(
     <ErrorBoundary>
       <Hero heroName="Joker"/>
     </ErrorBoundary>
+
+    <ClickComponent />
+    <HoverComponent />
     
   </React.StrictMode>,
   document.getElementById('root')
