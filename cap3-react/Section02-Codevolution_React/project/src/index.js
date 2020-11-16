@@ -26,6 +26,8 @@ import ParentComponent from './components/section06/ParentComponent';
 import SimpleRef from './components/section07/SimpleRef';
 import ListParent from './components/section07/ListParent';
 import PortalComponent from './components/section08/PortalComponent';
+import ErrorBoundary from './components/section09/ErrorBoundary';
+import Hero from './components/section09/Hero';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -83,6 +85,19 @@ ReactDOM.render(
     <br />
 
     <PortalComponent />
+
+    <ErrorBoundary>
+      <Hero heroName="Batman"/>
+    </ErrorBoundary>
+
+    <ErrorBoundary>
+      <Hero heroName="Superman"/>
+    </ErrorBoundary>
+
+    <ErrorBoundary>
+      <Hero heroName="Joker"/>
+    </ErrorBoundary>
+    
   </React.StrictMode>,
   document.getElementById('root')
 );
