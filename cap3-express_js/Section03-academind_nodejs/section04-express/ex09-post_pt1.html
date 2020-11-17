@@ -1,0 +1,45 @@
+<!-- 
+    We'll create a create_product.html file which will be a form that calls the 
+product/create POST route.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Product</title>
+    <style>
+        form > input{
+            font-size: 20px;
+            padding: 4px;
+            margin-bottom: 4px;
+        }
+        form > input:focus{
+            outline-color: rgba(30, 200, 220, 0.4);
+        }
+        form > button{
+            background-color: darkcyan;
+            padding: 8px 16px;
+            font-size: 20px;
+            border: 2px solid black;
+            border-radius: 10px;
+            margin-top: 4px;
+        }
+        form > button:hover {
+            cursor: pointer;
+        }
+        form > button:active{
+            background-color: rgb(5, 185, 185);
+        }
+    </style>
+</head>
+<body>
+    <form action="/products/create" method="POST">
+        <input type="text" name="name" placeholder="Name"><br />
+        <input type="text" name="brand" placeholder="Brand"><br />
+        <input type="text" name="price" placeholder="Price"><br />
+        <button>Create</button>
+    </form>
+</body>
+</html>

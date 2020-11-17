@@ -1,0 +1,26 @@
+form > input{
+    font-size: 20px;
+    padding: 4px;
+    margin-bottom: 4px;
+}
+form > input:focus{
+    outline-color: rgba(30, 200, 220, 0.4);
+}
+form > .create-button{
+    background-color: darkcyan;
+    padding: 8px 16px;
+    font-size: 20px;
+    border: 2px solid black;
+    border-radius: 10px;
+    margin-top: 4px;
+}
+form > button:hover {
+    cursor: pointer;
+}
+form > button:active{
+    background-color: rgb(5, 185, 185);
+}
+
+.red-text{
+    color: red;
+}
