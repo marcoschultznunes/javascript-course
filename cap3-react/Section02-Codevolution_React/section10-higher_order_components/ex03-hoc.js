@@ -1,5 +1,5 @@
 /*
-    In HOC we create usea function that receives a component and returns a new version, 
+    In HOC we create a function that receives a component and returns a new version, 
 adding functionalities and properties by passing them as props to that component. The 
 component then decides how to use these props.
     The HOC function renders the component with these props passed.

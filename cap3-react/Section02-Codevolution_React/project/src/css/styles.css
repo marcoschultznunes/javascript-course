@@ -14,8 +14,14 @@
 .blue-button{
     background-color: darkblue;
 }
+.cyan-button{
+    background-color: rgb(19, 105, 105);
+}
 .orange-button{
     background-color: rgb(228, 72, 0);
+}
+.pink-button{
+    background-color: rgb(199, 14, 112);
 }
 
 .green-text{

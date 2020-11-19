@@ -30,6 +30,9 @@ import ErrorBoundary from './components/section09/ErrorBoundary';
 import Hero from './components/section09/Hero';
 import ClickComponent from './components/section10/ClickComponent';
 import HoverComponent from './components/section10/HoverComponent';
+import ClickComponent2 from './components/section11/ClickComponent2';
+import HoverComponent2 from './components/section11/HoverComponent2';
+import Counter2 from './components/section11/Counter2';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -103,6 +106,14 @@ ReactDOM.render(
     <ClickComponent />
     <HoverComponent />
     
+    <Counter2 render={(clicks, incrementCounter) => (
+      <ClickComponent2 clicks={clicks} incrementCounter={incrementCounter} />
+    )}/>
+
+    <Counter2 render={(clicks, incrementCounter) => (
+      <HoverComponent2 clicks={clicks} incrementCounter={incrementCounter} />
+    )}/>
+
   </React.StrictMode>,
   document.getElementById('root')
 );
