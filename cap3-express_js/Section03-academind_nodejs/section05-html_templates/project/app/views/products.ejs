@@ -2,10 +2,9 @@
 <body>
     <%- include('includes/navbar.ejs') %> 
     <h1 class="page-title">Products</h1>
-    <hr />
 
     <div class="product-control-buttons">
-        <a href="/products/create" class="new-product-button">+ New</a>
+        <a href="/products/create" class="new-product-button unselectable">+ New</a>
     </div>
     <% if(products.length > 0) { %>
         <div>

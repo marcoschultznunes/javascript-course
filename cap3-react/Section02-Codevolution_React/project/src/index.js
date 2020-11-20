@@ -33,6 +33,8 @@ import HoverComponent from './components/section10/HoverComponent';
 import ClickComponent2 from './components/section11/ClickComponent2';
 import HoverComponent2 from './components/section11/HoverComponent2';
 import Counter2 from './components/section11/Counter2';
+import { UserProvider } from './components/section12/userContext';
+import ComponentC from './components/section12/ComponentC';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -114,6 +116,11 @@ ReactDOM.render(
       <HoverComponent2 clicks={clicks} incrementCounter={incrementCounter} />
     )}/>
 
+    <UserProvider value={{name:"Carlos", surname:"Chincón"}}>
+      <ComponentC />
+    </UserProvider>
+
+    <ComponentC />
   </React.StrictMode>,
   document.getElementById('root')
 );
