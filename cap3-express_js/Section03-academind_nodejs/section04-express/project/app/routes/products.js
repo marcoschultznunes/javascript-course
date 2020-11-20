@@ -16,7 +16,7 @@ router.get('/create', (req, res, next) => {
 router.post('/create', (req, res, next) => {
     console.log(req.body)
 
-    return res.redirect('/')
+    return res.redirect('/products')
 })
 
 module.exports = router

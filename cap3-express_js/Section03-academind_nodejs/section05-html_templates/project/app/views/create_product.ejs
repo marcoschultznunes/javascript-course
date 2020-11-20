@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('includes/head.ejs') %> 
+<body>
+    <%- include('includes/navbar.ejs') %>
+
+    <h2 class="page-message">New Product</h2>
+    <form action="/products/create" method="POST">
+        <input type="text" name="name" placeholder="Name"><br />
+        <input type="text" name="brand" placeholder="Brand"><br />
+        <input type="text" name="price" placeholder="Price"><br />
+        <button class="create-button">Create</button>
+    </form>
+</body>
+</html>

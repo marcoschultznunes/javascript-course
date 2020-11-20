@@ -9,7 +9,7 @@ class HoverComponent2 extends Component {
             <div>
                 <h3>{clicks}</h3>
                 <button className="cyan-button" onMouseOver={incrementCounter}>
-                    Click
+                    Hover
                 </button>
             </div>
         );

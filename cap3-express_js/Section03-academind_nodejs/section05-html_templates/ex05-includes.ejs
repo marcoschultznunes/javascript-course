@@ -1,0 +1,90 @@
+<!-- 
+    In ejs, components are called includes. We can add reusability to our code by using 
+them. Inside the views folder we'll add an includes folder where we'll add our components. 
+-->
+
+<!-- We'll add a navbar.ejs include -->
+<nav class="navbar">
+    <ul>
+        <li>
+            <a 
+                href="/" 
+                class="nav-link <%= pageTitle === 'Home' ? 'active' : '' %>"
+            > 
+                Home
+            </a>
+        </li>
+        <li>
+            <a 
+                href="/products" 
+                class="nav-link <%= pageTitle === 'Products' ? 'active' : '' %>"
+            >
+                Products
+            </a>
+        </li>
+    </ul>
+</nav>
+
+<!-- We'll also add a head.ejs include -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= pageTitle %></title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/navbar.css">
+</head>
+
+
+<!-- products.ejs -->
+<%- include('includes/head.ejs') %> <!-- Add head.ejs -->
+<body>
+    <%- include('includes/navbar.ejs') %> <!-- Add navbar.ejs -->
+    <h1 class="page-title">Products</h1>
+    <hr />
+
+    <div class="product-control-buttons">
+        <a href="/products/create" class="new-product-button">+ New</a>
+    </div>
+    <% if(products.length > 0) { %>
+        <div>
+            <ul class="product-list">
+                <% products.forEach(product => { %>
+                    <li>
+                        <h2><%= product.name %></h2>
+                        <p>Brand: <%= product.brand %></p>
+                        <p>Price: <%= product.price %></p>
+                    </li>
+                <% }) %>
+            </ul>
+        </div>
+    <% } else { %>
+        <h2 class="page-message">No products available</h2>
+    <% } %>
+</body>
+</html>
+
+<!-- Now every view passes a pageTitle as variable, and every EJS includes the head.jsx and
+the navbar.jsx
+
+For instance the products.js route:
+
+router.get('/', (req, res, next) => {
+    return res.status(200).render('products', {
+        pageTitle: 'Products',
+        products: products
+    })
+})
+router.get('/create', (req, res, next) => {
+    return res.status(200).render('create_product', {
+        pageTitle: 'Create Product'
+    })
+})
+router.post('/create', (req, res, next) => {
+    console.log(req.body)
+
+    return res.redirect('/products')
+})
+
+-->

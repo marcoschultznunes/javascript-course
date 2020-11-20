@@ -1,0 +1,33 @@
+<!-- The products.ejs file with the products array passed -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <h1>Products</h1>
+    <hr />
+        
+    <!-- Conditional logic -->
+    <% if(products.length > 0) { %>
+        <div>
+            <ul>
+                <!-- Looping through products -->
+                <% products.forEach(product => { %>
+                    <li>
+                        <h2><%= product.name %></h2>
+                        <p>Brand: <%= product.brand %></p>
+                        <p>Price: <%= product.price %></p>
+                    </li>
+                <% }) %>
+            </ul>
+        </div>
+    <% } else { %>
+        <h2>No products available</h2>
+    <% } %>
+</body>
+</html>
