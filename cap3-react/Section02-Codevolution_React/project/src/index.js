@@ -35,6 +35,8 @@ import HoverComponent2 from './components/section11/HoverComponent2';
 import Counter2 from './components/section11/Counter2';
 import { UserProvider } from './components/section12/userContext';
 import ComponentC from './components/section12/ComponentC';
+import PostListComponent from './components/section13/PostListComponent';
+import PostFormComponent from './components/section13/PostFormComponent';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -121,6 +123,12 @@ ReactDOM.render(
     </UserProvider>
 
     <ComponentC />
+    <br />
+
+    <PostListComponent />
+
+    <PostFormComponent />
+    <br />
   </React.StrictMode>,
   document.getElementById('root')
 );
