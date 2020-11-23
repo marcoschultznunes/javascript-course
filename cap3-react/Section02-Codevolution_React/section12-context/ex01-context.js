@@ -76,7 +76,7 @@ the provider tag, assigning the passed props as attributes */
 ReactDOM.render(
     <React.StrictMode>
 
-        <UserProvider value="Carlos">
+        <UserProvider value={{name: "Carlos", surname: "Chincón"}}>
             <ComponentC />
         </UserProvider>
     

@@ -1,5 +1,5 @@
 /*
-    Refs allow component to reference DOM elements and interact with them. Class components 
+    Refs allow components to reference DOM elements and interact with them. Class components 
     use the createRef() function, function components use the useRef() hook.
 
     A good example is making an input be focused on loading the page (componentDidMount).

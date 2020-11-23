@@ -15,7 +15,7 @@ class ListParent extends Component {
         this.listRef = React.createRef()
     }
 
-    fireBullet = () => { // The child method is now replaces the parent's method
+    fireBullet = () => { // The child method replaces the parent's method
         try{
             this.listRef.current.removeChild(this.listRef.current.childNodes[0])
         } catch{
