@@ -2,10 +2,6 @@ import React, { Component } from 'react';
 import NavbarButton from './NavbarButton';
 
 class Navbar extends Component {
-    constructor(props) {
-        super(props);
-    }
-    
     render() { 
         const {page} = this.props
         

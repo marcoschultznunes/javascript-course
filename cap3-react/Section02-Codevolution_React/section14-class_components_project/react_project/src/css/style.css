@@ -3,3 +3,24 @@
     margin: 0px;
     padding: 0px;
 }
+
+html{
+    background-color: #222222;
+    color: white;
+}
+
+.button-red{
+    background-color: rgb(153, 20, 20);
+}
+.button-blue{
+    background-color: rgb(24, 73, 136);
+}
+.button-red:hover{
+    box-shadow: 0px 0px 10px rgb(153, 20, 20);
+    -moz-box-shadow: 0px 0px 10px rgb(153, 20, 20);
+    
+}
+.button-blue:hover{
+    box-shadow: 0px 0px 10px rgb(24, 73, 136);
+    -moz-box-shadow: 0px 0px 10px rgb(24, 73, 136);
+}

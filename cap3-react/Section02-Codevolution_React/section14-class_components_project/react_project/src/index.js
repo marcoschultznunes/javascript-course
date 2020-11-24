@@ -4,6 +4,8 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './css/navbar.css'
 import './css/style.css'
+import './css/page.css'
+import './css/items_list.css'
 
 ReactDOM.render(
   <React.StrictMode>

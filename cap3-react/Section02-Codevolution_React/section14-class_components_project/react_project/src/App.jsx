@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { PageProvider } from './components/context/pageContext';
 import Navbar from './components/Navbar';
+import ProductIndex from './components/ProductIndex';
 
 
 class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            page: 'Home'
+            page: 'Products'
         }
     }
 
@@ -21,7 +22,7 @@ class App extends Component {
         
         switch(this.state.page){
             case 'Home': return <h1>Home</h1>
-            case 'Products': return <h1>Products</h1>
+            case 'Products': return <ProductIndex />
             case 'Users': return <h1>Users</h1>
             case 'Orders': return <h1>Orders</h1>
             case 'Statistics': return <h1>Statistics</h1>
@@ -34,13 +35,17 @@ class App extends Component {
         let body = this.updateBody()
 
         return (  
-            <div>
+            <React.Fragment>
+
                 <PageProvider value={this.changePage}>
                     <Navbar page={this.state.page}/>
                 </PageProvider>
-
-                {body}
-            </div>
+                
+                <main id='page-body'>
+                    {body}
+                </main>
+            
+            </React.Fragment>
         );
     }
 }

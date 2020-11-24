@@ -1,0 +1,11 @@
+.index-header{
+    background-color: #eeeeee;
+    color: rgb(0, 30, 48);
+    padding: 1.6vw;
+    font-size: 1.2rem;
+    text-align: center;
+    box-shadow: 0px 0px 6px #000000;
+    -moz-box-shadow: 0px 0px 6px #000000;
+    position: relative;
+    z-index: 10;
+}
