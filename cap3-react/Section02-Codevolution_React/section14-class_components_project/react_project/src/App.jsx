@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { PageProvider } from './components/context/pageContext';
 import Navbar from './components/Navbar';
+import ProductForm from './components/ProductForm';
 import ProductIndex from './components/ProductIndex';
 
 
@@ -22,10 +23,12 @@ class App extends Component {
         
         switch(this.state.page){
             case 'Home': return <h1>Home</h1>
-            case 'Products': return <ProductIndex />
+            case 'Products': return <ProductIndex changePage={this.changePage}/>
             case 'Users': return <h1>Users</h1>
             case 'Orders': return <h1>Orders</h1>
             case 'Statistics': return <h1>Statistics</h1>
+            case 'NewProduct': return <ProductForm changePage={this.changePage}/>
+            case 'EditProduct': return <ProductForm changePage={this.changePage}/>
 
             default: return <h1>Error</h1>
         }
@@ -41,9 +44,11 @@ class App extends Component {
                     <Navbar page={this.state.page}/>
                 </PageProvider>
                 
-                <main id='page-body'>
-                    {body}
-                </main>
+                <PageProvider value={this.changePage}>
+                    <main id='page-body'>
+                        {body}
+                    </main>
+                </PageProvider>
             
             </React.Fragment>
         );

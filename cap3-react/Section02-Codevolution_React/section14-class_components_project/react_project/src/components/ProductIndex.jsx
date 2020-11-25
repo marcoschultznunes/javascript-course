@@ -14,7 +14,7 @@ class ProductIndex extends Component {
                 </header>
                 <div className='product-table-div'>
                     <div className='table-control-buttons'>
-                        <button>+ New Product</button>
+                        <button onClick={() => this.props.changePage('NewProduct')}>+ New Product</button>
                     </div>
                     <ProductList />
                 </div>

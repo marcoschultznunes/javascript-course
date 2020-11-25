@@ -47,6 +47,19 @@ exports.getProduct = (req, res) => {
 }
 
 exports.postProduct = (req, res) => {
+    if(req.body.name.length < 3){
+        return res.status(400).send('Not enough characters in name field')
+    }
+    if(req.body.brand.length < 3){
+        return res.status(400).send('Not enough characters in brand field')
+    }
+    if(!Number(req.body.price)){
+        return res.status(400).send('Price should be an integer or a decimal')
+    }
+    if(!Number.isInteger(Number(req.body.inStock))){
+        return res.status(400).send('Stock requires an integer')
+    }
+
     const productObject = {
         name: req.body.name,
         brand: req.body.brand,

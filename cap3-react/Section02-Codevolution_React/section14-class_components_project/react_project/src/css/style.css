@@ -15,6 +15,9 @@ html{
 .button-blue{
     background-color: rgb(24, 73, 136);
 }
+.button-green{
+    background-color: rgb(17, 165, 49);
+}
 .button-red:hover{
     box-shadow: 0px 0px 10px rgb(153, 20, 20);
     -moz-box-shadow: 0px 0px 10px rgb(153, 20, 20);
@@ -23,4 +26,13 @@ html{
 .button-blue:hover{
     box-shadow: 0px 0px 10px rgb(24, 73, 136);
     -moz-box-shadow: 0px 0px 10px rgb(24, 73, 136);
+}
+.button-green:hover{
+    box-shadow: 0px 0px 10px rgb(17, 165, 49);
+    -moz-box-shadow: 0px 0px 10px rgb(17, 165, 49);
+    
+}
+
+button:focus{
+    outline: none;
 }

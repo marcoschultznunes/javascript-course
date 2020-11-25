@@ -6,6 +6,7 @@ import './css/navbar.css'
 import './css/style.css'
 import './css/page.css'
 import './css/items_list.css'
+import './css/form.css'
 
 ReactDOM.render(
   <React.StrictMode>
