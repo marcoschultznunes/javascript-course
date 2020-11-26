@@ -1,0 +1,2 @@
+* Mudar o background-color de um input o fez perder o estilo, mudar outros atributos como 
+color não tiveram o mesmo efeito

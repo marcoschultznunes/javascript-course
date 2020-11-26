@@ -1,25 +1,16 @@
-import React from 'react';
-import { PageConsumer } from './context/pageContext';
+import React, { useContext } from 'react';
+import PageContext from './context/pageContext';
 
 const NavbarButton = (props) => {
     const {name, active} = props
 
+    const updatePage = useContext(PageContext)
+
     return(
         <li>
-            <PageConsumer>
-                {
-                    (updatePage) => {
-                        return (
-                            <button 
-                                className={'nav-button ' + active} 
-                                onClick={() => updatePage(name)}
-                            >
-                                {name}
-                            </button>
-                        )
-                    }
-                }
-            </PageConsumer>    
+            <button className={'nav-button ' + active} onClick={() => updatePage(name)}>
+                {name}
+            </button>
         </li>
     )
 }

@@ -89,7 +89,7 @@ exports.patchProduct = (req, res) => {
     
     ProductModel.findOneAndUpdate({_id: id}, req.body).then(product => {
         if(product){
-            res.sendStatus(200).send({message: 'Successfully updated product!'})
+            res.status(200).send({message: 'Successfully updated product!'})
         } else{
             res.sendStatus(404)
         }

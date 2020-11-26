@@ -1,0 +1,5 @@
+* Criar as páginas dos Users e dos Orders, empregando algum método de reuso, talvez HOC ou
+Render Props, ou fazer ser uma página só para todos tipos de itens, gerada dinâmicamente
+a partir dos props.
+* Se der erro de mandar headers 2 vezes, conferir se não tem um sendStatus() ao invés de um 
+status() ligado a um res.send no back end. Isso causa erro, pois o express manda 2 respostas.

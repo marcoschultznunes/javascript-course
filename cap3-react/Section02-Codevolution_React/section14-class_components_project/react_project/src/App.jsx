@@ -9,13 +9,15 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            page: 'Products'
+            page: 'Products',
+            item: {}
         }
     }
 
-    changePage = (newPage) => {
+    changePage = (newPage, newItem) => {
         this.setState({
-            page: newPage
+            page: newPage,
+            item: newItem || {}
         })
     }
 
@@ -27,8 +29,12 @@ class App extends Component {
             case 'Users': return <h1>Users</h1>
             case 'Orders': return <h1>Orders</h1>
             case 'Statistics': return <h1>Statistics</h1>
-            case 'NewProduct': return <ProductForm changePage={this.changePage}/>
-            case 'EditProduct': return <ProductForm changePage={this.changePage}/>
+            case 'NewProduct': return (
+                <ProductForm changePage={this.changePage} item={{}} method='post'/>
+            )
+            case 'EditProduct': return (
+                <ProductForm changePage={this.changePage} item={this.state.item} method='patch'/>
+            )
 
             default: return <h1>Error</h1>
         }

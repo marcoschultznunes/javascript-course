@@ -54,7 +54,7 @@ class ProductItem extends Component{
                 <React.Fragment>
                     <button 
                         className='item-button button-blue' 
-                        onClick={() => this.context('EditProduct')}
+                        onClick={() => this.context('EditProduct', this.props)}
                     >
                         Update
                     </button>

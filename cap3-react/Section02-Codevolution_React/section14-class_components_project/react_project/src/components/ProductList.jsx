@@ -17,7 +17,7 @@ class ProductList extends Component {
                 this.setState({
                     products: products.data.products,
                     errors: false
-                }, () => {console.log(this.state)})
+                })
             })
             .catch(e => {
                 console.log(e)

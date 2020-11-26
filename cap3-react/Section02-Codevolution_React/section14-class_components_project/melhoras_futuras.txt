@@ -1,0 +1,5 @@
+1 - Aplicar a metodologia mobile-first;
+2 - Utilizar cards ao invés de tabelas para apresentar os itens;
+3 - Esses cards devem conter apenas alguns dos atributos dos itens, não todos, com o 
+objetivo de identificação, e a página de editar deve ser uma página de visualização, que 
+apresentará todos detalhes do item, e nela terá a opção do administrador de editá-lo;
