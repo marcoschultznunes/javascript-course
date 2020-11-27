@@ -22,8 +22,9 @@ class UserList extends Component {
                         <td>Name</td>
                         <td>Surname</td>
                         <td>Role</td>
+                        <td>Actions</td>
                     </tr>
-                </thead>
+                </thead> 
                 <tbody>
                     {this.props.items.map(product => {
                         const {_id, name, surname, role} = product
