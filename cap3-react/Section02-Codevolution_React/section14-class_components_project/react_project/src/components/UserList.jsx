@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
-import ProductItem from './ProductItem';
+import UserItem from './UserItem';
 import ListHOC from './ListHOC';
 
-class ProductList extends Component {
+class UserList extends Component {
 
     render() {
+        console.log(this.props)
+
         if(this.props.errors){
             return <h2>Could not fetch from the server!</h2>
         }
         if(this.props.items.length < 1){
-            return <h2>Fetching Products...</h2>
+            return <h2>Fetching Users...</h2>
         }
         
         return (  
@@ -18,19 +20,17 @@ class ProductList extends Component {
                     <tr className='product-list-head'>
                         <td>ID</td>
                         <td>Name</td>
-                        <td>Brand</td>
-                        <td>Price</td>
-                        <td>In Stock</td>
-                        <td>Actions</td>
+                        <td>Surname</td>
+                        <td>Role</td>
                     </tr>
                 </thead>
                 <tbody>
                     {this.props.items.map(product => {
-                        const {_id, name, brand, price, inStock} = product
+                        const {_id, name, surname, role} = product
 
                         return(
-                            <ProductItem id={_id} name={name} brand={brand} price={price}
-                                inStock={inStock} key={_id}/>
+                            <UserItem id={_id} name={name} surname={surname} role={role}
+                                key={_id}/>
                         )
                     })}
                 </tbody>
@@ -39,4 +39,4 @@ class ProductList extends Component {
     }
 }
  
-export default ListHOC(ProductList, 'products');
+export default ListHOC(UserList, 'users');

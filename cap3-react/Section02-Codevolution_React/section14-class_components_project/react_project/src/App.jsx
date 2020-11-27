@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { PageProvider } from './components/context/pageContext';
 import Navbar from './components/Navbar';
 import ProductForm from './components/ProductForm';
-import ProductIndex from './components/ProductIndex';
+import ItemIndex from './components/ItemIndex';
 
 
 class App extends Component {
@@ -25,8 +25,12 @@ class App extends Component {
         
         switch(this.state.page){
             case 'Home': return <h1>Home</h1>
-            case 'Products': return <ProductIndex changePage={this.changePage}/>
-            case 'Users': return <h1>Users</h1>
+            case 'Products': return (
+                <ItemIndex changePage={this.changePage} itemType='Product'/>
+            )
+            case 'Users': return (
+                <ItemIndex changePage={this.changePage} itemType='User'/>
+            )
             case 'Orders': return <h1>Orders</h1>
             case 'Statistics': return <h1>Statistics</h1>
             case 'NewProduct': return (
