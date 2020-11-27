@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Axios from 'axios'
 import PageContext from './context/pageContext';
+import { ucFirstDeleteLast } from '../utils/stringUtils';
 
 const ItemHOC = (WrappedComponent, endpoint) => {
     class ItemHOC extends Component {
@@ -24,7 +25,7 @@ const ItemHOC = (WrappedComponent, endpoint) => {
         }
     
         deleteItem = () => {
-            Axios.delete(`http://localhost:8083/products/${endpoint}/${this.props.id}`)
+            Axios.delete(`http://localhost:8083/${endpoint}/${this.props.id}`)
                 .then(res => {
                     if(res){
                         this.selfRef.current.remove()
@@ -56,7 +57,10 @@ const ItemHOC = (WrappedComponent, endpoint) => {
                     <React.Fragment>
                         <button 
                             className='item-button button-blue' 
-                            onClick={() => this.context('EditProduct', this.props)}
+                            onClick={() => this.context(
+                                'Edit' + ucFirstDeleteLast(endpoint), // Ex: EditProduct
+                                this.props
+                            )}
                         >
                             Update
                         </button>

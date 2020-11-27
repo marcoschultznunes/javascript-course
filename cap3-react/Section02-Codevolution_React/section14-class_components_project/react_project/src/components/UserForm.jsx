@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { makeIdInput, submitForm, updateStateFromInput } from '../utils/formFunctions';
 
-class ProductForm extends Component {
+class UserForm extends Component {
     constructor(props) {
         super(props);
         this.state = {  
             name: this.props.item.name || '',
-            brand: this.props.item.brand || '',
-            price: this.props.item.price || '',
-            inStock: this.props.item.inStock || ''
+            surname: this.props.item.surname || '',
+            role: this.props.item.role || '',
+            password: this.props.item.password || ''
         }
     }
 
@@ -19,7 +19,7 @@ class ProductForm extends Component {
     onSubmit = (e) => {
         e.preventDefault()
         
-        submitForm('products', this)
+        submitForm('users', this)
     }
 
     render() {
@@ -28,7 +28,7 @@ class ProductForm extends Component {
         return (
             <React.Fragment>
                 <header className='index-header'>
-                    <h1>Product Form</h1>
+                    <h1>User Form</h1>
                 </header>
                 <form action="" className='new-form'>
                     {idDisplay}
@@ -37,27 +37,27 @@ class ProductForm extends Component {
                         type="text" name="name" onChange={this.updateInput} 
                         value={this.state.name} placeholder="Name"
                     />
-                    <label htmlFor="brand">Brand</label>
+                    <label htmlFor="surname">Surname</label>
                     <input 
-                        type="text" name="brand" onChange={this.updateInput} 
-                        value={this.state.brand} placeholder="Brand"
+                        type="text" name="surname" onChange={this.updateInput} 
+                        value={this.state.surname} placeholder="Surname"
                     />
-                    <label htmlFor="price">Price</label>
+                    <label htmlFor="role">Role</label>
                     <input 
-                        type="text" name="price" onChange={this.updateInput} 
-                        value={this.state.price} placeholder="Price"
+                        type="text" name="role" onChange={this.updateInput} 
+                        value={this.state.role} placeholder="Role"
                     />
-                    <label htmlFor="inStock">Quantity in stock</label>
+                    <label htmlFor="password">Password</label>
                     <input 
-                        type="text" name="inStock" onChange={this.updateInput} 
-                        value={this.state.inStock} placeholder="Quantity in Stock"
+                        type="password" name="password" onChange={this.updateInput} 
+                        value={this.state.password} placeholder="Password"
                     />
 
-                    <button type="submit" onClick={this.onSubmit}>Save Product</button>
+                    <button type="submit" onClick={this.onSubmit}>Save User</button>
                 </form>
             </React.Fragment>
         );
     }
 }
  
-export default ProductForm;
+export default UserForm;

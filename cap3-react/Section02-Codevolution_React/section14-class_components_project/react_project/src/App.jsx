@@ -3,6 +3,7 @@ import { PageProvider } from './components/context/pageContext';
 import Navbar from './components/Navbar';
 import ProductForm from './components/ProductForm';
 import ItemIndex from './components/ItemIndex';
+import UserForm from './components/UserForm';
 
 
 class App extends Component {
@@ -33,11 +34,18 @@ class App extends Component {
             )
             case 'Orders': return <h1>Orders</h1>
             case 'Statistics': return <h1>Statistics</h1>
+            
             case 'NewProduct': return (
                 <ProductForm changePage={this.changePage} item={{}} method='post'/>
             )
+            case 'NewUser': return(
+                <UserForm changePage={this.changePage} item={{}} method='post'/>
+            )
             case 'EditProduct': return (
                 <ProductForm changePage={this.changePage} item={this.state.item} method='patch'/>
+            )
+            case 'EditUser': return (
+                <UserForm changePage={this.changePage} item={this.state.item} method='patch' />
             )
 
             default: return <h1>Error</h1>
