@@ -1,0 +1,120 @@
+* {
+    box-sizing: border-box;
+    margin: 0px;
+}
+.unselectable { /* Unselectable text */
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.page-title{
+    padding: 22.5px 40px;
+    margin-bottom: 30px;
+    font-size: 2.2rem;
+    text-align: center;
+    background-color: rgb(0, 96, 96);
+    box-shadow: 0px 0px 10px #000000;
+}
+.page-message{
+    margin: 22.5px 40px;
+    font-size: 1.8rem;
+}
+
+form {
+    margin-left: 40px;
+    max-width: 70vw;
+}
+form > label{
+    display: block;
+    font-size: 1.2rem;
+    margin-bottom: 6px;
+}
+form > input{
+    display: block;
+    font-size: 20px;
+    padding: 4px;
+    margin-bottom: 8px;
+    max-width: 70vw;
+    outline: rgba(30, 200, 220, 0.4) 1px solid;
+}
+form > input:focus{
+    outline-color:  darkcyan
+}
+.read-only{
+    color: #888888;
+}
+form > .create-button{
+    background-color: darkcyan;
+    padding: 8px 16px;
+    font-size: 20px;
+    border: none;
+    border-radius: 10px;
+    margin-top: 16px;
+}
+form > button:hover {
+    cursor: pointer;
+    box-shadow: 0px 0px 6px cyan;
+}
+form > button:active{
+    outline: none;
+}
+form > button:focus{
+    outline: none;
+}
+
+.product-control-buttons{
+    margin-bottom: 22.5px;
+    display: flex
+}
+.new-product-button{
+    background-color: #119900;
+    color: #ffffff;
+    margin-left: 40px;
+    text-decoration: none;
+    border-radius: 10px;
+    padding: 3px 6px;
+    font-weight: bold;
+}
+.new-product-button:hover {
+    box-shadow: #22ff11 0px 0px 6px;
+}
+
+
+.product-list-button{
+    display: inline-block;
+    color: #ffffff;
+    margin-right: 5px;
+    margin-top: 5px;
+    text-decoration: none;
+    border-radius: 10px;
+    padding: 3px 6px;
+    font-weight: bold;
+}
+
+.btn-blue{
+    background-color: #121079;
+}
+.btn-blue:hover{
+    box-shadow: #1235a8 0px 0px 6px;
+}
+.btn-red{
+    background-color: #ac1313;
+}
+.btn-red:hover{
+    box-shadow: #f72424 0px 0px 6px;
+}
+
+.product-list{
+    font-size: 1.1rem;
+}
+.product-list > li{
+    margin-bottom: 22.5px;
+}
+
+.red-text{
+    color: red;
+}

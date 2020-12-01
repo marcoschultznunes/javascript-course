@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('includes/head.ejs') %> 
+
+<% 
+    let id, name, brand, price = ''
+
+    if(product){
+        id = product.id
+        name = product.name
+        brand = product.brand
+        price = product.price 
+    }
+%>
+
+<body>
+    <%- include('includes/navbar.ejs') %>
+
+    <h2 class="page-message"><%= pageTitle %> </h2>
+
+    <% if(action === 'Create'){ %>
+        <form action="/products/create" method="POST">
+    <% } else if(action === 'Update'){ %>
+        <form action="/products/update/<%= id %>" method="POST">
+    <% } %>
+    
+        <% if(action === 'Update'){ %>
+            <label for="id">ID:</label>
+            <input type="text" name="id" value=<%= id %> class='read-only' readOnly>
+        <% } %>
+
+        <label for="name">Name:</label>
+        <input type="text" name="name" placeholder="Name" value=<%= name %>>
+
+        <label for="brand">Brand:</label>
+        <input type="text" name="brand" placeholder="Brand" value=<%= brand %>>
+
+        <label for="price">Price:</label>
+        <input type="text" name="price" placeholder="Price" value=<%= price %>>
+        
+        <button class="create-button unselectable"><%= action %></button>
+    </form>
+</body>
+</html>

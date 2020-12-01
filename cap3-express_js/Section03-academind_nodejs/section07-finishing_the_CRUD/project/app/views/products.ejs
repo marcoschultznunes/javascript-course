@@ -1,0 +1,36 @@
+<%- include('includes/head.ejs') %> 
+<body>
+    <%- include('includes/navbar.ejs') %> 
+    <h1 class="page-title">Products</h1>
+
+    <div class="product-control-buttons">
+        <a href="/products/create" class="new-product-button unselectable">+ New</a>
+    </div>
+    <% if(products.length > 0) { %>
+        <div>
+            <ul class="product-list">
+                <% products.forEach(product => { if(product){ %>
+                    <li>
+                        <h2><%= product.name %></h2>
+                        <p>Brand: <%= product.brand %></p>
+                        <p>Price: <%= product.price %></p>
+                        <a 
+                            href="products/<%= product.id %>" 
+                            class="product-list-button btn-blue unselectable"
+                        >
+                            Update
+                        </a>
+                        <a href="products/delete/<%= product.id %>" 
+                            class="product-list-button btn-red unselectable"
+                        >
+                            Delete
+                        </a>
+                    </li>
+                <% }}) %>
+            </ul>
+        </div>
+    <% } else { %>
+        <h2 class="page-message">No products available</h2>
+    <% } %>
+</body>
+</html>

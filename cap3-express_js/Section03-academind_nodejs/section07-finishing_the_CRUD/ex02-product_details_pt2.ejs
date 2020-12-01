@@ -1,0 +1,98 @@
+<!--
+    We'll make change the update form to a product form file, which will be reused for creating
+    products
+-->
+<!DOCTYPE html>
+<html lang="en">
+<%- include('includes/head.ejs') %> 
+
+<% 
+    let id, name, brand, price = ''
+
+    if(product){
+        id = product.id
+        name = product.name
+        brand = product.brand
+        price = product.price 
+    }
+%>
+
+<body>
+    <%- include('includes/navbar.ejs') %>
+
+    <h2 class="page-message"><%= pageTitle %> </h2>
+
+    <% if(action === 'Create'){ %>
+        <form action="/products/create" method="POST">
+    <% } else if(action === 'Update'){ %>
+        <form action="/products/update/<%= id %>" method="POST"> <!-- We'll use post, 
+        because of HTML forms not having the PATCH method. We also could use axios, just like
+        in react, but that would require some setup.
+        -->
+    <% } %>
+    
+        <% if(action === 'Update'){ %>
+            <label for="id">ID:</label>
+            <input type="text" name="id" value=<%= id %> class='read-only' readOnly>
+        <% } %>
+
+        <label for="name">Name:</label>
+        <input type="text" name="name" placeholder="Name" value=<%= name %>>
+
+        <label for="brand">Brand:</label>
+        <input type="text" name="brand" placeholder="Brand" value=<%= brand %>>
+
+        <label for="price">Price:</label>
+        <input type="text" name="price" placeholder="Price" value=<%= price %>>
+        
+        <button class="create-button unselectable"><%= action %></button>
+    </form>
+</body>
+</html>
+
+<!-- 
+The controller function 
+
+exports.updateProduct = (req, res) => {
+    const id = req.params.id
+    
+    const success = ProductModel.updateProduct(id, req.body)
+
+    if(success){
+        return res.status(200).redirect('/products')
+    } else{
+        return res.status(404).render('not_found', {
+            pageTitle: 'Product Not Found',
+            error_message: 'Product not found'
+        })
+    }
+}
+-->
+
+<!-- 
+The model's new save function 
+
+save(){
+    products[this.id - 1] = this
+}
+-->
+
+<!-- 
+The model's new update function 
+
+static updateProduct(id, newProduct){
+    const p = Product.getProduct(id)
+
+    if(!p){
+        return false
+    }
+
+    p.name = newProduct.name
+    p.brand = newProduct.brand
+    p.price = newProduct.price        
+
+    p.save()
+
+    return true
+}
+-->
