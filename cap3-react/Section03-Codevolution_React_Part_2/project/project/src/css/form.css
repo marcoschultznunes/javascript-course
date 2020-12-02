@@ -1,0 +1,19 @@
+form{
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+
+form > h2 {
+    margin-bottom: 5px;
+    font-size: 1.4rem;
+}
+
+input[type='password'], input[type='text'], input[type='email']{
+    padding: 4px;
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+    margin-right: 5px;
+}
+input:focus{
+    outline: 2px cadetblue solid;
+}
