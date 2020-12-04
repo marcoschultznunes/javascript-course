@@ -8,12 +8,17 @@ import reportWebVitals from './reportWebVitals';
 import Counter from './components/section01/Counter';
 import User from './components/section01/User';
 import List from './components/section01/List';
+import TitleCounter from './components/section02/TitleCounter';
+import TimerController from './components/section02/TimerController';
 
 ReactDOM.render(
   <React.StrictMode>
     <Counter />
     <User />
     <List />
+
+    <TitleCounter />
+    <TimerController />
   </React.StrictMode>,
   document.getElementById('root')
 );
