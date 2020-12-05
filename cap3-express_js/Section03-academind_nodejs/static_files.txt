@@ -1,0 +1,10 @@
+https://www.digitalocean.com/community/questions/safer-way-to-access-image-folder-than-777-permission
+https://stackoverflow.com/questions/60142686/how-to-serve-private-images-using-nodejs-and-expressjs-rest
+
+Final solution is to use image-to-base64 (https://www.npmjs.com/package/image-to-base64) on 
+server and download the base64 string and plug it into the img src as 
+src="data:image/(ext);base64,...". 
+
+Ref: https://en.wikipedia.org/wiki/Data_URI_scheme 
+
+As you know it makes the download 33% bigger, but that's the cost of privacy! Have fun!!
