@@ -1,5 +1,7 @@
 const PostModel = require('../models/posts_model')
 
+const { validationResult } = require('express-validator')
+
 exports.getPosts = (req, res) => {
     PostModel.find()
     .select('-__v')
@@ -20,6 +22,11 @@ exports.getPosts = (req, res) => {
 
 exports.createPost = (req, res) => {
     const {title, content, imageUrl, creator} = req.body
+    const errors = validationResult(req)
+
+    if(!errors.isEmpty()){
+        return res.status(422).json({errors: errors.array()})
+    }
 
     const post = new PostModel({
         title: title,
