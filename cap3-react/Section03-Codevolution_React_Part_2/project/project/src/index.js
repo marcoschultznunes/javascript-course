@@ -12,6 +12,8 @@ import TitleCounter from './components/section02/TitleCounter';
 import TimerController from './components/section02/TimerController';
 import PostList from './components/section03/PostList';
 import SingleCharacter from './components/section03/SingleCharacter';
+import { UserProvider } from './components/section04/UserContext';
+import Person from './components/section04/Person';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -23,7 +25,11 @@ ReactDOM.render(
     <TimerController /><br/>
 
     <PostList /><br/>
-    <SingleCharacter />
+    <SingleCharacter /><br/>
+
+    <UserProvider value={{name: 'Afonso', surname: 'García'}}>
+      <Person />
+    </UserProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
