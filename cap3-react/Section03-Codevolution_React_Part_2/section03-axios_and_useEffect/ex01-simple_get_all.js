@@ -8,7 +8,7 @@ import Axios from 'axios'
 
 const PostList = () => {
 
-    const [state, setState] = useState({posts: []})
+    const [state, setState] = useState({posts: [], error: true})
 
     useEffect(() => {
         Axios.get('http://localhost:8083/posts')
@@ -18,7 +18,7 @@ const PostList = () => {
             .catch(() => setState({posts: [], error: true}))
     }, []) // , [] to be only called when component mounts
 
-    const mappedPosts = state.posts.map((post) => { return (
+    const mappedPosts = state.posts.map((post) =>
         <li className='post-list'>
             <h3>{post.title}</h3>
             <ul>
@@ -27,7 +27,7 @@ const PostList = () => {
                 <li>Date: {post.updatedAt}</li>
             </ul>
         </li>
-    )})
+    )
 
     return (  
         <div>

@@ -1,7 +1,7 @@
 /*
     To apply context to function components we just need to change how the context is consumed
-on the component receiving the props. The rest stays the same(creating the context, 
-providing it, etc.)
+on the component receiving the props. The rest stays the same (creating the context, providing 
+it, etc.)
 */
 
 /* UserContext.jsx */

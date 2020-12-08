@@ -2,7 +2,7 @@ const PostModel = require('../models/posts_model')
 
 const { validationResult } = require('express-validator')
 
-exports.getPosts = (req, res) => {
+exports.getPosts = (req, res, next) => {
     PostModel.find()
     .select('-__v')
     .then(posts => {
@@ -11,21 +11,23 @@ exports.getPosts = (req, res) => {
             posts: posts
         })
     })
-    .catch(e => {
-        return res.status(500).json({
-            error: {
-                message: 'Could not fetch posts.'
-            }
-        })
+    .catch(err => {
+        if(!err.statusCode){
+            err.statusCode = 500
+        }
+        next(err)
     })
 }
 
-exports.createPost = (req, res) => {
+exports.createPost = (req, res, next) => {
     const {title, content, imageUrl, creator} = req.body
     const errors = validationResult(req)
 
     if(!errors.isEmpty()){
-        return res.status(422).json({errors: errors.array()})
+        const err = new Error('Validation failed. Entered data is incorrect!')
+        err.statusCode = 422
+        err.errors = errors.array()
+        next(err)
     }
 
     const post = new PostModel({
@@ -42,12 +44,11 @@ exports.createPost = (req, res) => {
             post: post
         })
     })
-    .catch((e) => {
-        return res.status(500).json({
-            error: {
-                message: 'Could not create post.'
-            }
-        })
+    .catch(err => {
+        if(!err.statusCode){
+            err.statusCode = 500
+        }
+        next(err)
     })
 }
 

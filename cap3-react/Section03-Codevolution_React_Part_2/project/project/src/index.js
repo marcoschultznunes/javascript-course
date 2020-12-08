@@ -14,6 +14,9 @@ import PostList from './components/section03/PostList';
 import SingleCharacter from './components/section03/SingleCharacter';
 import { UserProvider } from './components/section04/UserContext';
 import Person from './components/section04/Person';
+import Counter2 from './components/section05/Counter2';
+import Counter3 from './components/section05/Counter3';
+import Counters from './components/section05/Counters';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -29,7 +32,11 @@ ReactDOM.render(
 
     <UserProvider value={{name: 'Afonso', surname: 'García'}}>
       <Person />
-    </UserProvider>
+    </UserProvider><br/>
+
+    <Counter2 /><br/>
+    <Counter3 /><br/>
+    <Counters /><br/>
   </React.StrictMode>,
   document.getElementById('root')
 );
