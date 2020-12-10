@@ -16,6 +16,9 @@ code {
         monospace;
 }
 
-#root{
+#main{
     padding: 20px;
+}
+.mg-left{
+    margin-left: 20px;
 }

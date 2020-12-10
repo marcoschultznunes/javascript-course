@@ -4,6 +4,7 @@ import './css/index.css';
 import './css/button.css';
 import './css/form.css';
 import './css/list.css';
+import './css/navbar.css';
 import reportWebVitals from './reportWebVitals';
 import Counter from './components/section01/Counter';
 import User from './components/section01/User';
@@ -17,26 +18,31 @@ import Person from './components/section04/Person';
 import Counter2 from './components/section05/Counter2';
 import Counter3 from './components/section05/Counter3';
 import Counters from './components/section05/Counters';
+import App from './components/section05/App';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Counter /><br/>
-    <User /><br/>
-    <List /><br/>
+    <App /><br/>
 
-    <TitleCounter /><br/>
-    <TimerController /><br/>
+    <main id='main'>
+      <Counter /><br/>
+      <User /><br/>
+      <List /><br/>
 
-    <PostList /><br/>
-    <SingleCharacter /><br/>
+      <TitleCounter /><br/>
+      <TimerController /><br/>
 
-    <UserProvider value={{name: 'Afonso', surname: 'García'}}>
-      <Person />
-    </UserProvider><br/>
+      <PostList /><br/>
+      <SingleCharacter /><br/>
 
-    <Counter2 /><br/>
-    <Counter3 /><br/>
-    <Counters /><br/>
+      <UserProvider value={{name: 'Afonso', surname: 'García'}}>
+        <Person />
+      </UserProvider><br/>
+
+      <Counter2 /><br/>
+      <Counter3 /><br/>
+      <Counters /><br/>
+    </main>
   </React.StrictMode>,
   document.getElementById('root')
 );

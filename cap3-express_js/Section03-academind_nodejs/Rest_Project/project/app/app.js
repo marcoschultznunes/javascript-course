@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express()
+const path = require('path')
 
 const mongoose = require('mongoose')
 const secrets = require('./secrets/secrets')
@@ -10,6 +11,8 @@ const cors = require('cors')
 app.use(bodyParser.json())
 app.use(morgan('dev'))
 app.use(cors())
+
+app.use('/app/images', express.static(path.join(__dirname, 'images')))
 
 app.use((req, res, next) => {
     res.setHeader("Content-Security-Policy", "script-src 'self' https://apis.google.com");
@@ -31,19 +34,19 @@ mongoose.connect(`mongodb+srv://marcola:${secrets.password}@cluster0.p4xhv.mongo
     app.use((error, req, res, next) => {
         const status = error.statusCode || 500
         const message = error.message
-
+    
         const finalError = {
             message: message
         }
         if(error.errors){
             finalError.errors = error.errors
         }
-
-        res.status(status).json(finalError)
-    })
+    
+        return res.status(status).json(finalError)
+    })    
 })
 .catch(e => {
     console.log('Could not connect to database. ' + e)
 })
-    
+
 module.exports = app

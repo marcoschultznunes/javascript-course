@@ -20,7 +20,14 @@ exports.getPosts = (req, res, next) => {
 }
 
 exports.createPost = (req, res, next) => {
-    const {title, content, imageUrl, creator} = req.body
+    if(!req.file){
+        const err = new Error('Validation failed. No image provided.')
+        err.statusCode = 422
+        next(err)
+    }
+
+    const {title, content, creator} = req.body
+    const imageUrl = req.file.path
     const errors = validationResult(req)
 
     if(!errors.isEmpty()){

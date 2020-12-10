@@ -12,8 +12,5 @@ exports.createValidation = [
         .withMessage('The content must be some text')
         .trim()
         .isLength({min: 2, max: 3000})
-        .withMessage('Content must consist of 2-3000 characters'),
-    body('imageUrl')
-        .isURL()
-        .withMessage('Invalid URL format for the image')
+        .withMessage('Content must consist of 2-3000 characters')
 ]
