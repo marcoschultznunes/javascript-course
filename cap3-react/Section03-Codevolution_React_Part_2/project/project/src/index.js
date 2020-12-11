@@ -21,12 +21,17 @@ import Counter3 from './components/section05/Counter3';
 import Counters from './components/section05/Counters';
 import App from './components/section05/App';
 import TwoCounters from './components/section07/TwoCounters';
+import FocusInput from './components/section08/FocusInput';
+import Timer2 from './components/section08/Timer2';
 
 ReactDOM.render(
   <React.StrictMode>
     <App /><br/>
 
     <main id='main'>
+      <FocusInput /><br/>
+      <Timer2 /><br/>
+
       <Counter /><br/>
       <User /><br/>
       <List /><br/>
