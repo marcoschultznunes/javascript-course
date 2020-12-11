@@ -20,6 +20,7 @@ import Counter2 from './components/section05/Counter2';
 import Counter3 from './components/section05/Counter3';
 import Counters from './components/section05/Counters';
 import App from './components/section05/App';
+import TwoCounters from './components/section07/TwoCounters';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -45,6 +46,8 @@ ReactDOM.render(
       <Counters /><br/>
 
       <PostList2 /><br/>
+
+      <TwoCounters /><br/>
     </main>
   </React.StrictMode>,
   document.getElementById('root')
