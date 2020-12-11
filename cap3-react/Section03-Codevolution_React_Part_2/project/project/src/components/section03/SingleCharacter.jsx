@@ -21,13 +21,15 @@ const SingleCharacter = () => {
     }
 
     const mappedCharacter = state.error ? <h3>Could not fetch character</h3> : 
-        <ul className='unstyled-list'>
-            <h2>{state.character.name}</h2>
-            <ul>
-                <li>Height: {state.character.height}</li>
-                <li>Mass: {state.character.mass}</li>
-                <li>Hair Color: {state.character.hair_color}</li>
-            </ul>
+        <ul>
+            <li className='unstyled-list'>
+                <h2>{state.character.name}</h2>
+                <ul>
+                    <li>Height: {state.character.height}</li>
+                    <li>Mass: {state.character.mass}</li>
+                    <li>Hair Color: {state.character.hair_color}</li>
+                </ul>
+            </li>
         </ul>
 
     return (  

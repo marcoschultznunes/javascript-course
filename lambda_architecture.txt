@@ -1,0 +1,2 @@
+Lambda Architecture:
+	https://en.wikipedia.org/wiki/Lambda_architecture

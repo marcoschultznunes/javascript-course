@@ -12,6 +12,7 @@ import List from './components/section01/List';
 import TitleCounter from './components/section02/TitleCounter';
 import TimerController from './components/section02/TimerController';
 import PostList from './components/section03/PostList';
+import PostList2 from './components/section06/PostList2';
 import SingleCharacter from './components/section03/SingleCharacter';
 import { UserProvider } from './components/section04/UserContext';
 import Person from './components/section04/Person';
@@ -42,6 +43,8 @@ ReactDOM.render(
       <Counter2 /><br/>
       <Counter3 /><br/>
       <Counters /><br/>
+
+      <PostList2 /><br/>
     </main>
   </React.StrictMode>,
   document.getElementById('root')
