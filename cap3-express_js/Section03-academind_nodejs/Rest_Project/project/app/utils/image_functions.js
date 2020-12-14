@@ -1,7 +1,7 @@
 const path = require('path')
 const fs = require('fs')
 
-exports.deleteImage = (imageUrl, next) => {
+exports.deleteImage = (imageUrl) => {
     const imagePath = path.join(__dirname, '..', '..', imageUrl)
     
     fs.unlink(imagePath, (err) => {

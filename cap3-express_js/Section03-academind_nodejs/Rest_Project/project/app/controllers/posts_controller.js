@@ -2,7 +2,9 @@ const PostModel = require('../models/posts_model')
 
 const { validationResult } = require('express-validator')
 const { deleteImage } = require('../utils/image_functions')
+const { uploadImage } = require('../config/imageUpload')
 
+// FETCH ALL
 exports.getPosts = (req, res, next) => {
     const errors = validationResult(req)
     if(!errors.isEmpty()){
@@ -43,6 +45,7 @@ exports.getPosts = (req, res, next) => {
     })
 }
 
+// GET BY ID
 exports.getPostById = (req, res, next) => {
     const id = req.params.id
 
@@ -68,6 +71,7 @@ exports.getPostById = (req, res, next) => {
         })
 }
 
+// POST
 exports.createPost = (req, res, next) => {
     if(!req.file){
         const err = new Error('Validation failed. No image provided.')
@@ -108,6 +112,61 @@ exports.createPost = (req, res, next) => {
     })
 }
 
+// PATCH
+exports.patchPost = (req, res, next) => {
+    const id = req.params.id
+
+    const errors = validationResult(req)
+    if(!errors.isEmpty()){
+        const err = new Error('Validation failed. Entered data is incorrect!')
+        err.statusCode = 422
+        err.errors = errors.array()
+        throw err
+    }
+
+    PostModel.findById(id)
+        .then(post => {
+            if(!post){
+                const err = new Error('No post found with given ID.')
+                err.statusCode = 404
+                return next(err)
+            }
+
+            let imageUrl = false
+
+            let = success = true
+            if(req.file){
+                imageUrl = req.file.path
+                success = deleteImage(post.imageUrl)
+            }
+            if(!success){
+                const err = new Error('An error has occurred while deleting post image. Please, try again. If failure persists, contact support.')
+                return next(err)
+            }
+
+            const {title, content, creator} = req.body 
+
+            return PostModel.findOneAndUpdate({_id: id}, {
+                title: title,
+                content: content,
+                imageUrl: imageUrl || post.imageUrl,
+            })
+        })
+        .then(post => {
+            return res.status(200).json({
+                message: 'Successfully updated post.',
+                post: post
+            })
+        })
+        .catch(err => {
+            if(!err.statusCode){
+                err.statusCode = 500
+            }
+            return next(err)
+        })
+}
+
+// DELETE
 exports.deleteById = (req, res, next) => {
     const id = req.params.id
 
@@ -121,7 +180,7 @@ exports.deleteById = (req, res, next) => {
 
             // TODO check if the logged in user is the creator of the post
 
-            const success = deleteImage(post.imageUrl, next)
+            const success = deleteImage(post.imageUrl)
 
             if(!success){
                 const err = new Error('An error has occurred while deleting post image. Please, try again. If failure persists, contact support.')

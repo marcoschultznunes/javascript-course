@@ -23,6 +23,9 @@ import App from './components/section05/App';
 import TwoCounters from './components/section07/TwoCounters';
 import FocusInput from './components/section08/FocusInput';
 import Timer2 from './components/section08/Timer2';
+import CounterTitle from './components/section09/CounterTitle';
+import CounterCustom from './components/section09/CounterCustom';
+import UserForm from './components/section09/UserForm';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -31,6 +34,10 @@ ReactDOM.render(
     <main id='main'>
       <FocusInput /><br/>
       <Timer2 /><br/>
+
+      <CounterTitle /><br/>
+      <CounterCustom /><br/>
+      <UserForm /><br/>
 
       <Counter /><br/>
       <User /><br/>
