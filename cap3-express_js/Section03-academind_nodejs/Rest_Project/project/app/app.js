@@ -20,6 +20,7 @@ app.use((req, res, next) => {
 });
 
 const postsRouter = require('./routes/posts_routes')
+const { deleteImage } = require('./utils/image_functions')
 
 mongoose.connect(`mongodb+srv://marcola:${secrets.password}@cluster0.p4xhv.mongodb.net/${secrets.db}?retryWrites=true&w=majority`, {
     useNewUrlParser: true, 
@@ -41,7 +42,17 @@ mongoose.connect(`mongodb+srv://marcola:${secrets.password}@cluster0.p4xhv.mongo
         if(error.errors){
             finalError.errors = error.errors
         }
-    
+
+        /*
+        
+        if(req.file){
+            deleteImage(req.file.path) // Important, otherwise multer still uploads
+        }
+
+        It is a terrible idea to do this here, as this is a middleware through which any request
+        can go. It is better to do this on the posts controller
+        */
+
         return res.status(status).json(finalError)
     })    
 })

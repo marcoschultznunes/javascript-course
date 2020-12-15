@@ -1,14 +1,16 @@
 const path = require('path')
 const fs = require('fs')
 
-exports.deleteImage = (imageUrl) => {
+const deleteImage = (imageUrl) => {
     const imagePath = path.join(__dirname, '..', '..', imageUrl)
     
+    let result = true
+
     fs.unlink(imagePath, (err) => {
-        if(err){
-            return false
-        }
-        
-        return true
+        result = true
     })
+
+    return result
 }
+
+exports.deleteImage = deleteImage

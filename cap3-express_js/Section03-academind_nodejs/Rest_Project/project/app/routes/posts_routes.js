@@ -14,7 +14,7 @@ router.post('/',
     uploadImage.single('image'), postValidators.createValidation, postController.createPost
 )
 
-router.put('/:id', 
+router.patch('/:id', 
     uploadImage.single('image'), postValidators.patchValidation , postController.patchPost
 )
 
