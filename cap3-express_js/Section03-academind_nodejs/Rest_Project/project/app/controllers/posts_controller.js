@@ -27,6 +27,7 @@ exports.getPosts = (req, res, next) => {
             .skip((page - 1) * perPage)
             .limit(perPage)
             .select('-__v')
+            .populate('creator', '_id name')
     })
     .then(posts => {
         return res.status(200).json({
@@ -51,6 +52,7 @@ exports.getPostById = (req, res, next) => {
 
     PostModel.findById(id)
         .select('-__v')
+        .populate('creator', '_id name')
         .then(post => {
             if(!post){
                 const err = new Error('No post found with given ID.')
