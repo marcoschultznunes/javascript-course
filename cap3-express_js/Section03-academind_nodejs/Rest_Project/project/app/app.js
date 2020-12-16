@@ -20,7 +20,7 @@ app.use((req, res, next) => {
 });
 
 const postsRouter = require('./routes/posts_routes')
-const { deleteImage } = require('./utils/image_functions')
+const authRouter = require('./routes/auth_routes')
 
 mongoose.connect(`mongodb+srv://marcola:${secrets.password}@cluster0.p4xhv.mongodb.net/${secrets.db}?retryWrites=true&w=majority`, {
     useNewUrlParser: true, 
@@ -31,6 +31,7 @@ mongoose.connect(`mongodb+srv://marcola:${secrets.password}@cluster0.p4xhv.mongo
     console.log('Connected to database!')
 
     app.use('/posts', postsRouter)
+    app.use('/auth', authRouter)
 
     app.use((error, req, res, next) => {
         const status = error.statusCode || 500
