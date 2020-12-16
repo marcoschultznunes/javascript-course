@@ -29,7 +29,7 @@ exports.login = (req, res, next) => {
             // JWT
             const token = jwt.sign({
                 email: fetchedUser.email,
-                userId: fetchedUser.userId
+                userId: fetchedUser._id
             }, 'secretkeyHAHAHAlol', {
                 expiresIn: '1h'
             }) 

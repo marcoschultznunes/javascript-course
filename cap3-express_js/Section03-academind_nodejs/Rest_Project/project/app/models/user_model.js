@@ -17,13 +17,7 @@ const userSchema = new Schema({
     status: {
         type: String,
         default: 'Unverified'
-    },
-    posts: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: 'Posts' // The mongoose model name, not the DB collection
-        }
-    ]
+    }
 })
 
 module.exports = mongoose.model('Users', userSchema)
