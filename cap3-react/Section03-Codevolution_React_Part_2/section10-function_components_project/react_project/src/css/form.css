@@ -1,0 +1,44 @@
+.form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 20px 0;
+    margin: 0 12.5vw;
+}
+
+.form > input, textarea{
+    padding: 5px 5px;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    width: 100%;
+}
+.form > input[readOnly]{
+    color: rgb(80, 80, 80);
+}
+.label{
+    color: rgb(29, 29, 29);
+    align-self: start;
+    margin-bottom: 5px;
+}
+
+
+.image-input{
+    display: none;
+}
+.image-input-button{
+    width: 100%;
+    text-align: center;
+    padding: 5px 0;
+    font-size: 1.2rem;
+    color: #ffffff;
+    margin-top: -10px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+
+
+.submit-button{
+    padding: 5px 20px;
+    font-size: 1.4rem;
+}

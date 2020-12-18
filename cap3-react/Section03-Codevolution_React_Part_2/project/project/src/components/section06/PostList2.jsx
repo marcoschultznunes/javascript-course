@@ -48,7 +48,7 @@ const PostList = () => {
                             alt=""
                         />
                     </li>
-                    <li>Creator: {post.creator}</li>
+                    <li>Creator: {post.creator.name}</li>
                 </ul>
             </li>
         )

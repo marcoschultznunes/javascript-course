@@ -13,7 +13,7 @@ const PostList = () => {
             .catch(() => setState({posts: [], error: true}))
     }, [])
 
-    const mappedPosts = state.posts.map((post) => { return (
+    const mappedPosts = state.posts.map((post) => 
         <li className='unstyled-list' key={post._id}>
             <h3>{post.title}</h3>
             <ul>
@@ -22,7 +22,7 @@ const PostList = () => {
                 <li>Date: {post.updatedAt}</li>
             </ul>
         </li>
-    )})
+    )
 
     return (  
         <div>

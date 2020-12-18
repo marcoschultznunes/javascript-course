@@ -1,0 +1,63 @@
+/* Navbar */
+#navbar{
+    position: relative;
+    background-color: rgb(16, 88, 26);
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
+    color: white;
+    z-index: 10;
+}
+
+#navbar > ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar-item{
+    padding: 10px 15px;
+    font-size: 1.6rem;
+}
+
+
+/* Navmenu Button */
+.nm-button-active {
+    animation: togglenavmenu 0.25s forwards;
+}
+
+@keyframes togglenavmenu {
+    from {background-color: rgb(16, 88, 26);}
+    to {background-color: rgb(12, 73, 20);}
+}
+
+
+/* Navmenu */
+#navmenu{
+    color: #ffffff;
+    background-color: rgb(22, 22, 22);
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
+    font-size: 1.2rem;
+}
+
+#navmenu > ul{
+    list-style: none;
+    padding-bottom: 10px;
+}
+.nav-link{
+    padding: 10px 0px;
+    margin: 0px 10px;
+    border-bottom: 2px solid rgb(29, 29, 29);
+}
+.nav-link:hover{
+    animation: brightenborder 0.2s forwards;
+}
+
+@keyframes brightenborder {
+    from {
+        border-color: rgb(29, 29, 29);
+    }
+    to {
+        text-shadow: 0px 0px 5px #ffffff;
+        border-color: rgb(165, 165, 165);
+    }
+}

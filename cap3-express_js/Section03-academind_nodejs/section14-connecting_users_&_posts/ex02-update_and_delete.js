@@ -45,7 +45,7 @@ exports.patchPost = (req, res, next) => {
             // Changed so that the creator cannot be modified
             const updateObject = {
                 title: title || post.title,
-                content: content,
+                content: content || post.content,
                 imageUrl: imageUrl || post.imageUrl
             }
 
