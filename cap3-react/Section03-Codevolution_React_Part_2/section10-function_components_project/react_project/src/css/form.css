@@ -21,6 +21,9 @@
     align-self: start;
     margin-bottom: 5px;
 }
+.form > img{
+    width: 100%;
+}
 
 
 .image-input{

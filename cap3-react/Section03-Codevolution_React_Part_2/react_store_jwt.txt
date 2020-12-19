@@ -1,0 +1,7 @@
+tokens should not be stored in Localstorage because every javascript script has access to that 
+one, which means third party scripts you don't own could access tokens and do what ever they 
+want with it. So it is prone to an XSS attack.
+
+A better place is to store it as a Cookie with HttpOnly flag.
+
+https://www.youtube.com/watch?v=a5Krfkfl9MM

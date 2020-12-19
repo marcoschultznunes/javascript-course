@@ -1,12 +1,17 @@
 import React, { useContext } from 'react';
-import { PageContext } from '../App';
+import { LoggedUserContext, PageContext } from '../App';
 
 const Navlink = (props) => {
     const {linkPage, navMenuButtonRef} = props
 
-    const {page, setPage} = useContext(PageContext)
+    const {setPage} = useContext(PageContext)
+    const {setUser} = useContext(LoggedUserContext)
 
     const changePage = () => {
+        if(linkPage === 'Logout'){
+            setUser(false)
+        }
+
         setPage(linkPage)
         setTimeout(() => navMenuButtonRef.current.click(), 200)
     }

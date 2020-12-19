@@ -1,11 +1,26 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { LoggedUserContext } from '../App';
 import Navlink from './Navlink';
 
 const Navmenu = React.forwardRef((props, ref) => {
     const {navMenuButtonRef} = props
 
+    const {user} = useContext(LoggedUserContext)
+
+    if(!user){
+        return(
+            <nav id='navmenu' ref={ref} className='hidden'>
+                <ul>
+                    <Navlink linkPage='Posts' navMenuButtonRef={navMenuButtonRef}/>
+                    <Navlink linkPage='Login' navMenuButtonRef={navMenuButtonRef}/>
+                    <Navlink linkPage='Sign Up' navMenuButtonRef={navMenuButtonRef}/>
+                </ul>
+            </nav>
+        )
+    }
     return (  
         <nav id='navmenu' ref={ref} className='hidden'>
+            <h3 id='logged-user-message'>Welcome, {user.name}</h3>
             <ul>
                 <Navlink linkPage='Posts' navMenuButtonRef={navMenuButtonRef}/>
                 <Navlink linkPage='My Posts' navMenuButtonRef={navMenuButtonRef}/>

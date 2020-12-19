@@ -39,6 +39,11 @@
     font-size: 1.2rem;
 }
 
+#logged-user-message{
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-bottom: 5px;
+}
 #navmenu > ul{
     list-style: none;
     padding-bottom: 10px;

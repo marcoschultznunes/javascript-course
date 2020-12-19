@@ -8,7 +8,7 @@ const PostList = () => {
     const [error, setError] = useState(false)
 
     useEffect(() => {
-        axios.get('http://localhost:8083/posts?perPage=3')
+        axios.get('http://localhost:8083/posts?perPage=10')
             .then(posts => {
                 setPosts(posts.data.posts)
                 setLoading(false)

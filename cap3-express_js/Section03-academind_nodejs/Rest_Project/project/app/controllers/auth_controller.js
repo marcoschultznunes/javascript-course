@@ -2,6 +2,11 @@ const UserModel = require('../models/user_model')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const { validationResult } = require('express-validator')
+const { oneHour } = require('../utils/cookies')
+
+const axios = require('axios')
+// AINDA FUNCIONA SE REMOVER AMBOS DO BACKEND
+axios.default.withCredentials = true
 
 exports.signup = (req, res, next) => {
     const errors = validationResult(req)
@@ -39,6 +44,9 @@ exports.signup = (req, res, next) => {
 }
 
 exports.login = (req, res, next) => {
+    // AINDA FUNCIONA SE REMOVER AMBOS DO BACKEND
+    axios.get('http://localhost:3000', {withCredentials: true}).then(function (res) { console.log(res) })
+
     const {email, password} = req.body
     let fetchedUser = null
 
@@ -68,9 +76,15 @@ exports.login = (req, res, next) => {
                 expiresIn: '1h'
             }) 
 
-            return res.status(200).json({
+            res.status(200).cookie('userJwt', token,{
+                sameSite: 'strict', 
+                path: '/', 
+                expires: oneHour,
+                httpOnly: true
+            }).json({
                 token: token,
-                userId: fetchedUser._id.toString()
+                userId: fetchedUser._id.toString(),
+                userName: fetchedUser.name
             })
         })
         .catch(err => {
@@ -79,4 +93,8 @@ exports.login = (req, res, next) => {
             }
             next(err)
         })
+}
+
+exports.getJwtCookie = (req, res, next) => {
+    res.send(req.cookies.userJwt)
 }

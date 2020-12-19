@@ -7,6 +7,7 @@ import './css/navbar.css';
 import './css/postlist.css';
 import './css/button.css';
 import './css/form.css';
+import './css/signup.css';
 
 ReactDOM.render(
     <React.StrictMode>

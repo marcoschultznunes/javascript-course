@@ -1,7 +1,7 @@
 import { useState } from "react"
 
-const useInput = () => {
-    const [inputValue, setInputValue] = useState()
+const useInput = (initValue = '') => {
+    const [inputValue, setInputValue] = useState(initValue)
 
     const bind = {
         value: inputValue,

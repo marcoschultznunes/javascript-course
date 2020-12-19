@@ -1,10 +1,16 @@
-import React, { useRef } from 'react';
+import Axios from 'axios';
+import React, { useContext, useRef } from 'react';
+import useFileInput from '../hooks/useFileInput';
 import useInput from '../hooks/useInput';
+
+import Cookies from 'universal-cookie'
+import { PageContext } from '../App';
+const cookies = new Cookies()
 
 const PostForm = (props) => {
     const [title, bindTitle] = useInput()
     const [content, bindContent] = useInput()
-    const [imageUrl, bindImageUrl] = useInput()
+    const [image, bindImage] = useFileInput()
     
     const imageButtonRef = useRef()
 
@@ -12,15 +18,38 @@ const PostForm = (props) => {
         imageButtonRef.current.click()
     }
 
+    const {setPage} = useContext(PageContext)
+
     const submitForm = (e) => {
         e.preventDefault()
 
-        const postData = {
-            title: title,
-            content: content
-        }
+        const postData = new FormData()
+        postData.append('title', title)
+        postData.append('content', content)
+        postData.append('image', image)
 
-        console.log(postData)
+        // WITH CREDENTIALS AQUI TAMBÉM PUTA QUE PARIU
+        Axios.get('http://localhost:8083/auth/cookie', {withCredentials: true})
+        .then((token) => {
+            
+            return Axios.post('http://localhost:8083/posts', postData, {
+                headers: {
+                    'Authorization': 'Bearer ' + token.data,
+                    'Content-Type': 'multipart/form-data'
+                },
+                withCredentials: true
+            })
+        })
+        .then(res => {
+            setPage('Posts')
+        })
+        .catch(err => {
+            if(err.response){
+                console.log(err.response.data)
+            } else{
+                console.log(err)
+            }
+        })
     }
 
     return (  
@@ -30,7 +59,9 @@ const PostForm = (props) => {
                 <input type="text" name="title" placeholder="Title" {...bindTitle} />
 
                 {/* TODO: Image Upload => Need tutorial for React. */}
-                <img src={imageUrl} alt="" width="100px"/>
+                <img src={image ? URL.createObjectURL(image) : ''} alt="" width="100px"
+                    style={image ? {marginBottom: '10px'} : {}}
+                />
 
                 <label htmlFor="image" className='label'>Image:</label>
                 <input 
@@ -38,7 +69,7 @@ const PostForm = (props) => {
                     readOnly 
                     placeholder='Image' 
                     onClick={focusImageButton}
-                    value={imageUrl ? imageUrl.split(/(\\|\/)/g).pop() : ''}
+                    value={image ? image.name : ''}
                 />
                 <label className='image-input-button bg-blue' ref={imageButtonRef}>
                     Upload Image
@@ -47,7 +78,7 @@ const PostForm = (props) => {
                         name="image" 
                         className="image-input" 
                         accept='.png, .jpg, .jpeg'
-                        {...bindImageUrl}
+                        {...bindImage}
                     />
                 </label>
 
