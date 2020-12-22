@@ -72,6 +72,10 @@ const LoginForm = () => {
     return (  
         <React.Fragment>
             <form className='form form-with-bg' onSubmit={submitForm}>
+                <h2>
+                    {signingUp ? 'Sign Up' : 'Login'}
+                </h2>
+
                 <label htmlFor="name" className={signingUp ? 'label' : 'hidden'}>
                     Name:
                 </label>

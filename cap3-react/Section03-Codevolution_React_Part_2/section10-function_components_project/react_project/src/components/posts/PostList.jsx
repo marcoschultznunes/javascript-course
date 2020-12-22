@@ -1,14 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios'
 import Post from './Post'
+import { LoggedUserContext } from '../App';
 
-const PostList = () => {
+const PostList = (props) => {
     const [posts, setPosts] = useState([])
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(false)
 
+    const {user} = useContext(LoggedUserContext)
+
+    const userQuery = props.filterUser ? `&userId=${user.id}` : ''  
+
     const fetchPosts = () => {
-        axios.get('http://localhost:8083/posts?perPage=10')
+        axios.get('http://localhost:8083/posts?perPage=10' + userQuery)
             .then(posts => {
                 setPosts(posts.data.posts)
                 setLoading(false)
@@ -21,7 +26,7 @@ const PostList = () => {
 
     useEffect(() => {
         fetchPosts()
-    }, [])
+    }, [props])
 
     if(loading){
         return (

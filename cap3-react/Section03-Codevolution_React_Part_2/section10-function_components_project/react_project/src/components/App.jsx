@@ -18,15 +18,13 @@ const App = () => {
     switch(page){
         case 'Posts': pageHtml = <PostList />
         break
-        case 'My Posts': pageHtml = <h1>My Posts</h1>
+        case 'My Posts': pageHtml = <PostList filterUser />
         break
         case 'New Post': pageHtml = <PostForm />
         break
         case 'Logout': pageHtml = <LoginForm />
         break
-        case 'Sign Up': pageHtml = <h1>Signup</h1>
-        break
-        case 'Login': pageHtml = <LoginForm />
+        case 'Login / Sign Up': pageHtml = <LoginForm />
         break
         default: 
         break

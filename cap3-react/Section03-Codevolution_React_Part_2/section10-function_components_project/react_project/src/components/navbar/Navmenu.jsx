@@ -12,8 +12,7 @@ const Navmenu = React.forwardRef((props, ref) => {
             <nav id='navmenu' ref={ref} className='hidden'>
                 <ul>
                     <Navlink linkPage='Posts' navMenuButtonRef={navMenuButtonRef}/>
-                    <Navlink linkPage='Login' navMenuButtonRef={navMenuButtonRef}/>
-                    <Navlink linkPage='Sign Up' navMenuButtonRef={navMenuButtonRef}/>
+                    <Navlink linkPage='Login / Sign Up' navMenuButtonRef={navMenuButtonRef}/>
                 </ul>
             </nav>
         )

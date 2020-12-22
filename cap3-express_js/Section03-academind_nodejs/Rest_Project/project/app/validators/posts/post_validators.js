@@ -8,7 +8,11 @@ exports.getPostsValidation = [
     query('perPage')
         .optional()
         .isInt({min: 1, max: 100})
-        .withMessage('Posts per page must be an integer number in the range of 1-100.')
+        .withMessage('Posts per page must be an integer number in the range of 1-100.'),
+    query('userId')
+        .optional()
+        .isString()
+        .withMessage('The userId must be a text value.')
 ]
 
 exports.createValidation = [

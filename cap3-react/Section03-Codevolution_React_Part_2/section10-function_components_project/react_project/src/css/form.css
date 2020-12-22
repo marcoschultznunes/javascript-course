@@ -33,7 +33,9 @@
 .form > img{
     width: 100%;
 }
-
+.form > h2{
+    margin-bottom: 10px;
+} 
 
 .image-input{
     display: none;
@@ -52,5 +54,6 @@
 
 .submit-button{
     padding: 5px 20px;
+    margin-top: 5px;
     font-size: 1.4rem;
 }

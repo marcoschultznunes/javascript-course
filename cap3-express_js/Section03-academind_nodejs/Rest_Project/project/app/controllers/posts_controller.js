@@ -14,6 +14,8 @@ exports.getPosts = (req, res, next) => {
         throw err
     }
 
+    const filter = req.query.userId ? {'creator': req.query.userId} : {}
+
     const page = Number(req.query.page) || 1
     const perPage = Number(req.query.perPage) || 2
     let totalPosts = 0
@@ -23,10 +25,11 @@ exports.getPosts = (req, res, next) => {
     .then(count => {
         totalPosts = count
 
-        return PostModel.find()
+        return PostModel.find(filter)
             .skip((page - 1) * perPage)
             .limit(perPage)
             .select('-__v')
+            .sort({createdAt: -1})
             .populate('creator', '_id name')
     })
     .then(posts => {
