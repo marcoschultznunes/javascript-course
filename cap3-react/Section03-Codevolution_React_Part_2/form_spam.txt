@@ -1,0 +1,13 @@
+https://stackoverflow.com/questions/2230453/spam-prevention-reduction-contact-form
+
+    A few solutions:
+
+- Captcha
+
+- This solution: A very simple trick I've been using with a surprisingly good success rate is 
+to Provide a text field that is hidden from human users with style="display: none", but with an 
+enticing name like email. Most bots will fill in something in this field, but humans can't see 
+it so they wont. At the server, just make sure the field is empty, else treat the submission as 
+spam.
+
+- Adding a simple question

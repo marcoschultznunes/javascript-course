@@ -8,7 +8,7 @@ const useInput = (initValue = '') => {
         onChange: (e) => setInputValue(e.target.value) 
     }
 
-    return [inputValue, bind]
+    return [inputValue, bind, setInputValue]
 }
 
 export default useInput

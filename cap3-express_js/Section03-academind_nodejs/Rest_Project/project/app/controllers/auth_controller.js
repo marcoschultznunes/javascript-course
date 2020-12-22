@@ -76,7 +76,7 @@ exports.login = (req, res, next) => {
                 expiresIn: '1h'
             }) 
 
-            res.status(200).cookie('userJwt', token,{
+            res.status(200).cookie('userJwt', token, {
                 sameSite: 'strict', 
                 path: '/', 
                 expires: oneHour,
@@ -97,4 +97,8 @@ exports.login = (req, res, next) => {
 
 exports.getJwtCookie = (req, res, next) => {
     res.send(req.cookies.userJwt)
+}
+
+exports.clearJwtCookie = (req, res, next) => {
+    res.clearCookie('userJwt').send('Cookie deleted.')
 }

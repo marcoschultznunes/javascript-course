@@ -7,7 +7,7 @@ const PostList = () => {
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(false)
 
-    useEffect(() => {
+    const fetchPosts = () => {
         axios.get('http://localhost:8083/posts?perPage=10')
             .then(posts => {
                 setPosts(posts.data.posts)
@@ -17,6 +17,10 @@ const PostList = () => {
                 setLoading(false)
                 setError(true)
             })
+    }
+
+    useEffect(() => {
+        fetchPosts()
     }, [])
 
     if(loading){
@@ -31,8 +35,11 @@ const PostList = () => {
     }
 
     const mappedPosts = posts.map(post => 
-        <Post title={post.title} date={post.createdAt} author={post.creator.name} 
-            content={post.content} imageUrl={post.imageUrl} id={post._id}
+        <Post 
+            id={post._id} title={post.title} date={post.createdAt} 
+            author={post.creator.name} authorId={post.creator._id}
+            content={post.content} imageUrl={post.imageUrl} 
+            refreshPosts={fetchPosts}
         />    
     )
 

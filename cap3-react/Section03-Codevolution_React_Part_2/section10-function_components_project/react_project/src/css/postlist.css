@@ -26,8 +26,10 @@
     color: rgb(29, 29, 29);
     font-size: 0.8rem;
 }
-.post-item-edit-button{
+.post-item-button{
     padding: 0px 10px;
+    margin-left: 5px;
+    color: #ffffff;
 }
 
 

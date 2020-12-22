@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { LoggedUserContext, PageContext } from '../App';
+import Axios from 'axios'
 
 const Navlink = (props) => {
     const {linkPage, navMenuButtonRef} = props
@@ -10,6 +11,11 @@ const Navlink = (props) => {
     const changePage = () => {
         if(linkPage === 'Logout'){
             setUser(false)
+
+            Axios.delete('http://localhost:8083/auth/cookie')
+            .catch(err => {
+                console.log(err.response)
+            })
         }
 
         setPage(linkPage)

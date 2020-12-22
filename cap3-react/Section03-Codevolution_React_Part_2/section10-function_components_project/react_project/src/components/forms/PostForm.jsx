@@ -3,15 +3,13 @@ import React, { useContext, useRef } from 'react';
 import useFileInput from '../hooks/useFileInput';
 import useInput from '../hooks/useInput';
 
-import Cookies from 'universal-cookie'
 import { PageContext } from '../App';
-const cookies = new Cookies()
 
 const PostForm = (props) => {
-    const [title, bindTitle] = useInput()
-    const [content, bindContent] = useInput()
+    const [title, bindTitle] = useInput(props.post ? props.post.title : '')
+    const [content, bindContent] = useInput(props.post ? props.post.content : '')
     const [image, bindImage] = useFileInput()
-    
+
     const imageButtonRef = useRef()
 
     const focusImageButton = () => {
@@ -26,12 +24,24 @@ const PostForm = (props) => {
         const postData = new FormData()
         postData.append('title', title)
         postData.append('content', content)
-        postData.append('image', image)
+
+        if(image){
+            postData.append('image', image)
+        }
 
         // WITH CREDENTIALS AQUI TAMBÉM PUTA QUE PARIU
         Axios.get('http://localhost:8083/auth/cookie', {withCredentials: true})
         .then((token) => {
-            
+            if(props.post){
+                return Axios.patch(`http://localhost:8083/posts/${props.post.id}`, postData, {
+                    headers: {
+                        'Authorization': 'Bearer ' + token.data,
+                        'Content-Type': 'multipart/form-data'
+                    },
+                    withCredentials: true
+                })
+            }
+
             return Axios.post('http://localhost:8083/posts', postData, {
                 headers: {
                     'Authorization': 'Bearer ' + token.data,
@@ -41,7 +51,11 @@ const PostForm = (props) => {
             })
         })
         .then(res => {
-            setPage('Posts')
+            if(props.post){
+                props.post.savedPost()
+            } else{
+                setPage('Posts')
+            }
         })
         .catch(err => {
             if(err.response){
@@ -54,7 +68,7 @@ const PostForm = (props) => {
 
     return (  
         <div>
-            <form onSubmit={submitForm} className='form'>
+            <form onSubmit={submitForm} className='form form-no-bg'>
                 <label htmlFor="title" className='label'>Title:</label>
                 <input type="text" name="title" placeholder="Title" {...bindTitle} />
 

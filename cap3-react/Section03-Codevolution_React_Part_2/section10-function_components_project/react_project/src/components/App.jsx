@@ -27,6 +27,9 @@ const App = () => {
         case 'Sign Up': pageHtml = <h1>Signup</h1>
         break
         case 'Login': pageHtml = <LoginForm />
+        break
+        default: 
+        break
     }
 
     return (  
