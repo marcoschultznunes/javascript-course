@@ -4,14 +4,16 @@ import useFileInput from '../hooks/useFileInput';
 import useInput from '../hooks/useInput';
 
 import { PageContext } from '../App';
+import useErrorHandler from '../hooks/useErrorHandler';
 
 const PostForm = (props) => {
     const [title, bindTitle] = useInput(props.post ? props.post.title : '')
     const [content, bindContent] = useInput(props.post ? props.post.content : '')
     const [image, bindImage] = useFileInput()
 
-    const imageButtonRef = useRef()
+    const [setError, setSuccess , errorElement, scrollToError] = useErrorHandler()
 
+    const imageButtonRef = useRef()
     const focusImageButton = () => {
         imageButtonRef.current.click()
     }
@@ -21,9 +23,25 @@ const PostForm = (props) => {
     const submitForm = (e) => {
         e.preventDefault()
 
+        const sanitizedTitle = title.trim()
+        const sanitizedContent = content.trim()
+
+        if(sanitizedTitle.length < 2 || sanitizedTitle.length > 150){
+            setError('Title must contain 2-150 characters.')
+            return scrollToError()
+        }
+        if(sanitizedContent.length < 2 || sanitizedContent.length > 3000){
+            setError('Content must contain 2-3000 characters.')
+            return scrollToError()
+        }
+        if(!image){
+            setError('You must upload an image for the post.')
+            return scrollToError()
+        }
+
         const postData = new FormData()
-        postData.append('title', title)
-        postData.append('content', content)
+        postData.append('title', sanitizedTitle)
+        postData.append('content', sanitizedContent)
 
         if(image){
             postData.append('image', image)
@@ -54,14 +72,22 @@ const PostForm = (props) => {
             if(props.post){
                 props.post.savedPost()
             } else{
-                setPage('Posts')
+                setPage('My Posts')
             }
         })
         .catch(err => {
             if(err.response){
-                console.log(err.response.data)
+                if(err.response.status === 422) {
+                    setError(err.response.data.errors[0].msg)
+                    return scrollToError()
+                }
+                if(err.response.status === 404){
+                    setError('Server did not respond. Please, try again later.')
+                    return scrollToError()
+                }
             } else{
-                console.log(err)
+                setError('An error has ocurred. Please, try again later.')
+                return scrollToError()
             }
         })
     }
@@ -69,6 +95,8 @@ const PostForm = (props) => {
     return (  
         <div>
             <form onSubmit={submitForm} className='form form-no-bg'>
+                {errorElement}
+
                 <label htmlFor="title" className='label'>Title:</label>
                 <input type="text" name="title" placeholder="Title" {...bindTitle} />
 

@@ -11,7 +11,11 @@ const cookieParser = require('cookie-parser')
 
 app.use(bodyParser.json())
 app.use(morgan('dev'))
-app.use(cors({credentials: true, origin: 'http://localhost:3000'}))
+app.use(cors({
+    preflightContinue: true,
+    credentials: true, 
+    origin: 'http://localhost:3000'
+}))
 app.use(cookieParser())
 
 app.use('/app/images', express.static(path.join(__dirname, 'images')))

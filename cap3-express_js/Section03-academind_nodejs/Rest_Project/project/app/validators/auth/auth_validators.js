@@ -7,6 +7,8 @@ exports.signupValidation = [
         .normalizeEmail()
         .isEmail()
         .withMessage('Invalid email format.')
+        .isLength({min: 7, max: 150})
+        .withMessage('Email must contain 7-150 characters.')
         .custom((value, {req}) => {
             return UserModel.findOne({email: value}).then(registered_user => {
                 if(registered_user){

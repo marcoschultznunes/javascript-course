@@ -1,0 +1,18 @@
+.error-block{
+    background-color: rgb(185, 13, 13);
+    border: 2px solid rgb(102, 8, 8);
+}
+.success-block{
+    background-color: rgb(32, 170, 50);
+    border: 2px solid rgb(16, 88, 26);
+}
+
+.message-block{
+    color: #ffffff;
+    margin: 10px 0 20px 0;
+    width: 100%;
+    padding: 5px 10px;
+    font-size: 1rem;
+    font-weight: normal;
+    border-radius: 10px;
+}

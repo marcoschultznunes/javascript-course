@@ -53,8 +53,8 @@ exports.login = (req, res, next) => {
     UserModel.findOne({email: email})
         .then(user => {
             if(!user){
-                const err = new Error('No post found with given ID.')
-                err.statusCode = 404
+                const err = new Error('Email or password is incorrect.')
+                err.statusCode = 401
                 throw err
             }
             
@@ -64,7 +64,7 @@ exports.login = (req, res, next) => {
         })
         .then(matchingPasswords => {
             if(!matchingPasswords){
-                const err = new Error('Wrong password.')
+                const err = new Error('Email or password is incorrect.')
                 err.statusCode = 401
                 throw err
             }
@@ -77,12 +77,12 @@ exports.login = (req, res, next) => {
             }) 
 
             res.status(200).cookie('userJwt', token, {
-                sameSite: 'strict', 
+                sameSite: 'Strict', 
                 path: '/', 
                 expires: oneHour,
-                httpOnly: true
+                httpOnly: true,
+                overwrite: true
             }).json({
-                token: token,
                 userId: fetchedUser._id.toString(),
                 userName: fetchedUser.name
             })
@@ -100,5 +100,7 @@ exports.getJwtCookie = (req, res, next) => {
 }
 
 exports.clearJwtCookie = (req, res, next) => {
-    res.clearCookie('userJwt').send('Cookie deleted.')
+    res.cookie('userJwt', {
+        expiresIn: new Date(0)
+    }).send('Cookie cleared')
 }
