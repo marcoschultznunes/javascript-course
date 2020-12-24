@@ -5,6 +5,8 @@ import {faClock} from '@fortawesome/free-solid-svg-icons'
 import PostForm from '../forms/PostForm';
 import Axios from 'axios'
 import { LoggedUserContext } from '../App';
+import useErrorHandler from '../hooks/useErrorHandler';
+import useLoadSpinner from '../hooks/useLoadSpinner';
 
 const formatDate = (date) => {
    return moment(date).format('DD/MM/YY HH:mm')    
@@ -16,12 +18,19 @@ const Post = (props) => {
     const [editing, setEditing] = useState(false)
     const [deleting, setDeleting] = useState(false)
 
+    const [loadSpinner] = useLoadSpinner({}, {marginRight: "5px"})
+    const [loading, setLoading] = useState(false)
+
     const {user} = useContext(LoggedUserContext)
+
+    const [setError, setSuccess, errorElement, scrollToError] = useErrorHandler()
+
 
     const toggleEditing = () => {
         setEditing(!editing)
     }
     const toggleDeleteConfirmButtons = () => {
+        setError('')
         setDeleting(!deleting)
     }
 
@@ -45,6 +54,8 @@ const Post = (props) => {
     }
 
     const deletePost = () => {
+        setLoading(true)
+
         Axios.get('http://localhost:8083/auth/cookie', {withCredentials: true})
         .then((token) => {
 
@@ -56,11 +67,17 @@ const Post = (props) => {
             })
         })
         .then(() => {
+            setLoading(false)
             refreshPosts()
         })
         .catch(err => {
-            console.log(err.response.status)
-            console.log(err.response.data)
+            setLoading(false)
+
+            if(err.response){
+                return setError('Could not delete post. Check your internet connection or try again later.')          
+            }
+
+            return setError('Deletion failed. Try again later or contact our support.')
         })
     }
 
@@ -93,42 +110,46 @@ const Post = (props) => {
                     {formatDate(date)}
                 </span>
 
-                <div className={user.id === authorId ? '' : 'hidden'}>
+                {loading ?
+                    loadSpinner:
+                    <div className={user.id === authorId ? '' : 'hidden'}>
 
-                    {deleting === true ? 
-                        <React.Fragment>
-                            <button 
-                                className='post-item-button bg-red'
-                                onClick={deletePost}
-                            >
-                                Delete
-                            </button>
-                            <button 
-                                className='post-item-button bg-blue' 
-                                onClick={toggleDeleteConfirmButtons}
-                            >
-                                Cancel
-                            </button>
-                        </React.Fragment>
-                        :
-                        <React.Fragment>
-                            <button 
-                                className='post-item-button bg-blue' 
-                                onClick={toggleEditing} 
-                            >
-                                Edit
-                            </button>
-                            <button 
-                                className='post-item-button bg-red' 
-                                onClick={toggleDeleteConfirmButtons}
-                            >
-                                Del
-                            </button>
-                        </React.Fragment>
-                    }
-                    
-                </div>
+                        {deleting === true ? 
+                            <React.Fragment>
+                                <button 
+                                    className='post-item-button bg-red'
+                                    onClick={deletePost}
+                                >
+                                    Delete
+                                </button>
+                                <button 
+                                    className='post-item-button bg-blue' 
+                                    onClick={toggleDeleteConfirmButtons}
+                                >
+                                    Cancel
+                                </button>
+                            </React.Fragment>
+                            :
+                            <React.Fragment>
+                                <button 
+                                    className='post-item-button bg-blue' 
+                                    onClick={toggleEditing} 
+                                >
+                                    Edit
+                                </button>
+                                <button 
+                                    className='post-item-button bg-red' 
+                                    onClick={toggleDeleteConfirmButtons}
+                                >
+                                    Del
+                                </button>
+                            </React.Fragment>
+                        }
+                        
+                    </div>
+                }
             </div>
+            {errorElement}
             <h2 className='post-item-title'>{title}</h2>
             <img src={'http://localhost:8083/' + imageUrl} alt="" width="100px"/>
             <p className='post-item-content'>{content}</p>

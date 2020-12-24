@@ -3,6 +3,7 @@ import React, {useContext, useState} from 'react';
 import { LoggedUserContext, PageContext } from '../App';
 import useErrorHandler from '../hooks/useErrorHandler';
 import useInput from '../hooks/useInput';
+import useLoadSpinner from '../hooks/useLoadSpinner';
 
 const LoginForm = () => {
     const [name, bindName, setName] = useInput()
@@ -13,6 +14,9 @@ const LoginForm = () => {
     const {setUser} = useContext(LoggedUserContext)
 
     const [signingUp, setSigningUp] = useState(false)
+
+    const [loadSpinner] = useLoadSpinner({height: "30px", width: "30px", marginTop: "5px"})
+    const [loading, setLoading] = useState(false)
 
     const [setError, setSuccess, errorElement] = useErrorHandler()
 
@@ -42,15 +46,19 @@ const LoginForm = () => {
         }
 
         // WITH CREDENTIALS NO FRONTEND TAMBÉM PARA OS COOKIES
-        
+        setLoading(true)
+
         Axios.post('http://localhost:8083/auth/login', credentials, {
             withCredentials: true
         })
         .then((res) => {   
+            setLoading(false)
             setUser({id: res.data.userId, name: res.data.userName})
             setPage('Posts')
         })
         .catch((err) => {
+            setLoading(false)
+
             if(err.response){
                 if(err.response.status === 401){
                     return setError('Email or password is incorrect.')
@@ -125,9 +133,12 @@ const LoginForm = () => {
                 <label htmlFor="password" className='label'>Password:</label>
                 <input type="password" placeholder="Password" name="password" {...bindPassword}/>
 
-                <button type="submit" className="bg-green submit-button">
-                    {signingUp ? 'Sign up' : 'Log in'}
-                </button>
+                {loading ?
+                    loadSpinner :
+                    <button type="submit" className="bg-green submit-button">
+                        {signingUp ? 'Sign up' : 'Log in'}
+                    </button>
+                }
             </form>
             <div className='login-to-signup-div'>
                 <h3>
@@ -135,7 +146,7 @@ const LoginForm = () => {
                 </h3>
                 <button className='bg-blue signup-button' onClick={toggleSignup}>
                     {signingUp ? "Log in": "Sign up"}
-                </button>
+                </button> 
             </div>
         </React.Fragment>
         

@@ -2,11 +2,14 @@ import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios'
 import Post from './Post'
 import { LoggedUserContext } from '../App';
+import useLoadSpinner from '../hooks/useLoadSpinner';
 
 const PostList = (props) => {
     const [posts, setPosts] = useState([])
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(false)
+
+    const [loadSpinnerIcon] = useLoadSpinner({}, {display: 'inline-block', width: "fit-content"})
 
     const {user} = useContext(LoggedUserContext)
 
@@ -30,7 +33,7 @@ const PostList = (props) => {
 
     if(loading){
         return (
-            <h3 className='fetch-message'>Loading Posts...</h3>
+            <h3 className='fetch-message'>Loading Posts... {loadSpinnerIcon}</h3>
         )
     }
     if(error){

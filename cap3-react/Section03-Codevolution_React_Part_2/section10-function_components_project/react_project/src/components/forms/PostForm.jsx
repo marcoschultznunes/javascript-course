@@ -1,17 +1,18 @@
 import Axios from 'axios';
-import React, { useContext, useRef } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import useFileInput from '../hooks/useFileInput';
 import useInput from '../hooks/useInput';
 
 import { PageContext } from '../App';
 import useErrorHandler from '../hooks/useErrorHandler';
+import useLoadSpinner from '../hooks/useLoadSpinner';
 
 const PostForm = (props) => {
     const [title, bindTitle] = useInput(props.post ? props.post.title : '')
     const [content, bindContent] = useInput(props.post ? props.post.content : '')
     const [image, bindImage] = useFileInput()
 
-    const [setError, setSuccess , errorElement, scrollToError] = useErrorHandler()
+    const [setError, setSuccess, errorElement, scrollToError] = useErrorHandler()
 
     const imageButtonRef = useRef()
     const focusImageButton = () => {
@@ -19,6 +20,9 @@ const PostForm = (props) => {
     }
 
     const {setPage} = useContext(PageContext)
+
+    const [loading, setLoading] = useState(false)
+    const [loadSpinner] = useLoadSpinner({height: "30px", width: "30px", marginTop: "5px"})
 
     const submitForm = (e) => {
         e.preventDefault()
@@ -47,6 +51,8 @@ const PostForm = (props) => {
             postData.append('image', image)
         }
 
+        setLoading(true)
+
         // WITH CREDENTIALS AQUI TAMBÉM PUTA QUE PARIU
         Axios.get('http://localhost:8083/auth/cookie', {withCredentials: true})
         .then((token) => {
@@ -69,6 +75,8 @@ const PostForm = (props) => {
             })
         })
         .then(res => {
+            setLoading(false)
+
             if(props.post){
                 props.post.savedPost()
             } else{
@@ -76,9 +84,16 @@ const PostForm = (props) => {
             }
         })
         .catch(err => {
+            setLoading(false)
+
             if(err.response){
                 if(err.response.status === 422) {
-                    setError(err.response.data.errors[0].msg)
+                    if(err.response.data.errors){
+                        setError(err.response.data.errors[0].msg)
+                        return scrollToError()
+                    }
+                    
+                    setError(err.response.data.message)
                     return scrollToError()
                 }
                 if(err.response.status === 404){
@@ -126,7 +141,10 @@ const PostForm = (props) => {
 
                 <textarea name="content" placeholder="Content" {...bindContent} rows='16'/>
                 
-                <button type="submit" className="bg-green submit-button">Save</button>
+                {loading ?
+                    loadSpinner :
+                    <button type="submit" className="bg-green submit-button">Save</button>
+                }
             </form>
         </div>
     );

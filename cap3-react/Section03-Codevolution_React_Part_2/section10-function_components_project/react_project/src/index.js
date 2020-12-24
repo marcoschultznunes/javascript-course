@@ -10,6 +10,7 @@ import './css/form.css';
 import './css/login.css';
 import './css/signup.css';
 import './css/errors.css';
+import './css/icons.css';
 
 ReactDOM.render(
     <React.StrictMode>
