@@ -142,6 +142,8 @@ exports.patchPost = (req, res, next) => {
         throw err
     }
 
+    const updatedPost = {}
+
     PostModel.findById(id)
         .then(post => {
             if(!post){
@@ -176,13 +178,18 @@ exports.patchPost = (req, res, next) => {
                 imageUrl: imageUrl || post.imageUrl
             }
 
+            updatedPost.title = updateObject.title
+            updatedPost.content = updateObject.content
+            updatedPost.imageUrl = updateObject.imageUrl
+
             return PostModel.findOneAndUpdate({_id: id}, {
                 ...updateObject,
             })
         })
         .then(() => {
             return res.status(200).json({
-                message: 'Successfully updated post.'
+                message: 'Successfully updated post.',
+                post: updatedPost
             })
         })
         .catch(err => {

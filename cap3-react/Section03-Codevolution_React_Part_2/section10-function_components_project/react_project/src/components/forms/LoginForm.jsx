@@ -52,6 +52,7 @@ const LoginForm = () => {
             withCredentials: true
         })
         .then((res) => {   
+            console.log(res.data)
             setLoading(false)
             setUser({id: res.data.userId, name: res.data.userName})
             setPage('Posts')

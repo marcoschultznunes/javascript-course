@@ -78,7 +78,7 @@ const PostForm = (props) => {
             setLoading(false)
 
             if(props.post){
-                props.post.savedPost()
+                props.savedPost(res.data.post)
             } else{
                 setPage('My Posts')
             }

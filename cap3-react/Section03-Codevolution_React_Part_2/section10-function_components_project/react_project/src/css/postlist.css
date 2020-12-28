@@ -58,3 +58,11 @@
     font-size: 0.8rem;
     color: #222222;
 }
+
+.scroll-loading-div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+

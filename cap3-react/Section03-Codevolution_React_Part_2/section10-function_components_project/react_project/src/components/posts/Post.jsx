@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import moment from 'moment'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faClock} from '@fortawesome/free-solid-svg-icons'
@@ -15,6 +15,17 @@ const formatDate = (date) => {
 const Post = (props) => {
     const {title, author, authorId, date, content, imageUrl, id, refreshPosts} = props
 
+    const [currentPost, setCurrentPost] = useState({})
+
+    useEffect(() => {
+        setCurrentPost({
+            id: id,
+            title: title,
+            content: content,
+            image: imageUrl
+        })
+    }, [props])
+
     const [editing, setEditing] = useState(false)
     const [deleting, setDeleting] = useState(false)
 
@@ -24,7 +35,6 @@ const Post = (props) => {
     const {user} = useContext(LoggedUserContext)
 
     const [setError, setSuccess, errorElement, scrollToError] = useErrorHandler()
-
 
     const toggleEditing = () => {
         setEditing(!editing)
@@ -39,18 +49,16 @@ const Post = (props) => {
         postRef.current.scrollIntoView();
     }
     
-    const savedPost = () => {
+    const savedPost = (updatedPost) => {
         setEditing(false)
-        refreshPosts()
+        setCurrentPost({
+            id: id,
+            title: updatedPost.title,
+            content: updatedPost.content,
+            image: updatedPost.imageUrl
+        })
+        alert('Post saved!')
         focusAfterSave()
-    }
-
-    const post = {
-        title: title, 
-        content: content,
-        image: imageUrl,
-        id: id,
-        savedPost: savedPost
     }
 
     const deletePost = () => {
@@ -59,7 +67,7 @@ const Post = (props) => {
         Axios.get('http://localhost:8083/auth/cookie', {withCredentials: true})
         .then((token) => {
 
-            return Axios.delete(`http://localhost:8083/posts/${post.id}`, {
+            return Axios.delete(`http://localhost:8083/posts/${currentPost.id}`, {
                 headers: {
                     'Authorization': 'Bearer ' + token.data
                 },
@@ -97,7 +105,7 @@ const Post = (props) => {
                     </button>
                 </div>
 
-                <PostForm post={post}/>
+                <PostForm post={currentPost} savedPost={savedPost}/>
             </li>
         )
     }
@@ -150,9 +158,9 @@ const Post = (props) => {
                 }
             </div>
             {errorElement}
-            <h2 className='post-item-title'>{title}</h2>
-            <img src={'http://localhost:8083/' + imageUrl} alt="" width="100px"/>
-            <p className='post-item-content'>{content}</p>
+            <h2 className='post-item-title'>{currentPost.title}</h2>
+            <img src={'http://localhost:8083/' + currentPost.image} alt="" width="100px"/>
+            <p className='post-item-content'>{currentPost.content}</p>
             <p className='post-item-author'>Author: {author}</p>
         </li>
     );
