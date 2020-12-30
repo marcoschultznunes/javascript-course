@@ -15,11 +15,13 @@ html{
 
 .fetch-message{
     color: rgb(29, 29, 29);
-    margin-top: 5vw;
-    margin-left: 5vw;
+    font-size: calc(2.2vw + 5px);
+    margin-top: 20px;
+    margin-left: 20px;
 }
 .error-message{
     color: rgb(102, 8, 8);
-    margin-top: 5vw;
-    margin-left: 5vw;
+    font-size: calc(2.2vw + 5px);
+    margin-top: 20px;
+    margin-left: 20px;
 }

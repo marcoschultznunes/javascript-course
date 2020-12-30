@@ -11,6 +11,7 @@ import './css/login.css';
 import './css/signup.css';
 import './css/errors.css';
 import './css/icons.css';
+import './css/responsive.css';
 
 ReactDOM.render(
     <React.StrictMode>

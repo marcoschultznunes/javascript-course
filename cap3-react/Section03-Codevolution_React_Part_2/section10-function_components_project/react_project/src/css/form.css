@@ -1,3 +1,16 @@
+#post-form-container-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+#post-form-container{
+    background-color: #dddddd;
+    padding: 0px 20px;
+    margin-top: 10px;
+    width: 100vw;
+}
+
 .form{
     display: flex;
     align-items: center;
@@ -6,7 +19,6 @@
 }
 .form-no-bg{
     padding: 20px 0;
-    margin: 0 12.5vw;
 }
 .form-with-bg{
     padding: 20px 7.5vw;
@@ -50,7 +62,6 @@
     margin-bottom: 20px;
     border-radius: 10px;
 }
-
 
 .submit-button{
     padding: 5px 20px;

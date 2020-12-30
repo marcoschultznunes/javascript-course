@@ -9,6 +9,7 @@ const LoginForm = () => {
     const [name, bindName, setName] = useInput()
     const [email, bindEmail, setEmail] = useInput()
     const [password, bindPassword, setPassword] = useInput()
+    const [confirmPassword, bindConfirmPassword, setConfirmPassword] = useInput()
 
     const {setPage} = useContext(PageContext)
     const {setUser} = useContext(LoggedUserContext)
@@ -24,6 +25,7 @@ const LoginForm = () => {
         setName('')
         setEmail('')
         setPassword('')
+        setConfirmPassword('')
     }
     const toggleSignup = () => {
         setSuccess('')
@@ -49,10 +51,13 @@ const LoginForm = () => {
         setLoading(true)
 
         Axios.post('http://localhost:8083/auth/login', credentials, {
-            withCredentials: true
+            withCredentials: true,
+            headers: {
+                'Content-Type': 'application/json'
+            }
         })
         .then((res) => {   
-            console.log(res.data)
+            console.log(res)
             setLoading(false)
             setUser({id: res.data.userId, name: res.data.userName})
             setPage('Posts')
@@ -78,7 +83,12 @@ const LoginForm = () => {
         const credentials = {
             name: name.trim(),
             email: email.trim(),
-            password: password.trim()
+            password: password.trim(),
+            confirmPassword: confirmPassword.trim()
+        }
+
+        if(credentials.password !== credentials.confirmPassword){
+            return setError('Passwords do not match.')
         }
 
         if(credentials.name.length < 5 || credentials.name.length > 200){
@@ -91,12 +101,16 @@ const LoginForm = () => {
             return setError('Password must contain 10-80 characters.')
         }
 
+        setLoading(true)
+        
         Axios.post('http://localhost:8083/auth/signup', credentials)
             .then(() => {
                 toggleSignup()
+                setLoading(false)
                 setSuccess('User successfully registered.')
             })
             .catch(err => {
+                setLoading(false)
                 if(err.response.status === 422){
                     return setError(err.response.data.errors[0].msg)
                 }
@@ -134,6 +148,13 @@ const LoginForm = () => {
                 <label htmlFor="password" className='label'>Password:</label>
                 <input type="password" placeholder="Password" name="password" {...bindPassword}/>
 
+                <label htmlFor="confirmpassword" className={signingUp ? 'label' : 'hidden'}>
+                    Confirm password:
+                </label>
+                <input type="password" placeholder="Confirm password" name="confirmpassword" 
+                    {...bindConfirmPassword} className={signingUp ? '' : 'hidden'}
+                />
+
                 {loading ?
                     loadSpinner :
                     <button type="submit" className="bg-green submit-button">
@@ -141,6 +162,7 @@ const LoginForm = () => {
                     </button>
                 }
             </form>
+
             <div className='login-to-signup-div'>
                 <h3>
                     {signingUp ? "Already have an account?" : "Don't have an account yet?"}

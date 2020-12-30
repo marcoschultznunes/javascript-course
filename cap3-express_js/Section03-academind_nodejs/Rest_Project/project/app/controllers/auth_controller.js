@@ -4,10 +4,6 @@ const jwt = require('jsonwebtoken')
 const { validationResult } = require('express-validator')
 const { oneHour } = require('../utils/cookies')
 
-const axios = require('axios')
-// AINDA FUNCIONA SE REMOVER AMBOS DO BACKEND
-axios.default.withCredentials = true
-
 exports.signup = (req, res, next) => {
     const errors = validationResult(req)
     if(!errors.isEmpty()){
@@ -44,9 +40,6 @@ exports.signup = (req, res, next) => {
 }
 
 exports.login = (req, res, next) => {
-    // AINDA FUNCIONA SE REMOVER AMBOS DO BACKEND
-    axios.get('http://localhost:3000', {withCredentials: true}).then(function (res) { console.log(res) })
-
     const {email, password} = req.body
     let fetchedUser = null
 
@@ -100,7 +93,8 @@ exports.getJwtCookie = (req, res, next) => {
 }
 
 exports.clearJwtCookie = (req, res, next) => {
-    res.cookie('userJwt', {
-        expiresIn: new Date(0)
+    res.cookie('userJwt', 'expired' , {
+        expiresIn: new Date(0),
+        overwrite: true
     }).send('Cookie cleared')
 }

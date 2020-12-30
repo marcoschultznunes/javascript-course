@@ -12,7 +12,14 @@ const Navlink = (props) => {
         if(linkPage === 'Logout'){
             setUser(false)
 
-            Axios.delete('http://localhost:8083/auth/cookie')
+            Axios.get('http://localhost:8083/auth/cookie', {withCredentials: true})
+            .then((res) => {
+                if(res.data){
+                    return Axios.delete('http://localhost:8083/auth/cookie', 
+                        {withCredentials: true}
+                    )
+                }
+            })
             .catch(err => {
                 console.log(err.response)
             })

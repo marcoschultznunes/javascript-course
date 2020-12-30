@@ -108,44 +108,46 @@ const PostForm = (props) => {
     }
 
     return (  
-        <div>
-            <form onSubmit={submitForm} className='form form-no-bg'>
-                {errorElement}
+        <div id='post-form-container-container'>
+            <div id='post-form-container'>
+                <form onSubmit={submitForm} className='form form-no-bg'>
+                    {errorElement}
 
-                <label htmlFor="title" className='label'>Title:</label>
-                <input type="text" name="title" placeholder="Title" {...bindTitle} />
+                    <label htmlFor="title" className='label'>Title:</label>
+                    <input type="text" name="title" placeholder="Title" {...bindTitle} />
 
-                {/* TODO: Image Upload => Need tutorial for React. */}
-                <img src={image ? URL.createObjectURL(image) : ''} alt="" width="100px"
-                    style={image ? {marginBottom: '10px'} : {}}
-                />
-
-                <label htmlFor="image" className='label'>Image:</label>
-                <input 
-                    type="text" 
-                    readOnly 
-                    placeholder='Image' 
-                    onClick={focusImageButton}
-                    value={image ? image.name : ''}
-                />
-                <label className='image-input-button bg-blue' ref={imageButtonRef}>
-                    Upload Image
-                    <input 
-                        type="file" 
-                        name="image" 
-                        className="image-input" 
-                        accept='.png, .jpg, .jpeg'
-                        {...bindImage}
+                    {/* TODO: Image Upload => Need tutorial for React. */}
+                    <img src={image ? URL.createObjectURL(image) : ''} alt="" width="100px"
+                        style={image ? {marginBottom: '10px'} : {}}
                     />
-                </label>
 
-                <textarea name="content" placeholder="Content" {...bindContent} rows='16'/>
-                
-                {loading ?
-                    loadSpinner :
-                    <button type="submit" className="bg-green submit-button">Save</button>
-                }
-            </form>
+                    <label htmlFor="image" className='label'>Image:</label>
+                    <input 
+                        type="text" 
+                        readOnly 
+                        placeholder='Image' 
+                        onClick={focusImageButton}
+                        value={image ? image.name : ''}
+                    />
+                    <label className='image-input-button bg-blue' ref={imageButtonRef}>
+                        Upload Image
+                        <input 
+                            type="file" 
+                            name="image" 
+                            className="image-input" 
+                            accept='.png, .jpg, .jpeg'
+                            {...bindImage}
+                        />
+                    </label>
+
+                    <textarea name="content" placeholder="Content" {...bindContent} rows='16'/>
+                    
+                    {loading ?
+                        loadSpinner :
+                        <button type="submit" className="bg-green submit-button">Save</button>
+                    }
+                </form>
+            </div>
         </div>
     );
 }

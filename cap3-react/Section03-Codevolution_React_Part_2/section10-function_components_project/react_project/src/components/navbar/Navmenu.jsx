@@ -9,7 +9,7 @@ const Navmenu = React.forwardRef((props, ref) => {
 
     if(!user){
         return(
-            <nav id='navmenu' ref={ref} className='hidden'>
+            <nav ref={ref} className='navmenu hidden big-screen-navlinks'>
                 <ul>
                     <Navlink linkPage='Posts' navMenuButtonRef={navMenuButtonRef}/>
                     <Navlink linkPage='Login / Sign Up' navMenuButtonRef={navMenuButtonRef}/>
@@ -18,7 +18,7 @@ const Navmenu = React.forwardRef((props, ref) => {
         )
     }
     return (  
-        <nav id='navmenu' ref={ref} className='hidden'>
+        <nav ref={ref} className='navmenu hidden big-screen-navlinks'>
             <h3 id='logged-user-message'>Welcome, {user.name}</h3>
             <ul>
                 <Navlink linkPage='Posts' navMenuButtonRef={navMenuButtonRef}/>

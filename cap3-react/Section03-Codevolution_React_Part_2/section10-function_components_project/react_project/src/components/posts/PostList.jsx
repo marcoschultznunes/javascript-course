@@ -12,7 +12,7 @@ const PostList = (props) => {
     const [loadingScroll, setLoadingScroll] = useState(false)
     const [error, setError] = useState(false)
 
-    const [loadSpinnerIcon] = useLoadSpinner({}, {display: 'inline-block', width: "fit-content"})
+    const [loadSpinnerIcon] = useLoadSpinner({width: "100%"}, {display: 'inline-block', width: "2.6vw"})
     const [loadScrollSpinnerIcon] = useLoadSpinner({heigth: '30px', width: '30px'})
 
     const {user} = useContext(LoggedUserContext)
@@ -23,7 +23,6 @@ const PostList = (props) => {
         axios.get('http://localhost:8083/posts?perPage=2' + userQuery)
             .then(posts => {
                 setPosts(posts.data.posts)
-                console.log(posts.data.posts)
                 setPostPage(2)
                 setLoading(false)
             })

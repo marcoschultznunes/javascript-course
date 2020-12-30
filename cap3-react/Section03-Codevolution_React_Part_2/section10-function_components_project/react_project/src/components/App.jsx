@@ -35,7 +35,9 @@ const App = () => {
             <PageProvider value={{page: page, setPage: setPage}}>
                 <React.Fragment>
                     <Navbar />
-                    {pageHtml}
+                    <main id='main'>
+                        {pageHtml}
+                    </main>
                 </React.Fragment>
             </PageProvider>
         </LoggedUserProvider>
