@@ -1,0 +1,21 @@
+https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-20-04-pt
+
+1 - sudo apt install mysql-server
+
+2 - sudo mysql_secure_installation
+
+3 - ALTER USER 'root'@'localhost' IDENTIFIED WITH caching_sha2_password BY 'password';
+
+4 - Para entrar basta: 
+    mysql -u root -p
+
+5 - CREATE USER 'marcola'@'localhost' IDENTIFIED BY 'password';
+
+6 - GRANT ALL PRIVILEGES ON *.* TO 'marcola'@'localhost' WITH GRANT OPTION;
+
+
+Depois é só instalar o mysql workbench pelo ubuntu software:
+
+1 - Baixar pelo ubuntu software
+
+2 - sudo snap connect mysql-workbench-community:password-manager-service :password-manager-service

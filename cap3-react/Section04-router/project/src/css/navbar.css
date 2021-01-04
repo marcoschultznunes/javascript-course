@@ -1,0 +1,29 @@
+.navbar{
+    background-color: darkgreen;
+    margin-bottom: 10px;
+}
+
+.links{
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+.links li{
+    width: fit-content;
+    height: fit-content;
+}
+
+.links a{
+    display: inline-block;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: black;
+}
+
+.links a:hover{
+    background-color: green;
+}
+.active-link{
+    background-color: rgb(0, 148, 0);
+}
