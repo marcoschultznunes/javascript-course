@@ -56,8 +56,8 @@ exports.createProduct = (req, res, next) => {
         brand: brand,
         price: price,
         image: imageUrl
-    }).then(() => {
-        res.status(201).json({message: 'Product created!'})
+    }).then((createdProduct) => {
+        res.status(201).json({message: 'Product created!', product: createdProduct})
     }).catch(err => {
         const statusCode = err.statusCode || 500
         const errMessage = err.message || 'Could not create product.'

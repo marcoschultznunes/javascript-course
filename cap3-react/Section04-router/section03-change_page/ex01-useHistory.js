@@ -1,3 +1,8 @@
+/*
+    https://stackoverflow.com/questions/31079081/programmatically-navigate-using-react-router
+*/
+
+/* In this example, we'll submit a simple form and redirect to the home route */
 import { useState } from "react";
 import { useHistory } from "react-router";
 
@@ -16,6 +21,7 @@ const LittleForm = () => {
         setDate(e.target.value)
     }
 
+    /* For this, we'll use the useHistory hook */
     const history = useHistory()
 
     const submitHandler = () => {
@@ -25,6 +31,7 @@ const LittleForm = () => {
             Date: ${date}
         `)
 
+        /* This will change the URL */
         history.push('/')
     }
 
@@ -40,3 +47,4 @@ const LittleForm = () => {
 }
  
 export default LittleForm ;
+

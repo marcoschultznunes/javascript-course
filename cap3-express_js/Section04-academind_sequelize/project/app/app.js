@@ -18,8 +18,10 @@ app.use((req, res, next) => {
 
 
 const product_routes = require('./routes/product_routes')
+const user_routes = require('./routes/user_routes')
 
 app.use('/products', product_routes)
+app.use('/users', user_routes)
 
 
 db.sync().then(result => {

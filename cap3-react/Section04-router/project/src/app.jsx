@@ -1,8 +1,10 @@
 import React from 'react'
 import { NavLink, Route } from 'react-router-dom'
+import Calculate from './components/Calculate'
 
 import FoodList from './components/FoodList'
 import LittleForm from './components/LittleForm'
+import ProductController from './components/ProductController'
 
 const App = () => {
     return (  
@@ -16,6 +18,8 @@ const App = () => {
                         <li><NavLink to="/victim" activeClassName="active-link"> Victim </NavLink></li>
                         <li><NavLink to="/list" activeClassName="active-link"> List </NavLink></li>
                         <li><NavLink to="/form" activeClassName="active-link"> Form </NavLink></li>
+                        <li><NavLink to="/products" activeClassName="active-link"> Products </NavLink></li>
+                        <li><NavLink to='/calculate?n1=15&n2=30&op=div' activeClassName="active-link"> Calculate </NavLink></li>
                     </ul>
                 </nav>
             </header>
@@ -37,6 +41,10 @@ const App = () => {
                 <FoodList {...props} hello='There'/> 
             }/>
             <Route path="/form" component={LittleForm} />
+
+            <Route path="/products" component={ProductController} />
+
+            <Route path="/calculate" component={Calculate} />
 
         </React.Fragment>
     );
