@@ -8,8 +8,8 @@
 */
 
 /*
-    On index.js, we'll wrap our application on a Browser Router element provided by the react 
-    router package
+    On index.js, we'll wrap our application on a BrowserRouter element provided by the react 
+    router dom package
 */
 
 /* index.js */

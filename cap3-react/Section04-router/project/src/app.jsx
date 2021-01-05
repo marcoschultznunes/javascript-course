@@ -33,7 +33,9 @@ const App = () => {
                 <h1>The Unsuspecting Victim</h1>
             </Route>
 
-            <Route path="/list" component={FoodList} />
+            <Route path="/list" render={(props) =>  
+                <FoodList {...props} hello='There'/> 
+            }/>
             <Route path="/form" component={LittleForm} />
 
         </React.Fragment>
