@@ -1,9 +1,10 @@
 const express = require('express')
-const app = express()
+let app = express()
 
 const bodyParser = require('body-parser')
 const morgan = require('morgan')
 const cors = require('cors')
+const db = require('./connection')
 
 app.use(bodyParser.json())
 app.use(morgan('dev'))
@@ -15,8 +16,21 @@ app.use((req, res, next) => {
     return next();
 });
 
-app.use((req, res, next) => {
-    res.send('<h1>It just works!</h1>')
+
+const product_routes = require('./routes/product_routes')
+
+app.use('/products', product_routes)
+
+
+db.sync().then(result => {
+    app.use((req, res, next) => {
+        res.send('<h1>It just works!</h1>')
+    })
+}).catch(err => {
+    console.log(err)
+    app = null
 })
+
+
 
 module.exports = app
