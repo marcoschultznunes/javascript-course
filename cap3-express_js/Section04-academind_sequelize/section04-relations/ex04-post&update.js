@@ -1,48 +1,10 @@
-const BrandModel = require('../models/brand_model')
-const ProductModel = require('../models/product_model')
-
-exports.productIndex = (req, res, next) => {
-    ProductModel.findAll({include: BrandModel, attributes: {exclude:['brandId']} })
-    .then(products => {
-        res.status(200).json({
-            message: 'Successfully fetched products!',
-            products: products
-        })
-
-    }).catch(err => {
-        const statusCode = err.statusCode || 500
-        const errMessage = err.message || 'Could not fetch products.'
-        res.status(statusCode).json({message: errMessage})
-    })
-}
-exports.getById = (req, res, next) => {
-    const {id} = req.params
-
-    ProductModel.findByPk(id, {include: BrandModel, attributes: {exclude:['brandId']} })
-    .then(product => {
-        if(!product){
-            const err = new Error('No product found with given ID!')
-            err.statusCode = 404
-            throw err
-        }
-
-        res.status(200).json({
-            message: 'Product successfully fetched!',
-            product: product
-        })
-
-    }).catch(err => {
-        const statusCode = err.statusCode || 500
-        const errMessage = err.message || 'Could not fetch product.'
-        res.status(statusCode).json({message: errMessage})
-    })
-}
-
+/* On product_controller.js */
 exports.createProduct = (req, res, next) => {
     const {description, brandId, price, imageUrl} = req.body
 
     BrandModel.findByPk(brandId)
         .then(brand => {
+            // First we check if the given brand Id exists
             if(!brand){
                 const err = new Error('No brand found with given ID!')
                 err.statusCode = 404
@@ -65,31 +27,17 @@ exports.createProduct = (req, res, next) => {
         res.status(statusCode).json({message: errMessage})
     })
 }
-exports.deleteProduct = (req, res, next) => {
-    const {id} = req.params
 
-    ProductModel.findByPk(id).then(product => {
-        if(!product){
-            const err = new Error('No product found with given ID!')
-            err.statusCode = 404
-            throw err
-        }
-
-        return product.destroy()
-    })
-    .then(() => {
-        res.status(200).json({message: 'Product deleted!'})
-    })
-    .catch(err => {
-        const statusCode = err.statusCode || 500
-        const errMessage = err.message || 'Could not delete product.'
-        res.status(statusCode).json({message: errMessage})
-    })
-}
+/* 
+    The update is a bit more tricky, but the idea is to pass use BrandModel.findOne, and define
+    the filter according to whether the user passed a new brandId or not. If the user did not,
+    the filter will be empty, allowing the request to go through, then later the previous 
+    brandId will be saved instead of the null value. 
+*/
 exports.updateProduct = (req, res, next) => {
     const {id} = req.params
     const {description, brandId, price, imageUrl} = req.body
-
+    
     const brandFilter = {}
 
     if(brandId){

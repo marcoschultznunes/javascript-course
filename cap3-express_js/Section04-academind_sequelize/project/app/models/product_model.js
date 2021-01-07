@@ -1,6 +1,8 @@
 const Sequelize = require('sequelize')
 const db = require('../connection')
 
+const Brand = require('./brand_model')
+
 const Product = db.define('product', {
     id: {
         type: Sequelize.INTEGER,
@@ -9,10 +11,6 @@ const Product = db.define('product', {
         primaryKey: true
     },
     description: {
-        type: Sequelize.STRING,
-        allowNull: false
-    },
-    brand: {
         type: Sequelize.STRING,
         allowNull: false
     },

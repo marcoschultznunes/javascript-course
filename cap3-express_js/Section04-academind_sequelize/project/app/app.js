@@ -19,10 +19,17 @@ app.use((req, res, next) => {
 
 const product_routes = require('./routes/product_routes')
 const user_routes = require('./routes/user_routes')
+const brand_routes = require('./routes/brand_routes')
 
 app.use('/products', product_routes)
 app.use('/users', user_routes)
+app.use('/brands', brand_routes)
 
+const Product = require('./models/product_model')
+const Brand = require('./models/brand_model')
+
+Product.belongsTo(Brand, {constraints: true, onDelete: 'CASCADE'})
+Brand.hasMany(Product)
 
 db.sync().then(result => {
     app.use((req, res, next) => {
