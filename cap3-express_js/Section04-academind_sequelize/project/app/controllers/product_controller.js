@@ -1,8 +1,15 @@
 const BrandModel = require('../models/brand_model')
+const CategoryModel = require('../models/category_model')
 const ProductModel = require('../models/product_model')
 
 exports.productIndex = (req, res, next) => {
-    ProductModel.findAll({include: BrandModel, attributes: {exclude:['brandId']} })
+    ProductModel.findAll({include: [BrandModel, 
+        {
+            model: CategoryModel,
+            as: 'categories',
+            through: {attributes: []}
+        }
+    ], attributes: {exclude:['brandId']} })
     .then(products => {
         res.status(200).json({
             message: 'Successfully fetched products!',
@@ -18,7 +25,13 @@ exports.productIndex = (req, res, next) => {
 exports.getById = (req, res, next) => {
     const {id} = req.params
 
-    ProductModel.findByPk(id, {include: BrandModel, attributes: {exclude:['brandId']} })
+    ProductModel.findByPk(id, {include: [BrandModel, 
+        {
+            model: CategoryModel,
+            as: 'categories',
+            through: {attributes: []}
+        }
+    ], attributes: {exclude:['brandId']} })
     .then(product => {
         if(!product){
             const err = new Error('No product found with given ID!')
@@ -39,7 +52,7 @@ exports.getById = (req, res, next) => {
 }
 
 exports.createProduct = (req, res, next) => {
-    const {description, brandId, price, imageUrl} = req.body
+    const {categories, description, brandId, price, imageUrl} = req.body
 
     BrandModel.findByPk(brandId)
         .then(brand => {
@@ -56,6 +69,13 @@ exports.createProduct = (req, res, next) => {
                 image: imageUrl
             })
         })
+    .then(createdProduct => {
+        if(categories.length > 0){
+            createdProduct.setCategories(categories)
+        }
+
+        return createdProduct.save()
+    })
     .then((createdProduct) => {
         res.status(201).json({message: 'Product created!', product: createdProduct})
     })
@@ -88,7 +108,7 @@ exports.deleteProduct = (req, res, next) => {
 }
 exports.updateProduct = (req, res, next) => {
     const {id} = req.params
-    const {description, brandId, price, imageUrl} = req.body
+    const {categories, description, brandId, price, imageUrl} = req.body
 
     const brandFilter = {}
 
@@ -118,6 +138,10 @@ exports.updateProduct = (req, res, next) => {
         product.price = price || product.price
         product.imageUrl = imageUrl || product.image
 
+        if(categories.length > 0){
+            product.setCategories(categories)
+        }
+        
         return product.save()
     })
     .then((newProduct) => {
