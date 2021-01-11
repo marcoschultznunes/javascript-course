@@ -1,4 +1,5 @@
 const CategoryModel = require('../models/category_model')
+const ProductModel = require('../models/product_model')
 const {validationResult} = require('express-validator')
 
 // INDEX
@@ -9,6 +10,37 @@ exports.getCategories = (req, res, next) => {
             categories: categories
         })
     }).catch(err => {
+        if(!err.statusCode){
+            err.statusCode = 500
+        }
+        next(err)
+    })
+}
+
+// FIND BY ID
+exports.getCategoryById = (req, res, next) => {
+    const {id} = req.params
+
+    CategoryModel.findByPk(id, {include: [
+        {
+            model: ProductModel,
+            as: 'products',
+            through: {attributes: []}
+        }
+    ]})
+    .then(category => {
+        if(!category){
+            const err = new Error('No category found with given ID!')
+            err.statusCode = 404
+            throw err
+        }
+
+        res.status(200).json({
+            message: 'Category fetched',
+            category: category
+        })
+    })
+    .catch(err => {
         if(!err.statusCode){
             err.statusCode = 500
         }
@@ -74,9 +106,10 @@ exports.updateCategory = (req, res, next) => {
         })
     })
     .catch(err => {
-        const statusCode = err.statusCode || 500
-        const errMessage = err.message || 'Could not update category.'
-        res.status(statusCode).json({message: errMessage})
+        if(!err.statusCode){
+            err.statusCode = 500
+        }
+        next(err)
     })
 }
 
@@ -97,9 +130,10 @@ exports.deleteCategory = (req, res, next) => {
         res.status(200).json({message: 'Category deleted!'})
     })
     .catch(err => {
-        const statusCode = err.statusCode || 500
-        const errMessage = err.message || 'Could not delete category.'
-        res.status(statusCode).json({message: errMessage})
+        if(!err.statusCode){
+            err.statusCode = 500
+        }
+        next(err)
     })
 }
 

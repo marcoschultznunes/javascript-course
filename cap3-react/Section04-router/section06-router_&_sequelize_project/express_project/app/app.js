@@ -1,5 +1,6 @@
 const express = require('express')
 let app = express()
+const path = require('path')
 
 const bodyParser = require('body-parser')
 const morgan = require('morgan')
@@ -9,6 +10,9 @@ const db = require('./connection')
 app.use(bodyParser.json())
 app.use(morgan('dev'))
 app.use(cors())
+
+app.use(bodyParser.urlencoded({extended: true}));
+app.use('/app/images', express.static(path.join(__dirname, 'images')))
 
 app.use((req, res, next) => {
     res.setHeader("Content-Security-Policy", "script-src 'self' https://apis.google.com");
@@ -34,7 +38,7 @@ ProductModel.belongsToMany(CategoryModel, {as: 'categories', through: CategoryPr
 ProductModel.belongsTo(BrandModel, {constraints: true, onDelete: 'CASCADE', as: 'brand'})
 BrandModel.hasMany(ProductModel)
 
-db.sync({force: true}).then(result => {
+db.sync().then(result => {
     app.use((req, res, next) => {
         res.send('<h1>It just works!</h1>')
     })
