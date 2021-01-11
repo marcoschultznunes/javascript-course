@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
 const db = require('../connection')
 
-const Category = db.define('category', {
+const Brand = db.define('brand', {
     id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
@@ -12,7 +12,6 @@ const Category = db.define('category', {
         type: Sequelize.STRING,
         allowNull: false
     }
-});
+}, {timestamps: false});
 
-module.exports = Category
-
+module.exports = Brand

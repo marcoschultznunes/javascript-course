@@ -1,0 +1,6 @@
+/*
+    This first project will be a small store, with product categories and the products. It will 
+    be mobile-first and it won't contain any user system, nor buying, it will be a very basic
+    project.
+    It will also contain no CMS.
+*/
