@@ -1,0 +1,87 @@
+#navbar{
+    background-color: var(--theme-color);
+}
+
+#top-navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: #ffffff;
+    padding: 10px;
+    font-size: calc(1vw + 20px);
+}
+
+#navbar-search-form{
+    display: flex;
+    justify-content: center;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#navbar-search-form > input{
+    padding: 5px;
+    flex-grow: 1;
+}
+
+#navbar-search-form > button, #navbar-search-form > input {
+    font-size: calc(0.8vw + 14px);
+    border-radius: 0px;
+    border: none;
+}
+
+#navbar-search-form > button{
+    padding: 5px 10px;
+    background-color: #bbbbbb;
+    color: #222222;
+}
+
+/* Navmenu */
+
+#navmenu {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: var(--dark-gray);
+    color: #ffffff;
+    min-height: 100vh;
+    max-height: 100vh;
+}
+
+.navmenu-body{
+    overflow-y: auto;
+    max-height: 80vh;
+}
+
+#close-navmenu-button{
+    position: absolute;
+    top: 0px;
+    left: 100%;
+    font-weight: bold;
+    width: fit-content;
+    padding: 10px 15px;
+    border: none;
+    background-color: var(--error-color);
+    color: #ffffff;
+}
+
+.navmenu-section {
+    padding: 20px;
+    border-bottom: var(--slight-dark-gray) 2px solid;
+}
+
+.navmenu-section > h3 {
+    font-size: calc(0.8vw + 18px);
+}
+.navmenu-section-title{
+    margin-bottom: 20px;
+}
+
+.navmenu-link-list > li{
+    margin-bottom: 10px;
+    font-size: calc(0.5vw + 14px);
+}
+
+.extend-link-list {
+    margin-top: 10px;
+}

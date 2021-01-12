@@ -1,0 +1,4 @@
+A strategy to deal with adding overflow-y: scroll to a side menu with a close button with 
+everything having absolute position, is to separate the side menu head and side menu body in
+2 divs, each with its own class. The side menu head will contain the close button, the side menu
+body will allow the rest of the menu to be scrolled.

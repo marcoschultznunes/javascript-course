@@ -1,0 +1,5 @@
+#not-found-message{
+    color: var(--error-color);
+    padding-top: 10px;
+    padding-left: 10px;
+}
