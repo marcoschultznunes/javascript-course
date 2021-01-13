@@ -1,26 +1,29 @@
+/*
+    To hide the ID, we only need to overwrite the user model's toJSON function without
+    the ID.
+*/
+
+/* user model */
 'use strict';
 
 const {Model} = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
     class User extends Model {
-        /**
-         * Helper method for defining associations.
-         * This method is not a part of Sequelize lifecycle.
-         * The `models/index` file will call this method automatically.
-         */
+
         static associate(models) {
-            // define association here
+
         }
 
-        toJSON(){
+        toJSON(){ // The toJSON function
             return {
-                ...this.get(),
+                ...this.get(), // Gets all of the model's fields
                 id: undefined
             }
         }
     };
 
+    /* The rest stays the same. */
     User.init({
         uuid: {
             type: DataTypes.UUID,
@@ -51,3 +54,4 @@ module.exports = (sequelize, DataTypes) => {
 
     return User;
 };
+
