@@ -1,0 +1,4 @@
+To make components always have the same height and/or weight, we must use CSS grid instead of 
+flexbox. Sometimes we don't need it, but, for instance, when we have a product card where the 
+product's description could occupy 1 or 2 lines, we need the grid to make the product's height
+still expand if it is only 1 line long.
