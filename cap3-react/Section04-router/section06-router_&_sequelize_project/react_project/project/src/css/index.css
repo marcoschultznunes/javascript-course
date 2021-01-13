@@ -9,6 +9,8 @@
     --theme-color: #0a491f;
     --dark-gray: #111111;
     --slight-dark-gray: #222222;
+    --light-gray: #cccccc;
+    --lighter-gray: #eeeeee;
     --error-color: #b90e0e;
 }
 
@@ -22,4 +24,9 @@ a {
 
 .hidden {
     display: none;
+}
+
+main {
+    background-color: var(--lighter-gray);
+    min-height: 100vh;
 }

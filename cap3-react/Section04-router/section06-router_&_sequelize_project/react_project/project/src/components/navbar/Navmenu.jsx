@@ -24,7 +24,13 @@ const Navmenu = React.forwardRef((props, navMenuRef) => {
     }
 
     const categoryList = error ? <li> {error} </li> :
-        categories.map(category => <li key={category.id + category.name}>{category.name}</li>)
+        categories.map(category => 
+            <li key={category.id + category.name}>
+                <NavLink to={`/categories/${category.id}/${category.name}`} onClick={closeNavMenu}>
+                    {category.name}
+                </NavLink>
+            </li>
+        )
 
     return (  
         <nav id='navmenu' ref={navMenuRef} className='hidden'>

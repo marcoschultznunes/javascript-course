@@ -8,6 +8,7 @@ import {BrowserRouter} from 'react-router-dom';
 import './css/navbar.css';
 import './css/button.css';
 import './css/errors.css';
+import './css/productList.css';
 import './css/index.css';
 
 ReactDOM.render(

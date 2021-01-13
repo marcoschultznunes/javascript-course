@@ -11,9 +11,9 @@ const App = () => {
                     <Route exact path='/'>
                         Home
                     </Route>
-                    <Route exact path='/products' render={(props) => {
+                    <Route path='/categories/:id/:category' render={(props) => 
                         <ProductList {...props} />
-                    }} />
+                    } />
                     <Route render={() => <h2 id='not-found-message'>Page not found.</h2>} />
                 </Switch>
             </main>
