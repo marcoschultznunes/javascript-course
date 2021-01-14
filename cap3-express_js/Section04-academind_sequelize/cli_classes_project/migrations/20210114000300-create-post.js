@@ -2,7 +2,7 @@
 
 module.exports = {
     up: async (queryInterface, DataTypes) => {
-        await queryInterface.createTable('users', {
+        await queryInterface.createTable('posts', {
             id: {
                 allowNull: false,
                 autoIncrement: true,
@@ -14,19 +14,21 @@ module.exports = {
                 defaultValue: DataTypes.UUIDV4,
                 allowNull: false
             },
-            name: {
+            userId: {
+                type: DataTypes.INTEGER,
+                allowNull: false,
+                onDelete: 'CASCADE',
+                references: {
+                    model: 'users',
+                    key: 'id',
+                    as: 'userId',
+                }
+            },
+            title: {
                 type: DataTypes.STRING,
                 allowNull: false
             },
-            surname: {
-                type: DataTypes.STRING,
-                allowNull: false
-            },
-            email: {
-                type: DataTypes.STRING,
-                allowNull: false
-            },
-            password: {
+            body: {
                 type: DataTypes.STRING,
                 allowNull: false
             },
@@ -41,6 +43,6 @@ module.exports = {
         });
     },
     down: async (queryInterface, DataTypes) => {
-        await queryInterface.dropTable('users');
+        await queryInterface.dropTable('posts');
     }
 };

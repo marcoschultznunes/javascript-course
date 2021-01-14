@@ -1,3 +1,5 @@
 - Paged response
-- Soft delete
+- Soft delete => 
+    On sequelize it is called paranoid:
+    https://sequelize.org/master/manual/paranoid.html
 

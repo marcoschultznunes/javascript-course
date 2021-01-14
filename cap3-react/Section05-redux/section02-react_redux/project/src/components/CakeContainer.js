@@ -10,7 +10,7 @@ const CakeContainer = (props) => {
     );
 }
 
-const selectNumberOfCakes = state => state.numberOfCakes
+const selectNumberOfCakes = state => state.cake.numberOfCakes
 
 const mapStateToProps = state => {
     return {

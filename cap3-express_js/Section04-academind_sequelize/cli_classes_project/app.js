@@ -16,8 +16,10 @@ app.use((req, res, next) => {
 });
 
 const userRoutes = require('./routes/user')
+const postRoutes = require('./routes/post')
 
 app.use('/users', userRoutes)
+app.use('/posts', postRoutes)
 
 sequelize.sync().then(result => {
     app.use((req, res, next) => {

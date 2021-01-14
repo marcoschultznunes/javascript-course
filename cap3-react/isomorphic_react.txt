@@ -1,0 +1,10 @@
+https://stackoverflow.com/questions/43064707/what-does-isomorphic-react-mean
+
+Isomorphic: "corresponding or similar in form or relations".
+
+With regard to web apps, this means that the server is somehow similar to the client - in the sense that the server is capable of rendering as much as the client. In a way, isomorphic web apps are a return to the old paradigm where the server would render data and then send it pre-rendered to the client (think PHP templates or Ruby erb).
+
+Specifically with isomorphic React, this means that the server renders the initial HTML for the client using React components and React.renderToString(). This eliminates double work such as having erb templates on the server side when using Rails but then using Handlebars for client-side templates and also avoid the FOUC. You can just use React for everything.
+
+Now, if you're using a 3rd party service, you'd just use the json data as usual. What would make your app isomorphic or not would be whether your own server uses the same templating engine as your front-end. Any third party services you might consume have no bearing on whether your app is isomorphic or not.
+

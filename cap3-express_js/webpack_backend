@@ -1,0 +1,26 @@
+https://stackoverflow.com/questions/55644186/using-webpack-on-the-node-backend
+https://stackoverflow.com/questions/29911491/using-webpack-on-server-side-of-nodejs
+
+Webpack on the backend:
+
+Here are a few advantages of using a bundler like Webpack on the backend:
+
+It allows you to bundle your app code into a single minified file that only contains the relevant code.
+
+This is especially useful when you want to minimize the size of the package or want to create a standalone file that can be run without the node_modules directory.
+
+It helps you cut down the app startup time by minimizing the bundle size and the time required for module lookup.
+
+It makes it possible to have hot code loading on the server-side (can be done without webpack too)
+
+It enables you to use other webpack plugins and loaders.
+
+Considering all those advantages it has its own quirks and can make things more complicated than they should be. So obviously, only use it when it's absolutely necessary.
+
+=> Other answer:
+
+I've yet to see the benefit of using something like webpack for the backend. This is running in your server so bundling and concatenation etc make little sense.
+
+Transpilation, on the other hand, is a great thing to have for your javascript code. As long as you're compiling from something that doesn't try to completely mutate javascript (I'm looking at you coffeescript). So feel free to use Babel or Typescript for your backend.
+
+

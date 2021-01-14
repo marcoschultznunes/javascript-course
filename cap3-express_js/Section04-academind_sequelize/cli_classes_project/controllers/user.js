@@ -1,4 +1,4 @@
-const {User} = require('../models')
+const {User, Post} = require('../models')
 
 // INDEX
 exports.fetchUsers = (req, res, next) => {
@@ -20,7 +20,7 @@ exports.fetchUsers = (req, res, next) => {
 exports.getByUuid = (req, res, next) => {
     const {uuid} = req.params
 
-    User.findOne({where: {uuid: uuid} })
+    User.findOne({where: {uuid: uuid}, include: [{model: Post, as: 'posts'}] })
     .then(user => {
         if(!user){
             return res.status(404).json({
