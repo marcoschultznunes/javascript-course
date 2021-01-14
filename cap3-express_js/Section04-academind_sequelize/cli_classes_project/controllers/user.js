@@ -2,7 +2,7 @@ const {User, Post} = require('../models')
 
 // INDEX
 exports.fetchUsers = (req, res, next) => {
-    User.findAll()
+    User.findAll({ include: [{model: Post, as: 'posts'}] })
     .then(users => {
         return res.status(200).json({
             message: 'Successfully fetched users!',
