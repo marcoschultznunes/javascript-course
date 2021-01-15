@@ -1,3 +1,32 @@
+/*
+    In this example, we'll add a payload attribute to our buy cake action, and make 
+    CakeContainer component have an input that determines how many cakes to buy.
+*/
+
+/* buyCake action */
+import {BUY_CAKE} from './cake_types'
+
+export const buyCake = (cakesToBuy = 1) => {
+    return {
+        type: BUY_CAKE,
+        payload: cakesToBuy
+    }
+}
+
+
+/* cake reducer */
+export const cakeReducer = (state = initialState, action) => {
+    switch(action.type){
+        case BUY_CAKE: return {
+            ...state,
+            numberOfCakes: state.numberOfCakes - action.payload // reduce by the payload
+        }
+        default: return state
+    }
+}
+
+
+/* CakeContainer.js */
 import { buyCake } from "../redux";
 import { connect } from 'react-redux';
 import { useState } from "react";
@@ -31,3 +60,5 @@ const mapDispatchToProps = dispatch => {
 }
  
 export default connect(mapStateToProps, mapDispatchToProps)(CakeContainer);
+
+

@@ -1,8 +1,12 @@
-const {Post, User} = require('../models')
+const {Post, User, Tag} = require('../models')
 
 // INDEX
 exports.fetchPosts = (req, res, next) => {
-    Post.findAll({ include: [{model: User, as: 'user'}] }).then(posts => {
+    Post.findAll({ include: [
+        {model: User, as: 'user'}, 
+        {model: Tag, as: 'tags', through: {attributes: []}} 
+    ] })
+    .then(posts => {
         return res.status(200).json({
             message: 'Successfully fetched posts!',
             posts: posts
@@ -17,7 +21,7 @@ exports.fetchPosts = (req, res, next) => {
 
 // POST
 exports.createPost = (req, res, next) => {
-    const {title, body, userUuid} = req.body
+    const {title, body, userUuid, tags} = req.body
 
     User.findOne({where: {uuid: userUuid} }).then(user => {
         if(!user){
@@ -31,6 +35,13 @@ exports.createPost = (req, res, next) => {
             body: body,
             userId: user.id
         })
+    })
+    .then(post => {
+        if(tags.length > 0){
+            post.setTags(tags)
+        }
+
+        return post.save()
     })
     .then(createdPost => {
         return res.status(201).json({

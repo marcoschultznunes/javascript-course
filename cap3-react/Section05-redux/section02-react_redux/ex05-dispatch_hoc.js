@@ -8,7 +8,7 @@
 */
 
 /* CakeContainer.js */
-const CakeContainer = () => {
+const CakeContainer = () => { 
     return (  
         <div>
             <h2>Number of Cakes - </h2>
@@ -20,7 +20,7 @@ const CakeContainer = () => {
 /* mapStateToProps => Used in combination with selectors to select the attributes from the
 global state which we'll use with the component. In this case, the attribute is very simple
 and straightforward, so we won't use selectors. */
-const mapStateToProps = state => {
+const mapStateToProps = state => { // The second parameter are the props of the component
     return {
         numberOfCakes: state.numberOfCakes
     }
@@ -47,7 +47,7 @@ const mapStateToPropsWithSelector = state => {
 /* Back to CakeContainer.js, now we need to implement mapDispatchToProps */
 import { buyCake } from "../redux"; // Import from our index.js file
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = dispatch => { // The second parameter are the props of the component
     return {
         buyCake: () => dispatch(buyCake())
     }
