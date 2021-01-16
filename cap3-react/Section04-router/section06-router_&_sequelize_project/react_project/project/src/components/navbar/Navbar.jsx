@@ -3,6 +3,14 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faBars, faShoppingBasket, faSearch} from '@fortawesome/free-solid-svg-icons'
 import Navmenu from './Navmenu';
 
+/* 
+    To use font awesome we need 3 npm installs
+
+    npm i --save @fortawesome/fontawesome-svg-core
+    npm install --save @fortawesome/free-solid-svg-icons
+    npm install --save @fortawesome/react-fontawesome
+*/
+
 const Navbar = () => {
     const navMenuRef = useRef()
 

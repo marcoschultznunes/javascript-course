@@ -61,7 +61,12 @@ module.exports = {
             
             userId: { // userId added
                 type: DataTypes.INTEGER,
-                allowNull: false
+                allowNull: false,
+                references: {
+                    model: 'users',
+                    key: 'id',
+                    as: 'userId',
+                }
             }
 
             // Rest stays the same

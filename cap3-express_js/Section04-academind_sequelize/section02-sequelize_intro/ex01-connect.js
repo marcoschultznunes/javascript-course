@@ -29,6 +29,8 @@ module.exports = sequelize
 */
 
 /* On app.js */
+const db = require('./connection')
+
 const product_routes = require('./routes/product_routes')
 app.use('/products', product_routes)
 

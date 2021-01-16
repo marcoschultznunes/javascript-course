@@ -1,0 +1,39 @@
+#navbar {
+    background-color: var(--theme-color);
+    color: #ffffff;
+}
+
+#upper-nav > ul {
+    display: flex;
+    justify-content: space-between;
+    
+}
+#upper-nav > ul > li {
+    padding: 5px 10px;
+    font-size: calc(0.5vw + 22px);
+}
+
+#mid-nav {
+    display: flex;
+    justify-content: center;
+    margin-top: 5px;
+}
+
+#searchbar-form {
+    display: flex;
+    margin: 0 10px;
+    align-items: flex-start;
+    flex-grow: 1;
+}
+#searchbar-form > input {
+    margin-bottom: 10px;
+    padding: 5px;
+    flex-grow: 1;
+}
+#searchbar-form > button {
+    padding: 5px 10px;
+}
+#searchbar-form > input, #searchbar-form > button {
+    font-size: calc(0.4vw + 14px);
+    border: none;
+}
