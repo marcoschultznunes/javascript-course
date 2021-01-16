@@ -16,9 +16,11 @@ app.use((req, res, next) => {
 });
 
 const categoryRoutes = require('./routes/category')
+const brandRoutes = require('./routes/brand')
 const productRoutes = require('./routes/product')
 
 app.use('/categories', categoryRoutes)
+app.use('/brands', brandRoutes)
 app.use('/products', productRoutes)
 
 sequelize.sync().then(result => {

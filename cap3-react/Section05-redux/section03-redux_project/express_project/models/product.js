@@ -4,12 +4,21 @@ const {Model} = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
     class Product extends Model {
-        static associate({Category, ProductCategory}) {
+        static associate({Category, Brand, ProductCategory}) {
+            this.belongsTo(Brand, {through: 'brandId', as: 'brand'})
             this.belongsToMany(Category, {
                 through: ProductCategory,
                 as: 'categories',
-                foreignKey: 'productId'
+                foreignKey: 'productId',
+                onDelete: 'CASCADE'
             })
+        }
+        
+        toJSON(){
+            return {
+                ...this.get(),
+                brandId: undefined
+            }
         }
     };
     Product.init({

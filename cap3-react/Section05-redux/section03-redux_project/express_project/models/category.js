@@ -8,8 +8,17 @@ module.exports = (sequelize, DataTypes) => {
             this.belongsToMany(Product, {
                 through: ProductCategory,
                 as: 'products',
-                foreignKey: 'categoryId'
+                foreignKey: 'categoryId',
+                onDelete: 'CASCADE'
             })
+        }
+
+        toJSON(){
+            return {
+                ...this.get(),
+                createdAt: undefined,
+                updatedAt: undefined
+            }
         }
     };
     Category.init({

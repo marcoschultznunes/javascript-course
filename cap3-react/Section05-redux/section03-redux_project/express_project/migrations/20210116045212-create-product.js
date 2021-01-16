@@ -21,6 +21,16 @@ module.exports = {
                 type: DataTypes.DOUBLE,
                 allowNull: false
             },
+            brandId: {
+                type: DataTypes.INTEGER,
+                allowNull: false,
+                onDelete: 'CASCADE',
+                references: {
+                    model: 'brands',
+                    key: 'id',
+                    as: 'brandId',
+                }
+            },
             createdAt: {
                 allowNull: false,
                 type: DataTypes.DATE

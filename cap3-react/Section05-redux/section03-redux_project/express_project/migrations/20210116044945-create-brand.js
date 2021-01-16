@@ -2,7 +2,7 @@
 
 module.exports = {
     up: async (queryInterface, DataTypes) => {
-        await queryInterface.createTable('categories', {
+        await queryInterface.createTable('brands', {
             id: {
                 allowNull: false,
                 autoIncrement: true,
@@ -10,10 +10,6 @@ module.exports = {
                 type: DataTypes.INTEGER
             },
             name: {
-                type: DataTypes.STRING,
-                allowNull: false
-            },
-            image: {
                 type: DataTypes.STRING,
                 allowNull: false
             },
@@ -28,6 +24,6 @@ module.exports = {
         });
     },
     down: async (queryInterface, DataTypes) => {
-        await queryInterface.dropTable('categories');
+        await queryInterface.dropTable('brands');
     }
 };
