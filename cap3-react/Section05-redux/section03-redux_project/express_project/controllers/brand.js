@@ -1,4 +1,5 @@
 const {Brand, Product, Category} = require('../models')
+const {validationResult} = require('express-validator')
 
 exports.getBrands = async (req, res, next) => {
     try{
@@ -43,6 +44,16 @@ exports.getBrandById = async (req, res, next) => {
 
 exports.postBrand = async (req, res, next) => {
     try{
+        const errors = validationResult(req)
+        
+        if(!errors.isEmpty()){
+            const err = new Error('Validation failed. Entered data is incorrect!')
+            err.statusCode = 422
+            err.errors = errors.array()
+
+            throw err
+        }
+
         const {name} = req.body
 
         const newBrand = await Brand.create({name: name})
@@ -59,6 +70,16 @@ exports.postBrand = async (req, res, next) => {
 
 exports.patchBrand = async (req, res, next) => {
     try{
+        const errors = validationResult(req)
+        
+        if(!errors.isEmpty()){
+            const err = new Error('Validation failed. Entered data is incorrect!')
+            err.statusCode = 422
+            err.errors = errors.array()
+
+            throw err
+        }
+
         const {id} = req.params
         const {name} = req.body
 

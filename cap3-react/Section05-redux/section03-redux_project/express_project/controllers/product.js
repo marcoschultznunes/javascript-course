@@ -1,4 +1,6 @@
 const {Product, Brand, Category} = require('../models')
+const {validationResult} = require('express-validator')
+const {deleteImage} = require('../utils/imageFunctions')
 
 exports.getProducts = async (req, res, next) => {
     try{
@@ -42,12 +44,34 @@ exports.getProductById = async (req, res, next) => {
     }
 } 
 
+// POST
 exports.postProduct = async (req, res, next) => {
     try{
-        const {description, price, image, categories, brandId} = req.body
+        if(!req.file){
+            const err = new Error('Validation failed. No image provided.')
+            err.statusCode = 422
+            throw err
+        }
+
+        const errors = validationResult(req)
+        
+        if(!errors.isEmpty()){
+            const err = new Error('Validation failed. Entered data is incorrect!')
+            err.statusCode = 422
+            err.errors = errors.array()
+
+            if(req.file){
+                deleteImage(req.file.path)
+            }
+
+            throw err
+        }
+
+        const {description, price, categories, brandId} = req.body
+        const imageUrl = req.file.path
 
         const newProduct = await Product.create({
-            description: description, price: price, image: image, brandId: brandId
+            description: description, price: price, image: imageUrl, brandId: brandId
         })
 
         await newProduct.setCategories(categories)
@@ -58,12 +82,29 @@ exports.postProduct = async (req, res, next) => {
         })
 
     } catch(err) {
+        if(req.file){
+            deleteImage(req.file.path)
+        }
         next(err)
     }
 }
 
 exports.patchProduct = async (req, res, next) => {
     try{
+        const errors = validationResult(req)
+        
+        if(!errors.isEmpty()){
+            const err = new Error('Validation failed. Entered data is incorrect!')
+            err.statusCode = 422
+            err.errors = errors.array()
+
+            if(req.file){
+                deleteImage(req.file.path)
+            }
+
+            throw err
+        }
+
         const {id} = req.params
         const {description, price, image, categories, brandId} = req.body
 
@@ -75,9 +116,15 @@ exports.patchProduct = async (req, res, next) => {
             throw err
         }
 
+        let imageUrl = false
+
+        if(req.file){
+            imageUrl = req.file.path
+        }
+
         product.description = description || product.description
         product.price = price || product.price
-        product.image = image || product.image
+        product.image = imageUrl || product.image
         product.brandId  = brandId || product.brandId
 
         const newProduct = await product.save()
@@ -92,6 +139,9 @@ exports.patchProduct = async (req, res, next) => {
         })
 
     } catch(err) {
+        if(req.file){
+            deleteImage(req.file.path)
+        }
         next(err)
     }
 }

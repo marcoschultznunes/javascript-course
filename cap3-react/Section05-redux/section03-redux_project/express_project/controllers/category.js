@@ -1,4 +1,6 @@
 const {Category, Product, Brand} = require('../models')
+const {validationResult} = require('express-validator')
+const {deleteImage} = require('../utils/imageFunctions')
 
 exports.getCategories = async (req, res, next) => {
     try{
@@ -41,12 +43,34 @@ exports.getCategoryById = async (req, res, next) => {
     }
 }
 
+// POST
 exports.postCategory = async (req, res, next) => {
     try{
-        const {name, image} = req.body
+        if(!req.file){
+            const err = new Error('Validation failed. No image provided.')
+            err.statusCode = 422
+            throw err
+        }
+
+        const errors = validationResult(req)
+
+        if(!errors.isEmpty()){
+            const err = new Error('Validation failed. Entered data is incorrect!')
+            err.statusCode = 422
+            err.errors = errors.array()
+
+            if(req.file){
+                deleteImage(req.file.path)
+            }
+
+            throw err
+        }
+
+        const {name} = req.body
+        const imageUrl = req.file.path
         
         const newCategory = await Category.create({
-            name: name, image: image
+            name: name, image: imageUrl
         })
 
         return res.status(201).json({
@@ -55,14 +79,32 @@ exports.postCategory = async (req, res, next) => {
         })
 
     } catch(err) {
+        if(req.file){
+            deleteImage(req.file.path)
+        }
         next(err)
     }
 }
 
+// PATCH
 exports.patchCategory = async (req, res, next) => {
     try{
+        const errors = validationResult(req)
+        
+        if(!errors.isEmpty()){
+            const err = new Error('Validation failed. Entered data is incorrect!')
+            err.statusCode = 422
+            err.errors = errors.array()
+
+            if(req.file){
+                deleteImage(req.file.path)
+            }
+
+            throw err
+        }
+
         const {id} = req.params
-        const {name, image} = req.body
+        const {name} = req.body
 
         const category = await Category.findByPk(id)
 
@@ -72,8 +114,15 @@ exports.patchCategory = async (req, res, next) => {
             throw err
         }
 
+        let imageUrl = false
+
+        if(req.file){
+            imageUrl = req.file.path
+            success = deleteImage(category.image)
+        }
+
         category.name = name || category.name
-        category.image = image || category.image
+        category.image = imageUrl || category.image
 
         const updatedCategory = await category.save()
 
@@ -83,6 +132,9 @@ exports.patchCategory = async (req, res, next) => {
         })
 
     } catch(err) {
+        if(req.file){
+            deleteImage(req.file.path)
+        }
         next(err)
     }
 }
