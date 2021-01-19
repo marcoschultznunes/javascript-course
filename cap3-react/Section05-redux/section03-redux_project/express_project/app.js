@@ -29,6 +29,8 @@ app.use('/brands', brandRoutes)
 app.use('/products', productRoutes)
 
 sequelize.sync().then(result => {
+    console.log('Connected to database!')
+
     app.use((error, req, res, next) => {
         const status = error.statusCode || 500
         const message = error.message || 'An error has ocurred.'

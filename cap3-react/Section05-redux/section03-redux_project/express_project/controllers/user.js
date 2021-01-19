@@ -1,4 +1,5 @@
 const {User} = require('../models')
+const {validationResult} = require('express-validator')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const crypto = require('crypto')
@@ -23,6 +24,16 @@ exports.getUsers = async (req, res, next) => {
 
 exports.signUp = async (req, res, next) => {
     try{
+        const errors = validationResult(req)
+        
+        if(!errors.isEmpty()){
+            const err = new Error('Validation failed. Entered data is incorrect!')
+            err.statusCode = 422
+            err.errors = errors.array()
+
+            throw err
+        }
+
         const {name, surname, email, password} = req.body
 
         // Hash password
@@ -58,6 +69,16 @@ exports.signUp = async (req, res, next) => {
 
 exports.login = async (req, res, next) => {
     try{
+        const errors = validationResult(req)
+        
+        if(!errors.isEmpty()){
+            const err = new Error('Validation failed. Entered data is incorrect!')
+            err.statusCode = 422
+            err.errors = errors.array()
+
+            throw err
+        }
+
         const {email, password} = req.body
 
         // Find the user
@@ -88,8 +109,7 @@ exports.login = async (req, res, next) => {
         // Sign the JWT token
         const token = jwt.sign({
             email: user.email,
-            userId: user.id,
-            verifiedAt: user.verifiedAt
+            userId: user.id
         }, 'secretkeyHAHAHAlol', {
             expiresIn: '1h'
         })
@@ -109,6 +129,16 @@ exports.login = async (req, res, next) => {
 
 exports.verifyUser = async (req, res, next) => {
     try{
+        const errors = validationResult(req)
+        
+        if(!errors.isEmpty()){
+            const err = new Error('Validation failed. Entered data is incorrect!')
+            err.statusCode = 422
+            err.errors = errors.array()
+
+            throw err
+        }
+
         const {email, token} = req.body
 
         const user = await User.findOne({where: {email: email}})
