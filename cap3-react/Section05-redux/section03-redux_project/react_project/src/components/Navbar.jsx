@@ -7,6 +7,7 @@
 */
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faBars, faShoppingBasket, faSearch} from '@fortawesome/free-solid-svg-icons'
+import { Link } from 'react-router-dom'
 
 const Navbar = () => {
     return (  
@@ -17,7 +18,9 @@ const Navbar = () => {
                         <FontAwesomeIcon icon={faBars} className=".pseudo-button" />
                     </li>
                     <li>
-                        The Choppa
+                        <Link to='/'>
+                            The Choppa
+                        </Link>
                     </li>
                     <li>
                         <FontAwesomeIcon icon={faShoppingBasket} className=".pseudo-button" />
@@ -27,7 +30,7 @@ const Navbar = () => {
 
             <div id='mid-nav'>
                 <form action="#" id='searchbar-form'>
-                    <input type="search" placeholder="Search for products" />
+                    <input type="search" placeholder="Search for products" className='button' />
                     <button>
                         <FontAwesomeIcon icon={faSearch} />
                     </button>

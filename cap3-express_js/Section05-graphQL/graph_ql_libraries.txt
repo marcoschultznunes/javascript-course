@@ -1,0 +1,8 @@
+There are 2 main libraries for GraphQL in express:
+	express-graphql
+	apollo-server-express => Counterpart of apollo-client for react.
+
+Apollo is the most popular of the 2, and it will be the one i will use for this course.
+
+We also need the generic 'graphql' library from npm
+

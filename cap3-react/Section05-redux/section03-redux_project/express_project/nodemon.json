@@ -1,5 +1,4 @@
 { 
     "delay": 2000,
-    "watch": ["/"],
     "ext": "js, json, ts, proto"
 }

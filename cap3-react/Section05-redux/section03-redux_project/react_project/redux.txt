@@ -1,0 +1,4 @@
+Things i want in the redux global state:
+    
+    => loggedUser: used throught the application for authentication
+    => categories: used for the navbar and the home page. I want to fetch them in app.js
