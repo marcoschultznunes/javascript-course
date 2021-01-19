@@ -31,6 +31,7 @@ exports.authCheck = (req, res, next) => {
     }
 
     req.userId = verifiedToken.userId // We'll use to check matching IDs later.
+    req.verifiedAt = verifiedToken.verifiedAt // Use to check if user is verified
+
     next()
 }
-

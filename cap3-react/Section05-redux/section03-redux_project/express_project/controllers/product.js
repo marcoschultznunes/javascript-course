@@ -89,6 +89,7 @@ exports.postProduct = async (req, res, next) => {
     }
 }
 
+// PATCH
 exports.patchProduct = async (req, res, next) => {
     try{
         const errors = validationResult(req)

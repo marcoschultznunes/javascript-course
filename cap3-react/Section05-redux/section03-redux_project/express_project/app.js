@@ -18,10 +18,12 @@ app.use((req, res, next) => {
 
 app.use('/images', express.static(path.join(__dirname, 'images')))
 
+const userRoutes = require('./routes/user')
 const categoryRoutes = require('./routes/category')
 const brandRoutes = require('./routes/brand')
 const productRoutes = require('./routes/product')
 
+app.use('/auth', userRoutes)
 app.use('/categories', categoryRoutes)
 app.use('/brands', brandRoutes)
 app.use('/products', productRoutes)

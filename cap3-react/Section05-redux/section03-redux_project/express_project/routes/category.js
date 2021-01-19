@@ -1,5 +1,7 @@
 const router = require('express').Router()
 
+const { authCheck } = require('../auth/authCheck')
+
 const categoryController = require('../controllers/category')
 const categoryValidators = require('../validators/category')
 
@@ -9,15 +11,15 @@ router.get('/', categoryController.getCategories)
 router.get('/:id', categoryController.getCategoryById)
 
 router.post('/', 
-    uploadImage.single('image'), categoryValidators.postValidation, 
+    authCheck, uploadImage.single('image'), categoryValidators.postValidation, 
     categoryController.postCategory
 )
 
 router.patch('/:id',
-    uploadImage.single('image'), categoryValidators.patchValidation, 
+    authCheck, uploadImage.single('image'), categoryValidators.patchValidation, 
     categoryController.patchCategory
 )
 
-router.delete('/:id', categoryController.deleteCategory)
+router.delete('/:id', authCheck, categoryController.deleteCategory)
 
 module.exports = router
