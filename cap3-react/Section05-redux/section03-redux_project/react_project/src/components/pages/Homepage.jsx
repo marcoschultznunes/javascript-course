@@ -3,7 +3,7 @@ import CategoryCard from "../cards/CategoryCard";
 
 const Homepage = () => {
     // TODO => Fix this when there are properly 2 reducers
-    const categoryStore = useSelector(state => state)
+    const categoryStore = useSelector(state => state.category)
 
 
     console.log(categoryStore)

@@ -9,6 +9,8 @@ import { store } from './redux/store'
 import './css/navbar.css';
 import './css/card.css';
 import './css/category.css';
+import './css/product.css';
+import './css/button.css';
 import './css/index.css';
 
 ReactDOM.render(

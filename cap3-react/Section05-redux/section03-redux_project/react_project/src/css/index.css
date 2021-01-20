@@ -1,5 +1,6 @@
 :root {
     --theme-color: #008844;
+    --theme-darker: #006331;
 }
 
 * {
@@ -21,6 +22,11 @@ a {
     color: #ffffff;
     text-decoration: none;
     height: fit-content;
+}
+
+.route-display {
+    margin: 10px 5px;
+    font-size: calc(0.4vw + 14px);
 }
 
 .button:hover, .pseudo-button:hover, button:hover {

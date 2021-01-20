@@ -1,0 +1,15 @@
+.bg-green{
+    background-color: #00c542;
+}
+
+.bg-yellow{
+    background-color: #cddd37;
+}
+
+.styled-button{
+    padding: 5px 10px;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0px 0px 5px #444444;
+    font-weight: bold;
+}

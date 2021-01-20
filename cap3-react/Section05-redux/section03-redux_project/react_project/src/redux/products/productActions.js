@@ -1,4 +1,4 @@
-import { FETCH_PRODUCTS_FAILURE, FETCH_PRODUCTS_LOADING, FETCH_PRODUCTS_SUCCESS } from './categoryTypes'
+import { FETCH_PRODUCTS_FAILURE, FETCH_PRODUCTS_LOADING, FETCH_PRODUCTS_SUCCESS } from './productTypes'
 import Axios from 'axios'
 
 export const fetchProductsLoading = () => {
@@ -14,10 +14,10 @@ export const fetchProductsFailure = (error) => {
     }
 }
 
-export const fetchProductsSuccess = (PRODUCTS) => {
+export const fetchProductsSuccess = (products) => {
     return {
         type: FETCH_PRODUCTS_SUCCESS,
-        payload: PRODUCTS
+        payload: products
     }
 }
 

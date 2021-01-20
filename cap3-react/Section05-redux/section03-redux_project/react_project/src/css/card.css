@@ -3,3 +3,8 @@
     flex-direction: column;
     border-radius: 10px;    
 }
+
+.h-card {
+    display: flex;
+}
+
