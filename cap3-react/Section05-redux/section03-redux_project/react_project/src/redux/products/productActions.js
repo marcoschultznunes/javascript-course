@@ -31,7 +31,7 @@ export const fetchProducts = () => {
             dispatch(fetchProductsSuccess(response.data.products))
 
         } catch(error){
-            dispatch(fetchProductsFailure(error.message))
+            dispatch(fetchProductsFailure(error.response.data.message))
         } 
     }
 }

@@ -31,7 +31,7 @@ export const fetchCategories = () => {
             dispatch(fetchCategoriesSuccess(response.data.categories))
 
         } catch(error){
-            dispatch(fetchCategoriesFailure(error.message))
+            dispatch(fetchCategoriesFailure(error.response.data.message))
         } 
     }
 }

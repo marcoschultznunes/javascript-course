@@ -1,0 +1,16 @@
+GraphQL API => A graphQL API is just like a rest API, it is stateless, client independent, and 
+it exchanges data. The difference is that graphQL allows us more flexibility when querying.
+
+With REST APIs, the frontend always fetches the specific data that an endpoint provides, this 
+means that if we want to control which attributes of an entity we want to fetch, we have to make
+more endpoints, or complicate the already existing ones. With graphQL, that problem is solved,
+we can specify which attributes we want to fetch in the frontend.
+
+=> A graphQL API has just a single endpoint: 
+
+    POST /graphql
+
+This means that we always use POST, even for fetching data. The request body we send will be
+the object that defines the query.
+
+

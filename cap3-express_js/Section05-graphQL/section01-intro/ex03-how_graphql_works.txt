@@ -1,0 +1,28 @@
+GraphQL Query:
+
+    Is composed of the following nested objects
+
+    Operation Types:
+        query = GET
+        mutation = POST, UPDATE & DELETE
+        subscription = Websockets
+
+    Endpoint:
+        users, products, posts, etc.
+
+    Attributes:
+        id, name, description, price, etc.
+
+
+    ex:
+        query {
+            products {
+                description
+                price
+            }
+        }
+
+=> GraphQL uses type definition, defining the data types of our attributes.
+
+=> Resolvers: Are functions which behave like controllers, defining how the server should 
+respond to each query.

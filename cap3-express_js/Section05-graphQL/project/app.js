@@ -1,35 +1,46 @@
 const express = require('express')
 let app = express()
 
-const path = require('path')
 const bodyParser = require('body-parser')
 const morgan = require('morgan')
 const cors = require('cors')
 const {sequelize} = require('./models')
+const {ApolloServer, gql} = require('apollo-server-express')
 
 app.use(bodyParser.json())
 app.use(morgan('dev'))
 app.use(cors())
 
-app.use((req, res, next) => {
-    res.setHeader("Content-Security-Policy", "script-src 'self' https://apis.google.com");
-    return next();
-});
+// app.use((req, res, next) => {
+//     res.setHeader("Content-Security-Policy", "script-src 'self' https://apis.google.com");
+//     return next();
+// });
 
-app.use('/images', express.static(path.join(__dirname, 'images')))
+// Construct a schema, using GraphQL schema language
+const typeDefs = gql`
+    type Query {
+        hello: String
+    }
+`;
 
-const userRoutes = require('./routes/user')
-const categoryRoutes = require('./routes/category')
-const brandRoutes = require('./routes/brand')
-const productRoutes = require('./routes/product')
+// Provide resolver functions for your schema fields
+const resolvers = {
+    Query: {
+        hello: () => 'Hello world!',
+    },
+};
 
-app.use('/auth', userRoutes)
-app.use('/categories', categoryRoutes)
-app.use('/brands', brandRoutes)
-app.use('/products', productRoutes)
+const server = new ApolloServer({ typeDefs, resolvers });
+
+server.applyMiddleware({ app });
+
 
 sequelize.sync().then(result => {
     console.log('Connected to database!')
+
+    app.use((req, res) => {
+        res.send('ITS ALIVE')
+    })
 
     app.use((error, req, res, next) => {
         console.log(error.message)

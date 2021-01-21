@@ -12,4 +12,3 @@ const useInput = (initValue = '') => {
 }
 
 export default useInput
-

@@ -12,10 +12,10 @@
 }
 
 .category-card > a{
-    height: 130px;
+    height: 150px;
 }
 .category-card > a > img {
-    height: 130px;
+    height: 150px;
     width: calc(50vw - 15px);
 }
 .text-container{

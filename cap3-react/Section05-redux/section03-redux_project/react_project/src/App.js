@@ -5,6 +5,7 @@ import Homepage from './components/pages/Homepage';
 import { useDispatch } from 'react-redux';
 import { fetchCategories } from './redux/categories/categoryActions';
 import CategoryProducts from './components/pages/CategoryProducts';
+import LoginSignup from './components/pages/LoginSignup';
 
 function App() {
     // Fetch categories
@@ -22,9 +23,15 @@ function App() {
 
             <Switch>
                 <Route path='/' exact component={Homepage} />
+                
                 <Route path='/categories/:id/:name' render={(props) => 
                     <CategoryProducts id={props.match.params.id} name={props.match.params.name}/>
                 }/>
+                
+                <Route path='/login' render={() => 
+                    <LoginSignup />
+                }/>
+
                 <Route>
                     <h1>404 - Page not found!</h1>
                 </Route>
