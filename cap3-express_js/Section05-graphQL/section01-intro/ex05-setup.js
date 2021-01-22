@@ -31,17 +31,18 @@ app.use(bodyParser.json())
 app.use(morgan('dev'))
 app.use(cors())
 
-app.use((req, res, next) => {
-    res.setHeader("Content-Security-Policy", "script-src 'self' https://apis.google.com");
-    return next();
-});
+// app.use((req, res, next) => {
+//     res.setHeader("Content-Security-Policy", "script-src 'self' https://apis.google.com");
+//     return next();
+// });
 
 
 /* This does not work yet, as we do not have typeDefs, resolvers and context for the 
 ApolloServer yet, but on the next section we'll implement it */
 const server = new ApolloServer({ 
     typeDefs, 
-    resolvers, 
+    resolvers,
+    // playground: false => Disables playground, useful for production environment. 
     context: {} 
 });
 

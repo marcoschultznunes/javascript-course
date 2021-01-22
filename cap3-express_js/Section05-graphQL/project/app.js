@@ -5,7 +5,7 @@ const bodyParser = require('body-parser')
 const morgan = require('morgan')
 const cors = require('cors')
 const {sequelize} = require('./models')
-const {ApolloServer, gql} = require('apollo-server-express')
+const {ApolloServer} = require('apollo-server-express')
 
 app.use(bodyParser.json())
 app.use(morgan('dev'))
@@ -16,21 +16,9 @@ app.use(cors())
 //     return next();
 // });
 
-// Construct a schema, using GraphQL schema language
-const typeDefs = gql`
-    type Query {
-        hello: String
-    }
-`;
+const graphql =  require('./graphql')
 
-// Provide resolver functions for your schema fields
-const resolvers = {
-    Query: {
-        hello: () => 'Hello world!',
-    },
-};
-
-const server = new ApolloServer({ typeDefs, resolvers });
+const server = new ApolloServer(graphql);
 
 server.applyMiddleware({ app });
 
