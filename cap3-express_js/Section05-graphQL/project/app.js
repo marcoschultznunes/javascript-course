@@ -2,13 +2,11 @@ const express = require('express')
 let app = express()
 
 const bodyParser = require('body-parser')
-const morgan = require('morgan')
 const cors = require('cors')
 const {sequelize} = require('./models')
 const {ApolloServer} = require('apollo-server-express')
 
 app.use(bodyParser.json())
-app.use(morgan('dev'))
 app.use(cors())
 
 // app.use((req, res, next) => {
