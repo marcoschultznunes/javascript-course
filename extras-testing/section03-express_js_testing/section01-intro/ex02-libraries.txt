@@ -1,0 +1,13 @@
+Testing libraries => Jest, Mocha
+Assertion libraries => Jest, Chai : expect()
+Test runner => Jest, Mocha, Puppeteer(browser) : npm test
+Mocks, stubs => Jest, Sinon
+Code coverage => Jest : npm test --coverage => Displays a statistical analysis of all testing
+
+
+The 2 main test library setups:
+    Jest
+    Mocha + Chai + Sinon
+
+
+Enzyme => Unique to React.

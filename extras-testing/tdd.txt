@@ -1,0 +1,2 @@
+TDD => Test driven development: writing tests before writing the app, and basing the app on 
+these tests.

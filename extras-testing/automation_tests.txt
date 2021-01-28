@@ -1,0 +1,3 @@
+Automation tests = E2E tests
+
+Library: Cypress, Testcafé

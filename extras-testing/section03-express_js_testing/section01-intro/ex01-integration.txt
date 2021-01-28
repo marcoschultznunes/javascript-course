@@ -1,0 +1,5 @@
+Integration tests => Testing express controllers, if they are fetching from the database.
+Uses mocks and stubs. They are difficult to implement.
+
+UNIT tests do NOT test contracts, for instance, connection to database, between 2 functions.
+

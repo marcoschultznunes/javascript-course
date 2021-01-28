@@ -1,0 +1,4 @@
+Scalar
+Validation
+Pagination
+Authentication & Authorization

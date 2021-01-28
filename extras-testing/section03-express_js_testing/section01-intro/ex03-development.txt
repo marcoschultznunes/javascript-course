@@ -1,0 +1,3 @@
+Test are not shipped to production.
+
+Install Jest as a dev dependency.
