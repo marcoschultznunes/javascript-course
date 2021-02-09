@@ -1,0 +1,10 @@
+This section is based on codevolution's Typescript in 50 mins course:
+    https://www.youtube.com/watch?v=WBPrJSw7yQA
+
+
+First, we'll install typescript globally with npm:
+    npm install -g typescript
+
+To check typescript version:
+    tsc -v
+    
