@@ -4,3 +4,6 @@ const printName = (name: string = 'Anon', surname: string = 'Guest') : string =>
 
 console.log(printName('Marcola')) // Marcola Guest
 console.log(printName()) // Anon Guest
+
+
+export default {}

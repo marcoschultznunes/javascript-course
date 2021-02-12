@@ -4,7 +4,8 @@ const {Schema} = mongoose
 const categorySchema = new Schema({
     name: {
         type: String,
-        required: true
+        required: true,
+        unique: true // Unique
     }
 }, 
     {timestamps: false, toJSON: { versionKey: false }} // Ignore __v field

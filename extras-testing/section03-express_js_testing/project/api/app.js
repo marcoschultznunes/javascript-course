@@ -17,17 +17,16 @@ app.use((req, res, next) => {
 });
 
 const categoryRoutes = require('./routes/categories')
+app.use('/categories', categoryRoutes)
 
 mongoose.connect(`mongodb+srv://marcola:${secrets.password}@cluster0.p4xhv.mongodb.net/${secrets.db}?retryWrites=true&w=majority`, {
     useNewUrlParser: true, 
     useUnifiedTopology: true, 
-    useFindAndModify: false
+    useFindAndModify: false,
+    useCreateIndex: true
 })
 .then(() => {
     console.log('Connected to database!')
-
-    // Add routers here
-    app.use('/categories', categoryRoutes)
 
     app.use((error, req, res, next) => {
         const status = error.statusCode || 500

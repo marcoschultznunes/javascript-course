@@ -1,5 +1,27 @@
+/*  
+    I'll create a simple category endpoint to test the CRUD. Category will have only a name
+    field, which will be unique.
+*/
+
+/* The model */
+const mongoose = require('mongoose')
+const {Schema} = mongoose
+
+const categorySchema = new Schema({
+    name: {
+        type: String,
+        required: true,
+        unique: true // Unique
+    }
+}, 
+    {timestamps: false, toJSON: { versionKey: false }} // Ignore __v field
+)
+
+module.exports = mongoose.model('Categories', categorySchema)
+
+
+/* The controller */
 const CategoryModel = require('../models/categories')
-const {validationResult} = require('express-validator')
 
 // GET
 exports.getCategories = async (req, res, next) => {
@@ -36,16 +58,6 @@ exports.getById = async (req, res, next) => {
 // POST
 exports.postCategory = async (req, res, next) => {
     try {
-        const errors = validationResult(req)
-
-        if(!errors.isEmpty()){
-            const err = new Error('Validation failed. Entered data is incorrect!')
-            err.statusCode = 422
-            err.errors = errors.array()
-
-            throw err
-        }
-
         const {name} = req.body
 
         const newCategory = await CategoryModel.create({name})
@@ -63,16 +75,6 @@ exports.postCategory = async (req, res, next) => {
 // PATCH
 exports.patchCategory = async (req, res, next) => {
     try {
-        const errors = validationResult(req)
-
-        if(!errors.isEmpty()){
-            const err = new Error('Validation failed. Entered data is incorrect!')
-            err.statusCode = 422
-            err.errors = errors.array()
-
-            throw err
-        }
-
         const {id} = req.params
         const {name} = req.body
 
@@ -94,7 +96,6 @@ exports.patchCategory = async (req, res, next) => {
             message: 'Category updated!',
             category: newCategory
         })
-
     } catch(err) {
         next(err)
     }
@@ -120,9 +121,6 @@ exports.deleteCategory = async (req, res, next) => {
         })
 
     } catch(err) {
-        // if(req.file){
-        //     deleteImage(req.file.path)
-        // }
         next(err)
     }
 }
