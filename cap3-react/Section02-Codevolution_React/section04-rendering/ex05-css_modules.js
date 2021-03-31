@@ -8,7 +8,7 @@
 
 /* Example */
 import React from 'react';
-import Css from '../../css/example.module.css' // It is assigned to a variable
+import Css from '../../css/example.module.css'; // It is assigned to a variable
 
 const ModuleCss = () => {
     return(

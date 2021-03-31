@@ -33,3 +33,4 @@ sequelize.sync().then(result => {
 })
 
 module.exports = app
+

@@ -1,0 +1,20 @@
+.page-controls{
+    background-color: var(--secondary-color);
+    justify-content: center;
+    padding: 10px 0;
+    position: sticky;
+    bottom: 0;
+}
+
+.page-controls > button {
+    color: #ffffff;
+    background-color: var(--secondary-dark);
+    font-size: 16px;
+    padding: 6px 12px;
+}
+.page-controls > input {
+    width: 30px;
+    text-align: center;
+    border-radius: 0;
+    border: none;
+}

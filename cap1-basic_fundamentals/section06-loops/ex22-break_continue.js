@@ -3,7 +3,7 @@
  *  Break => Para o loop
  *  Continue => Pula uma iteração 
  * 
- *  É recomendado seu desuso, pois lembram o goto => macarronada
+ *  É recomendado seu desuso, pois lembram o goto
 */
 
 console.log('Break:')

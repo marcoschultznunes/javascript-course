@@ -18,7 +18,7 @@ obj.hi = function(){ return 'Hi' }
 console.log(obj.hi())
 
 
-// function as param
+// function as param => callback
 function run(fun) {
     fun()
 }

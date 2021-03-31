@@ -1,0 +1,24 @@
+#register_form{
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+}
+#register_form > input{
+    padding: 4px;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+#register_form > button{
+    background-color:#137042;
+    padding: 5px 0px;
+    font-size: 20px;
+    box-shadow: 0px 0px 2px #000000;
+    border: none;
+    border-radius: 4px;
+}
+#register_form > button:hover{
+    text-shadow: 0px 0px 4px #aaa;
+}
+input {
+    outline: 2px solid #163d92;
+}

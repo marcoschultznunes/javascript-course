@@ -1,0 +1,40 @@
+* {
+    box-sizing: border-box;
+}
+
+body{
+    margin: 20px;
+}
+
+.bg-blue{
+    background-color: #002066;
+    color: #ffffff;
+}
+.bg-green{
+    background-color: #00583b;
+    color: #ffffff;
+}
+.bg-orange{
+    background-color: orangered;
+    color: #ffffff;
+}
+.bg-red{
+    background-color: #bb0000;
+    color: #ffffff;
+}
+.bg-purple{
+    background-color: #54007a;
+    color: #ffffff;
+}
+
+.hidden{
+    display: none;
+}
+
+button:hover{
+    cursor: pointer;
+}
+
+ul {
+    padding-left: 20px;
+}
