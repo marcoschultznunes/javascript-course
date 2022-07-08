@@ -1,0 +1,32 @@
+<div>
+  <h1>Hello There!</h1>
+  <h3>{{ message }}</h3> <!-- message in app.component.ts -->
+  <ul>
+    <li *ngFor="let tech of stack"> <!-- list is looped with *ngFor -->
+      {{ tech }}
+    </li>
+  </ul>
+  <hr>
+
+  <h3 *ngIf="5 > 3">5 > 3</h3> <!-- element is created if condition is true -->
+  <hr>
+
+  <h3>Tasks To Do</h3>
+  <ul>
+    <ng-container *ngFor="let task of toDo"> <!-- ng-container does not add an element -->
+      <li *ngIf="task.status == 'PENDING'">{{task.task}}</li>
+    </ng-container>
+  </ul>
+
+  <h3>Tasks Done</h3>
+  <ul>
+    <ng-container *ngFor="let task of toDo">
+      <li *ngIf="task.status == 'DONE'">{{task.task}}</li>
+    </ng-container>
+  </ul>
+  <hr>
+
+  
+</div>
+
+<router-outlet></router-outlet>

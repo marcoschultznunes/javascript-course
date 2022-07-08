@@ -1,0 +1,5 @@
+In app.component.html
+
+<div>
+  <h3 *ngIf="5 > 3">5 > 3</h3> <!-- element is created if condition is true -->
+</div>

@@ -1,0 +1,13 @@
+In app.component.ts
+
+export class AppComponent {
+  title = 'first-project';
+  message = 'MEAN Stack' // Is passed to the view
+}
+
+In app.component.html
+
+<div>
+  <h1>Hello There!</h1>
+  <h3>{{ message }}</h3> <!-- message in app.component.ts -->
+</div>

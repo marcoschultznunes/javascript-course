@@ -1,0 +1,13 @@
+“npm install -g @angular/cli” => Install Angular CLI
+ng new <project-name> => Creates new Angular project
+ng build => Compiles the project to the dist folder (like webpack)
+ng serve => Launches the app in a testing server
+
+app.component.html => App component view (we can change the default)
+app.component.ts => The component:
+
+@Component({
+  selector: 'app-root', => The HTML tag
+  templateUrl: './app.component.html', => The view HTML file
+  styleUrls: ['./app.component.css'] => The CSS file of the component
+})

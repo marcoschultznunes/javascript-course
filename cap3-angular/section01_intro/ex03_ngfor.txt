@@ -1,0 +1,18 @@
+In app.component.ts
+
+const stack = ['MongoDB', 'ExpressJS', 'Angular', "NodeJS"]
+
+export class AppComponent {
+  title = 'first-project'; 
+  stack = stack // list is passed to the view
+}
+
+In app.component.html
+
+<div>
+  <ul>
+    <li *ngFor="let tech of stack"> <!-- list is looped with *ngFor -->
+      {{ tech }}
+    </li>
+  </ul>
+</div>

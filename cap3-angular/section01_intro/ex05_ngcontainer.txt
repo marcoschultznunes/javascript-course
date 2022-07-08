@@ -1,0 +1,48 @@
+https://stackoverflow.com/questions/49404844/how-to-combine-ngif-with-ngfor
+
+In this example, we add a task from the TODO list to a list determinerd by if it's done 
+or pending, combining *ngFor and *ngIf
+
+In app.component.ts
+
+const toDo = [
+  {
+    task: "Water Plants",
+    status: "PENDING"
+  },
+  {
+    task: "Take out trash",
+    status: "PENDING"
+  },
+  {
+    task: "Clean living room",
+    status: "DONE"
+  },
+  {
+    task: "Study",
+    status: "PENDING"
+  },
+]
+
+export class AppComponent {
+  title = 'first-project';
+  toDo = toDo
+}
+
+In app.component.html
+
+<div>
+  <h3>Tasks To Do</h3>
+  <ul>
+    <ng-container *ngFor="let task of toDo"> <!-- ng-container does not add an element -->
+      <li *ngIf="task.status == 'PENDING'">{{task.task}}</li>
+    </ng-container>
+  </ul>
+
+  <h3>Tasks Done</h3>
+  <ul>
+    <ng-container *ngFor="let task of toDo">
+      <li *ngIf="task.status == 'DONE'">{{task.task}}</li>
+    </ng-container>
+  </ul>
+</div>
